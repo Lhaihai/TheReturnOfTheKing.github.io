@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[hexo 学习笔记]]></title>
+    <url>%2F2018%2F04%2F13%2Fhexo-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%2F</url>
+    <content type="text"><![CDATA[参考链接： Hexo博客教程(一):Hexo的前期部署：https://www.jianshu.com/p/9f04ee6371ce Hexo博客教程(二):基本功能和网站优化：https://www.jianshu.com/p/2a70262295e4 Hexo博客教程(三):参考资料https://www.jianshu.com/p/8f727b4c3cd1]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Daily Plan]]></title>
+    <url>%2F2018%2F04%2F13%2FDaily-plan%2F</url>
+    <content type="text"><![CDATA[python 写一个自动签到，签到成功发送短信到我手机，还会定时启动]]></content>
+      <categories>
+        <category>good</category>
+      </categories>
+      <tags>
+        <tag>plan</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <url>%2F2018%2F04%2F13%2Fhello-world%2F</url>
+    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+      <categories>
+        <category>good</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[网站目录结构扫描器]]></title>
+    <url>%2F2018%2F03%2F13%2F%E7%BD%91%E7%AB%99%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84%E6%89%AB%E6%8F%8F%E5%99%A8%2F</url>
+    <content type="text"><![CDATA[0x00 cansinaInstall12345pip install --user requests[security](try removing --user and install with sudo in case of errors)git clone --depth=1 https://github.com/deibit/cansina Fast useUse Python 3 (works on Python 2 too, but 3 is advisable) 1$ python3 cansina.py -u &lt;site_url&gt; -p &lt;payload_file&gt; 0x01 dirsearchinstall(need Python 3.X)Linux: 123git clone https://github.com/maurosoria/dirsearch.gitcd dirsearch/./dirsearch.py -u 目标网址 -e * Windows: https://github.com/maurosoria/dirsearch/archive/master.zip Fast use12./dirsearch.py -u 目标网址 -e *./dirsearch.py -u 目标网址 -e php| grep 200 !dirsearch]]></content>
+      <categories>
+        <category>Web安全</category>
+      </categories>
+      <tags>
+        <tag>python Web安全</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[N1CTF笔记]]></title>
+    <url>%2F2018%2F03%2F11%2FN1CTF%E7%AC%94%E8%AE%B0%2F</url>
+    <content type="text"><![CDATA[https://3wapp.github.io/ http://blog.csdn.net/lacoucou/article/details/72355346 Dockerfile easy php substr(md5(?), 0, 5)=== de426 substr() 函数返回字符串的一部分。 注释：如果 start 参数是负数且 length 小于或等于 start，则 length 为 0。 语法12substr(string,start,length) 参数 描述 string 必需。规定要返回其中一部分的字符串。 start 必需。规定在字符串的何处开始。正数 - 在字符串的指定位置开始负数 - 在从字符串结尾开始的指定位置开始0 - 在字符串中的第一个字符处开始 length 可选。规定被返回字符串的长度。默认是直到字符串的结尾。正数 - 从 start 参数所在的位置返回的长度负数 - 从字符串末端返回的长度 http://www.beesfun.com/2017/03/21/CTF%E4%B9%8BMD5%E6%88%AA%E6%96%AD%E6%AF%94%E8%BE%83/ submd5.py 12345678910111213141516171819202122232425262728# -*- coding: utf-8 -*-import multiprocessingimport hashlibimport randomimport stringimport sysCHARS = string.letters + string.digitsdef cmp_md5(substr, stop_event, str_len, start=0, size=20): global CHARS while not stop_event.is_set(): rnds = ''.join(random.choice(CHARS) for _ in range(size)) md5 = hashlib.md5(rnds) if md5.hexdigest()[start: start+str_len] == substr: print rnds stop_event.set()if __name__ == '__main__': substr = sys.argv[1].strip() start_pos = int(sys.argv[2]) if len(sys.argv) &gt; 1 else 0 str_len = len(substr) cpus = multiprocessing.cpu_count() stop_event = multiprocessing.Event() processes = [multiprocessing.Process(target=cmp_md5, args=(substr, stop_event, str_len, start_pos)) for i in range(cpus)] for p in processes: p.start() for p in processes: p.join() 用法： 1234$ python submd5.py "3d4f4"SponhjOhIZ30IaM1fweb$ python submd5.py "3df4" 2G8tr6VhonA1z3xJdaGBu]]></content>
+      <categories>
+        <category>CTF比赛</category>
+      </categories>
+      <tags>
+        <tag>CTF</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[GitHub hexo建站笔记]]></title>
+    <url>%2F2018%2F03%2F11%2FGitHub-hexo%E5%BB%BA%E7%AB%99%E7%AC%94%E8%AE%B0%2F</url>
+    <content type="text"><![CDATA[有用的链接：12https://github.com/iissnan/hexo-theme-next/blob/master/README.cn.mdhttp://theme-next.iissnan.com/getting-started.html 0x01 Cannot GET /tags/执行 1$ hexo new page tags 之后，要修改tags文件下的index.md文件 https://www.zhihu.com/question/29017171 0x02 这里有两篇帮你不需要什么成本，搭建好一个功能完备的博客： 如何搭建一个独立博客——简明Github Pages与Hexo教程 https://www.jianshu.com/p/05289a4bc8b2 hexo 博客小功能添加-评论、相册、字数统计… https://www.jianshu.com/p/f5c184047e72]]></content>
+      <categories>
+        <category>GitHub hexo建站</category>
+      </categories>
+      <tags>
+        <tag>博客</tag>
+      </tags>
+  </entry>
+</search>
