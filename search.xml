@@ -4,6 +4,12 @@
     <title><![CDATA[hexo 学习笔记]]></title>
     <url>%2F2018%2F04%2F13%2Fhexo-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%2F</url>
     <content type="text"><![CDATA[参考链接： Hexo博客教程(一):Hexo的前期部署：https://www.jianshu.com/p/9f04ee6371ce Hexo博客教程(二):基本功能和网站优化：https://www.jianshu.com/p/2a70262295e4 Hexo博客教程(三):参考资料https://www.jianshu.com/p/8f727b4c3cd1 设置访问次数统计不蒜子统计 http://theme-next.iissnan.com/third-party-services.html#analytics-busuanzi]]></content>
+      <categories>
+        <category>GitHub hexo建站</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[Daily Plan]]></title>

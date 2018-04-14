@@ -513,11 +513,11 @@ pre code {
   text-shadow: none;
 }
 .highlight {
-  border-radius: 1px;
+  border-radius: 8px;
 }
 .highlight pre {
   border: none;
-  margin: 0;
+  margin: auto;
   padding: 10px 0;
 }
 .highlight table {
@@ -1822,7 +1822,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #8cd15e;
+  background: #1cb36a;
 }
 .links-of-blogroll {
   font-size: 13px;
