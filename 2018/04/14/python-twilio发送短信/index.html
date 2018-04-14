@@ -89,7 +89,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://qqadapt.qpic.cn/txdocpic/0/c4cb69d44749c5934ade4279bee7b0f9/0">
 <meta property="og:image" content="https://qqadapt.qpic.cn/txdocpic/0/310c05e97b697267c4d775da964c4b2f/0">
-<meta property="og:updated_time" content="2018-04-14T02:48:30.158Z">
+<meta property="og:updated_time" content="2018-04-14T02:50:07.286Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python+twilio发送短信">
 <meta name="twitter:description" content="注册Twilio账号访问http://twilio.com/并填写注册表单。注册了新账户后，你需要验证一个手机号码，短信将发给该号码（这项验证是必要的，防止有人利用该服务向任意的手机号码发送垃圾短信）。收到验证号码短信后，在Twilio网站上输入它，证明你拥有要验证的手机。现在，就可以用twilio模块向这个电话号码发送短信了。 1、获取一个Twilio电话号码：https://support.t">
@@ -401,7 +401,7 @@
 <p>到这个网址验证手机号码：<a href="https://www.twilio.com/console/phone-numbers/verified" target="_blank" rel="noopener">https://www.twilio.com/console/phone-numbers/verified</a></p>
 <p>可以发送短信验证码或者打电话输入验证码</p>
 <h5 id="3、官方文档"><a href="#3、官方文档" class="headerlink" title="3、官方文档"></a>3、官方文档</h5><p><a href="https://www.twilio.com/docs/libraries/python" target="_blank" rel="noopener">https://www.twilio.com/docs/libraries/python</a></p>
-<p>&lt; !– <em>more</em> –&gt;</p>
+<a id="more"></a>
 <h4 id="发送短信"><a href="#发送短信" class="headerlink" title="发送短信"></a>发送短信</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> twilio.rest <span class="keyword">import</span> Client</span><br><span class="line"></span><br><span class="line"><span class="comment"># Your Account SID from twilio.com/console</span></span><br><span class="line">account_sid = <span class="string">"AC9810ae2342f0014cd05e338bce9be8cb"</span></span><br><span class="line"><span class="comment"># Your Auth Token from twilio.com/console</span></span><br><span class="line">auth_token  = <span class="string">"your_auth_token"</span></span><br><span class="line"></span><br><span class="line">client = Client(account_sid, auth_token)</span><br><span class="line"></span><br><span class="line">message = client.messages.create(</span><br><span class="line">    to=<span class="string">"+15558675309"</span>, </span><br><span class="line">    from_=<span class="string">"+15017250604"</span>,</span><br><span class="line">    body=<span class="string">"Hello from Python!"</span>)</span><br><span class="line"></span><br><span class="line">print(message.sid)</span><br></pre></td></tr></table></figure>
 <p>效果如下：</p>
 <p><img src="https://qqadapt.qpic.cn/txdocpic/0/c4cb69d44749c5934ade4279bee7b0f9/0" alt=""></p>
