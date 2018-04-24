@@ -3,6 +3,46 @@
 
     
   <url>
+    <loc>http://yoursite.com/2018/04/24/SQL%E6%B3%A8%E5%85%A5%E7%AC%94%E8%AE%B0%EF%BC%882%EF%BC%89%EF%BC%9AMySQL%E9%95%BF%E5%AD%97%E7%AC%A6%E6%88%AA%E6%96%AD/</loc>
+    <lastmod>2018-04-24T16:19:06.313Z</lastmod>
+    <data>
+        <display>
+        <title>SQL注入笔记（2）：MySQL长字符截断</title>
+        <pubTime>2018-04-24T15:21:15.000Z</pubTime>
+        
+        <tag>web安全，SQL注入 </tag>
+         
+         
+           
+             
+              <breadCrumb title="Web安全 [SQL注入]" url="http://yoursite.com/categories/Web%E5%AE%89%E5%85%A8-SQL%E6%B3%A8%E5%85%A5/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2018/04/24/SQL%E6%B3%A8%E5%85%A5%E7%AC%94%E8%AE%B0%EF%BC%881%EF%BC%89%EF%BC%9A%E6%B3%A8%E9%87%8A/</loc>
+    <lastmod>2018-04-24T16:18:38.915Z</lastmod>
+    <data>
+        <display>
+        <title>SQL注入笔记（1）：注释</title>
+        <pubTime>2018-04-24T15:20:39.000Z</pubTime>
+        
+        <tag>转载,SQL </tag>
+         
+         
+           
+             
+              <breadCrumb title="Web安全 [SQL注入]" url="http://yoursite.com/categories/Web%E5%AE%89%E5%85%A8-SQL%E6%B3%A8%E5%85%A5/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2018/04/23/Python%E5%90%88%E5%B9%B6Excel%E8%A1%A8%E6%A0%BC/</loc>
     <lastmod>2018-04-23T13:02:22.242Z</lastmod>
     <data>
