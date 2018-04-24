@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="介绍：转载来自MySQL 字符截断攻击 先创建一张表 12345CREATE table users(id int(11) not NULL primary key auto_increment,username char(8) not NULL,password char(10) not NULL); 正常插入 admin ; admin insert into users(username,p">
+<meta name="description" content="介绍：转载来自MySQL 字符截断攻击">
 <meta name="keywords" content="web安全，SQL注入">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SQL注入笔记（2）：MySQL长字符截断">
 <meta property="og:url" content="http://yoursite.com/2018/04/24/SQL注入笔记（2）：MySQL长字符截断/index.html">
 <meta property="og:site_name" content="Lhaihai&#39;s Blog">
-<meta property="og:description" content="介绍：转载来自MySQL 字符截断攻击 先创建一张表 12345CREATE table users(id int(11) not NULL primary key auto_increment,username char(8) not NULL,password char(10) not NULL); 正常插入 admin ; admin insert into users(username,p">
+<meta property="og:description" content="介绍：转载来自MySQL 字符截断攻击">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-24T16:19:06.313Z">
+<meta property="og:updated_time" content="2018-04-24T16:20:33.805Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SQL注入笔记（2）：MySQL长字符截断">
-<meta name="twitter:description" content="介绍：转载来自MySQL 字符截断攻击 先创建一张表 12345CREATE table users(id int(11) not NULL primary key auto_increment,username char(8) not NULL,password char(10) not NULL); 正常插入 admin ; admin insert into users(username,p">
+<meta name="twitter:description" content="介绍：转载来自MySQL 字符截断攻击">
 
 
 
@@ -350,8 +350,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Web安全-SQL注入/" itemprop="url" rel="index">
-                    <span itemprop="name">Web安全 [SQL注入]</span>
+                  <a href="/categories/SQL注入/" itemprop="url" rel="index">
+                    <span itemprop="name">SQL注入</span>
                   </a>
                 </span>
 
@@ -393,6 +393,7 @@
 
       
         <h3 id="介绍："><a href="#介绍：" class="headerlink" title="介绍："></a>介绍：</h3><p>转载来自<a href="https://blog.csdn.net/SoDaoo/article/details/74331792" target="_blank" rel="noopener">MySQL 字符截断攻击</a></p>
+<a id="more"></a>
 <p>先创建一张表</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">table</span> <span class="keyword">users</span>(</span><br><span class="line"><span class="keyword">id</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">not</span> <span class="literal">NULL</span> primary <span class="keyword">key</span> auto_increment,</span><br><span class="line">username <span class="built_in">char</span>(<span class="number">8</span>) <span class="keyword">not</span> <span class="literal">NULL</span>,</span><br><span class="line"><span class="keyword">password</span> <span class="built_in">char</span>(<span class="number">10</span>) <span class="keyword">not</span> <span class="literal">NULL</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
 <p>正常插入 admin ; admin</p>
@@ -543,7 +544,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
