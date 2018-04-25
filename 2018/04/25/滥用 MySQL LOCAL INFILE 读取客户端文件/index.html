@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Lhaihai&#39;s Blog">
 <meta property="og:description" content="LOAD DATA INFILEMySQL 中提供了LOAD DATA INFILE语句来插入数据。 以下实例中将从当前目录中读取文件 dump.txt ，将该文件中的数据插入到当前数据库的 mytbl 表中。 1mysql&amp;gt; LOAD DATA LOCAL INFILE &amp;apos;dump.txt&amp;apos; INTO TABLE mytbl; 　如果指定LOCAL关键词，则表明从客户主">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-25T07:33:03.603Z">
+<meta property="og:updated_time" content="2018-04-25T13:49:45.031Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="滥用 MySQL LOCAL INFILE 读取客户端文件">
 <meta name="twitter:description" content="LOAD DATA INFILEMySQL 中提供了LOAD DATA INFILE语句来插入数据。 以下实例中将从当前目录中读取文件 dump.txt ，将该文件中的数据插入到当前数据库的 mytbl 表中。 1mysql&amp;gt; LOAD DATA LOCAL INFILE &amp;apos;dump.txt&amp;apos; INTO TABLE mytbl; 　如果指定LOCAL关键词，则表明从客户主">
@@ -406,6 +406,7 @@
         <h3 id="LOAD-DATA-INFILE"><a href="#LOAD-DATA-INFILE" class="headerlink" title="LOAD DATA INFILE"></a>LOAD DATA INFILE</h3><p>MySQL 中提供了LOAD DATA INFILE语句来插入数据。 以下实例中将从当前目录中读取文件 dump.txt ，将该文件中的数据插入到当前数据库的 mytbl 表中。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; LOAD DATA LOCAL INFILE &apos;dump.txt&apos; INTO TABLE mytbl;</span><br></pre></td></tr></table></figure>
 <p>　如果指定LOCAL关键词，则表明从客户主机上按路径读取文件。如果没有指定，则文件在服务器上按路径读取文件。</p>
+<a id="more"></a>
 <p>你能明确地在LOAD DATA语句中指出列值的分隔符和行尾标记，但是默认标记是定位符和换行符。</p>
 <p>两个命令的 FIELDS 和 LINES 子句的语法是一样的。两个子句都是可选的，但是如果两个同时被指定，FIELDS 子句必须出现在 LINES 子句之前。</p>
 <p>如果用户指定一个 FIELDS 子句，它的子句 （TERMINATED BY、[OPTIONALLY] ENCLOSED BY 和 ESCAPED BY) 也是可选的，不过，用户必须至少指定它们中的一个。</p>

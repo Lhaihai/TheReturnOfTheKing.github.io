@@ -79,13 +79,13 @@
 
 
 
-<meta name="description" content="0x00 前言​    这几天学了学python爬虫，就想用python实现一下自动签到领取积分，毕竟我比较懒，能不动手就让代码去做吧，☺。 0x01 安装环境python 需要用到的库12pip install selenium  #模拟浏览器行为的库pip install twilio	  #发送短信 安装ChromeDriverChromeDriver是Chrome浏览器的自动化测试工具 1">
+<meta name="description" content="0x00 前言​    这几天学了学python爬虫，就想用python实现一下自动签到领取积分，毕竟我比较懒，能不动手就让代码去做吧，☺。 0x01 安装环境python 需要用到的库12pip install selenium  #模拟浏览器行为的库pip install twilio	  #发送短信 安装ChromeDriverChromeDriver是Chrome浏览器的自动化测试工具">
 <meta name="keywords" content="Python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python3实现hetianlab自动签到并且发短信到手机">
 <meta property="og:url" content="http://yoursite.com/2018/04/17/hetianlab自动签到并且发短信到手机/index.html">
 <meta property="og:site_name" content="Lhaihai&#39;s Blog">
-<meta property="og:description" content="0x00 前言​    这几天学了学python爬虫，就想用python实现一下自动签到领取积分，毕竟我比较懒，能不动手就让代码去做吧，☺。 0x01 安装环境python 需要用到的库12pip install selenium  #模拟浏览器行为的库pip install twilio	  #发送短信 安装ChromeDriverChromeDriver是Chrome浏览器的自动化测试工具 1">
+<meta property="og:description" content="0x00 前言​    这几天学了学python爬虫，就想用python实现一下自动签到领取积分，毕竟我比较懒，能不动手就让代码去做吧，☺。 0x01 安装环境python 需要用到的库12pip install selenium  #模拟浏览器行为的库pip install twilio	  #发送短信 安装ChromeDriverChromeDriver是Chrome浏览器的自动化测试工具">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/Python/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA.assets/1523962094896.png">
 <meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/Python/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA.assets/1523962296530.png">
@@ -114,10 +114,10 @@
 <meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/Python/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA.assets/1524549817191.png">
 <meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/Python/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA.assets/1524549847144.png">
 <meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/Python/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA.assets/1524549880180.png">
-<meta property="og:updated_time" content="2018-04-25T13:43:08.781Z">
+<meta property="og:updated_time" content="2018-04-25T13:50:03.341Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python3实现hetianlab自动签到并且发短信到手机">
-<meta name="twitter:description" content="0x00 前言​    这几天学了学python爬虫，就想用python实现一下自动签到领取积分，毕竟我比较懒，能不动手就让代码去做吧，☺。 0x01 安装环境python 需要用到的库12pip install selenium  #模拟浏览器行为的库pip install twilio	  #发送短信 安装ChromeDriverChromeDriver是Chrome浏览器的自动化测试工具 1">
+<meta name="twitter:description" content="0x00 前言​    这几天学了学python爬虫，就想用python实现一下自动签到领取积分，毕竟我比较懒，能不动手就让代码去做吧，☺。 0x01 安装环境python 需要用到的库12pip install selenium  #模拟浏览器行为的库pip install twilio	  #发送短信 安装ChromeDriverChromeDriver是Chrome浏览器的自动化测试工具">
 <meta name="twitter:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/Python/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA.assets/1523962094896.png">
 
 
@@ -423,6 +423,7 @@
         <h3 id="0x00-前言"><a href="#0x00-前言" class="headerlink" title="0x00 前言"></a>0x00 前言</h3><p>​    这几天学了学python爬虫，就想用python实现一下自动签到领取积分，毕竟我比较懒，能不动手就让代码去做吧，☺。</p>
 <h3 id="0x01-安装环境"><a href="#0x01-安装环境" class="headerlink" title="0x01 安装环境"></a>0x01 安装环境</h3><h4 id="python-需要用到的库"><a href="#python-需要用到的库" class="headerlink" title="python 需要用到的库"></a>python 需要用到的库</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install selenium  <span class="comment">#模拟浏览器行为的库</span></span><br><span class="line">pip install twilio	  <span class="comment">#发送短信</span></span><br></pre></td></tr></table></figure>
 <h4 id="安装ChromeDriver"><a href="#安装ChromeDriver" class="headerlink" title="安装ChromeDriver"></a>安装ChromeDriver</h4><p>ChromeDriver是Chrome浏览器的自动化测试工具</p>
+<a id="more"></a>
 <p>1、先查看Chrome浏览器的版本</p>
 <p>点击 Chrome 的菜单，帮助-&gt;关于 Chrome，即可查看 Chrome 的版本号</p>
 <p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/Python/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA.assets/1523962094896.png" alt="1523962094896"></p>
