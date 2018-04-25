@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[DDL、DML、DCL的区别和理解]]></title>
+    <url>%2F2018%2F04%2F25%2FDDL%E3%80%81DML%E3%80%81DCL%E7%9A%84%E5%8C%BA%E5%88%AB%E5%92%8C%E7%90%86%E8%A7%A3%2F</url>
+    <content type="text"><![CDATA[DML DML（data manipulation language）数据操纵语言： 数据操作语言，SQL中处理数据等操作统称为数据操纵语言 123456789101112131.SELECT - retrieve data from the a database 查询 2.INSERT - insert data into a table添加 3.UPDATE - updates existing data within a table 更新 4.DELETE - deletes all records from a table, the space for the records remain 删除 5.CALL - call a PL/SQL or Java subprogram 6.EXPLAIN PLAN - explain access path to data 7.LOCK TABLE - control concurrency 锁，用于控制并发 1234SELECT 列名称 FROM 表名称UPDATE 表名称 SET 列名称 = 新值 WHERE 列名称 = 某值INSERT INTO table_name (列1, 列2,...) VALUES (值1, 值2,....)DELETE FROM 表名称 WHERE 列名称 = 值 DDL DDL（data definition language）数据库定义语言： 数据定义语言，用于定义和管理 SQL 数据库中的所有对象的语言 1234567891011121314151.CREATE - to create objects in the database 创建 2.ALTER - alters the structure of the database 修改 3.DROP - delete objects from the database 删除 4.TRUNCATE - remove all records from a table, including all spaces allocated for the records are removed TRUNCATE TABLE [Table Name]。 5.COMMENT - add comments to the data dictionary 注释 6.GRANT - gives user&apos;s access privileges to database 授权 7.REVOKE - withdraw access privileges given with the GRANT command 收回已经授予的权限 12345678910111213CREATE TABLE 表名称(列名称1 数据类型,列名称2 数据类型,列名称3 数据类型,....)ALTER TABLE table_nameALTER COLUMN column_name datatypeDROP TABLE 表名称DROP DATABASE 数据库名称 DCL DCL（Data Control Language）数据库控制语言： 是用来设置或更改数据库用户或角色权限的语句，包括（grant,deny,revoke等）语句。这个比较少用到。 12345671.COMMIT - save work done 提交 2.SAVEPOINT - identify a point in a transaction to which you can later roll back 保存点 3.ROLLBACK - restore database to original since the last COMMIT 回滚 4.SET TRANSACTION - Change transaction options like what rollback segment to use 设置当前事务的特性，它对后面的事务没有影响 ​]]></content>
+      <categories>
+        <category>数据库</category>
+        <category>SQL</category>
+      </categories>
+      <tags>
+        <tag>SQL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[SQL注入笔记（2）：MySQL长字符截断]]></title>
     <url>%2F2018%2F04%2F24%2FSQL%E6%B3%A8%E5%85%A5%E7%AC%94%E8%AE%B0%EF%BC%882%EF%BC%89%EF%BC%9AMySQL%E9%95%BF%E5%AD%97%E7%AC%A6%E6%88%AA%E6%96%AD%2F</url>
     <content type="text"><![CDATA[介绍：转载来自MySQL 字符截断攻击 先创建一张表 12345CREATE table users(id int(11) not NULL primary key auto_increment,username char(8) not NULL,password char(10) not NULL); 正常插入 admin ; admin insert into users(username,password) values(&#39;admin&#39;,&#39;admin&#39;); 超出字符限制插入(用户名长度为8): insert into users(username,password) values(&#39;admin &#39;,&#39;admin&#39;); insert into users(username,password) values(&#39;admin 1&#39;,&#39;admin&#39;); 超过位数的用户名会被截断 ,所以 ,admin 1 与 admin共存于一张表 select username from users where username = &#39;admin&#39;; 发现两个用户都被select出来 如果管理员的登录界面是这样判断的 : $sql = &quot;select count(*) from users where username = &#39;admin&#39; and password=&#39;任意&#39; &quot;; 那我们只需要注册一个账号为admin 1,password = &quot;任意&quot;, 就可以用admin登录 题目：https://ringzer0team.com/challenges/171 随手试了一下二次注入，发现有点不像于是进行长度截断注册 12username=admin 1#password=1 登录 12username=adminpassword=1 ####]]></content>

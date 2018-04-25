@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="SQL," />
 
 
 
@@ -79,13 +79,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Lhaihai&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+<meta name="description" content="DML DML（data manipulation language）数据操纵语言：  数据操作语言，SQL中处理数据等操作统称为数据操纵语言">
+<meta name="keywords" content="SQL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DDL、DML、DCL的区别和理解">
+<meta property="og:url" content="http://yoursite.com/2018/04/25/DDL、DML、DCL的区别和理解/index.html">
 <meta property="og:site_name" content="Lhaihai&#39;s Blog">
+<meta property="og:description" content="DML DML（data manipulation language）数据操纵语言：  数据操作语言，SQL中处理数据等操作统称为数据操纵语言">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-04-25T03:17:44.544Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lhaihai&#39;s Blog">
+<meta name="twitter:title" content="DDL、DML、DCL的区别和理解">
+<meta name="twitter:description" content="DML DML（data manipulation language）数据操纵语言：  数据操作语言，SQL中处理数据等操作统称为数据操纵语言">
 
 
 
@@ -115,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/04/25/DDL、DML、DCL的区别和理解/"/>
 
 
 
 
 
-  <title>归档 | Lhaihai's Blog</title>
+  <title>DDL、DML、DCL的区别和理解 | Lhaihai's Blog</title>
   
 
 
@@ -149,7 +154,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -279,411 +284,207 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/25/DDL、DML、DCL的区别和理解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lhaihai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lhaihai's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">DDL、DML、DCL的区别和理解</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-25T11:01:36+08:00">
+                2018-04-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-        嗯..! 目前共计 17 篇日志。 继续努力。
-      </span>
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据库/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
+                  </a>
+                </span>
 
-      
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据库/SQL/" itemprop="url" rel="index">
+                    <span itemprop="name">SQL</span>
+                  </a>
+                </span>
 
-        
-        
-        
-
-        
+                
+                
+              
+            </span>
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
-          </div>
-        
-        
 
-        
+          
+            
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/04/25/DDL、DML、DCL的区别和理解/" itemprop="url">
-              
-                <span itemprop="name">DDL、DML、DCL的区别和理解</span>
-              
-            </a>
-        
-      </h2>
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o">本文总阅读量</i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-25T11:01:36+08:00"
-              content="2018-04-25" >
-          04-25
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+          
 
+        </div>
+      </header>
+    
 
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/04/24/SQL注入笔记（2）：MySQL长字符截断/" itemprop="url">
-              
-                <span itemprop="name">SQL注入笔记（2）：MySQL长字符截断</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-24T23:21:15+08:00"
-              content="2018-04-24" >
-          04-24
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/04/24/SQL注入笔记（1）：注释/" itemprop="url">
-              
-                <span itemprop="name">SQL注入笔记（1）：注释</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-24T23:20:39+08:00"
-              content="2018-04-24" >
-          04-24
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <h3 id="DML"><a href="#DML" class="headerlink" title="DML"></a>DML</h3><ul>
+<li><p>DML（data manipulation language）数据操纵语言：</p>
+</li>
+<li><p>数据操作语言，SQL中处理数据等操作统称为数据操纵语言 </p>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">1.SELECT - retrieve data from the a database    查询 </span><br><span class="line"></span><br><span class="line">2.INSERT - insert data into a table添加 </span><br><span class="line"></span><br><span class="line">3.UPDATE - updates existing data within a table    更新 </span><br><span class="line"></span><br><span class="line">4.DELETE - deletes all records from a table, the space for the records remain   删除 </span><br><span class="line"></span><br><span class="line">5.CALL - call a PL/SQL or Java subprogram </span><br><span class="line"></span><br><span class="line">6.EXPLAIN PLAN - explain access path to data </span><br><span class="line"></span><br><span class="line">7.LOCK TABLE - control concurrency 锁，用于控制并发</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SELECT 列名称 FROM 表名称</span><br><span class="line">UPDATE 表名称 SET 列名称 = 新值 WHERE 列名称 = 某值</span><br><span class="line">INSERT INTO table_name (列1, 列2,...) VALUES (值1, 值2,....)</span><br><span class="line">DELETE FROM 表名称 WHERE 列名称 = 值</span><br></pre></td></tr></table></figure>
+<h3 id="DDL"><a href="#DDL" class="headerlink" title="DDL"></a>DDL</h3><ul>
+<li>DDL（data definition language）数据库定义语言：</li>
+<li>数据定义语言，用于定义和管理 SQL 数据库中的所有对象的语言 </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">1.CREATE - to create objects in the database   创建 </span><br><span class="line"></span><br><span class="line">2.ALTER - alters the structure of the database   修改 </span><br><span class="line"></span><br><span class="line">3.DROP - delete objects from the database   删除 </span><br><span class="line"></span><br><span class="line">4.TRUNCATE - remove all records from a table, including all spaces allocated for the records are removed </span><br><span class="line"></span><br><span class="line">TRUNCATE TABLE [Table Name]。 </span><br><span class="line"></span><br><span class="line">5.COMMENT - add comments to the data dictionary 注释 </span><br><span class="line"></span><br><span class="line">6.GRANT - gives user&apos;s access privileges to database 授权 </span><br><span class="line"></span><br><span class="line">7.REVOKE - withdraw access privileges given with the GRANT command   收回已经授予的权限</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE 表名称</span><br><span class="line">(</span><br><span class="line">列名称1 数据类型,</span><br><span class="line">列名称2 数据类型,</span><br><span class="line">列名称3 数据类型,</span><br><span class="line">....</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">ALTER TABLE table_name</span><br><span class="line">ALTER COLUMN column_name datatype</span><br><span class="line"></span><br><span class="line">DROP TABLE 表名称</span><br><span class="line">DROP DATABASE 数据库名称</span><br></pre></td></tr></table></figure>
+<h3 id="DCL"><a href="#DCL" class="headerlink" title="DCL"></a>DCL</h3><ul>
+<li><p>DCL（Data Control Language）数据库控制语言：</p>
+</li>
+<li><p>是用来设置或更改数据库用户或角色权限的语句，包括（grant,deny,revoke等）语句。这个比较少用到。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1.COMMIT - save work done 提交 </span><br><span class="line"></span><br><span class="line">2.SAVEPOINT - identify a point in a transaction to which you can later roll back 保存点 </span><br><span class="line"></span><br><span class="line">3.ROLLBACK - restore database to original since the last COMMIT   回滚 </span><br><span class="line"></span><br><span class="line">4.SET TRANSACTION - Change transaction options like what rollback segment to use   设置当前事务的特性，它对后面的事务没有影响</span><br></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+</ul>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/04/23/Python合并Excel表格/" itemprop="url">
-              
-                <span itemprop="name">Python合并Excel表格</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-23T20:56:14+08:00"
-              content="2018-04-23" >
-          04-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/04/23/Postman使用/" itemprop="url">
-              
-                <span itemprop="name">Postman使用</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-23T20:34:28+08:00"
-              content="2018-04-23" >
-          04-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/04/17/hetianlab自动签到并且发短信到手机/" itemprop="url">
-              
-                <span itemprop="name">hetianlab自动签到并且发短信到手机</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-17T15:28:33+08:00"
-              content="2018-04-17" >
-          04-17
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/04/16/爬取ichunqiu的课程列表/" itemprop="url">
-              
-                <span itemprop="name">爬取ichunqiu的课程列表</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-16T23:42:11+08:00"
-              content="2018-04-16" >
-          04-16
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/04/16/python操作Excel/" itemprop="url">
-              
-                <span itemprop="name">'python操作Excel'</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-16T22:15:54+08:00"
-              content="2018-04-16" >
-          04-16
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/04/16/小米路由器开机自动登录Dr-COM/" itemprop="url">
-              
-                <span itemprop="name">'小米路由器开机自动登录Dr.COM'</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-16T09:30:32+08:00"
-              content="2018-04-16" >
-          04-16
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/04/15/python识别验证码/" itemprop="url">
-              
-                <span itemprop="name">python识别验证码</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-15T13:36:09+08:00"
-              content="2018-04-15" >
-          04-15
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/SQL/" rel="tag"># SQL</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/24/SQL注入笔记（2）：MySQL长字符截断/" rel="next" title="SQL注入笔记（2）：MySQL长字符截断">
+                <i class="fa fa-chevron-left"></i> SQL注入笔记（2）：MySQL长字符截断
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
+  </article>
 
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -691,6 +492,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -711,8 +516,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -786,6 +600,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#DML"><span class="nav-number">1.</span> <span class="nav-text">DML</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DDL"><span class="nav-number">2.</span> <span class="nav-text">DDL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DCL"><span class="nav-number">3.</span> <span class="nav-text">DCL</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -953,6 +783,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
