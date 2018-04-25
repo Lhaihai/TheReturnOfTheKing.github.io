@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Python," />
 
 
 
@@ -79,14 +79,46 @@
 
 
 
+<meta name="description" content="0x00 前言​    这几天学了学python爬虫，就想用python实现一下自动签到领取积分，毕竟我比较懒，能不动手就让代码去做吧，☺。 0x01 安装环境python 需要用到的库12pip install selenium  #模拟浏览器行为的库pip install twilio	  #发送短信 安装ChromeDriverChromeDriver是Chrome浏览器的自动化测试工具 1">
+<meta name="keywords" content="Python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hetianlab自动签到并且发短信到手机">
+<meta property="og:title" content="Python3实现hetianlab自动签到并且发短信到手机">
 <meta property="og:url" content="http://yoursite.com/2018/04/17/hetianlab自动签到并且发短信到手机/index.html">
 <meta property="og:site_name" content="Lhaihai&#39;s Blog">
+<meta property="og:description" content="0x00 前言​    这几天学了学python爬虫，就想用python实现一下自动签到领取积分，毕竟我比较懒，能不动手就让代码去做吧，☺。 0x01 安装环境python 需要用到的库12pip install selenium  #模拟浏览器行为的库pip install twilio	  #发送短信 安装ChromeDriverChromeDriver是Chrome浏览器的自动化测试工具 1">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-17T07:28:33.440Z">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/Python/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA.assets/1523962094896.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/Python/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA.assets/1523962296530.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/Python/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA.assets/1523962469857.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/Python/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA.assets/1523964886350.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/Python/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA.assets/1523965119283.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/Python/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA.assets/1524016970075.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/Python/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA.assets/1524018301099.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/Python/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA.assets/1523979379101.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/Python/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA.assets/0.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/Python/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA.assets/1523980720805.png">
+<meta property="og:image" content="https://qqadapt.qpic.cn/txdocpic/0/310c05e97b697267c4d775da964c4b2f/0">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/Python/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA.assets/1523982350316.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/Python/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA.assets/1523983219304.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/Python/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA.assets/1523983051032.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/Python/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA.assets/1523983078680.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/Python/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA.assets/1523985139025.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/Python/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA.assets/1523984548021.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/Python/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA.assets/1523984655689.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/Python/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA.assets/1523985054064.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/Python/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA.assets/1523985339218.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/Python/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA.assets/1524026305166.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/Python/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA.assets/1524021027548.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/Python/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA.assets/1524021166955.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/Python/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA.assets/1524021247502.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/Python/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA.assets/1524549817191.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/Python/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA.assets/1524549847144.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/Python/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA.assets/1524549880180.png">
+<meta property="og:updated_time" content="2018-04-25T13:43:08.781Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hetianlab自动签到并且发短信到手机">
+<meta name="twitter:title" content="Python3实现hetianlab自动签到并且发短信到手机">
+<meta name="twitter:description" content="0x00 前言​    这几天学了学python爬虫，就想用python实现一下自动签到领取积分，毕竟我比较懒，能不动手就让代码去做吧，☺。 0x01 安装环境python 需要用到的库12pip install selenium  #模拟浏览器行为的库pip install twilio	  #发送短信 安装ChromeDriverChromeDriver是Chrome浏览器的自动化测试工具 1">
+<meta name="twitter:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/Python/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA.assets/1523962094896.png">
 
 
 
@@ -122,7 +154,7 @@
 
 
 
-  <title>hetianlab自动签到并且发短信到手机 | Lhaihai's Blog</title>
+  <title>Python3实现hetianlab自动签到并且发短信到手机 | Lhaihai's Blog</title>
   
 
 
@@ -311,7 +343,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">hetianlab自动签到并且发短信到手机</h1>
+          <h1 class="post-title" itemprop="name headline">Python3实现hetianlab自动签到并且发短信到手机</h1>
         
 
         <div class="post-meta">
@@ -333,6 +365,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -366,7 +420,169 @@
       
 
       
-        
+        <h3 id="0x00-前言"><a href="#0x00-前言" class="headerlink" title="0x00 前言"></a>0x00 前言</h3><p>​    这几天学了学python爬虫，就想用python实现一下自动签到领取积分，毕竟我比较懒，能不动手就让代码去做吧，☺。</p>
+<h3 id="0x01-安装环境"><a href="#0x01-安装环境" class="headerlink" title="0x01 安装环境"></a>0x01 安装环境</h3><h4 id="python-需要用到的库"><a href="#python-需要用到的库" class="headerlink" title="python 需要用到的库"></a>python 需要用到的库</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install selenium  <span class="comment">#模拟浏览器行为的库</span></span><br><span class="line">pip install twilio	  <span class="comment">#发送短信</span></span><br></pre></td></tr></table></figure>
+<h4 id="安装ChromeDriver"><a href="#安装ChromeDriver" class="headerlink" title="安装ChromeDriver"></a>安装ChromeDriver</h4><p>ChromeDriver是Chrome浏览器的自动化测试工具</p>
+<p>1、先查看Chrome浏览器的版本</p>
+<p>点击 Chrome 的菜单，帮助-&gt;关于 Chrome，即可查看 Chrome 的版本号</p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/Python/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA.assets/1523962094896.png" alt="1523962094896"></p>
+<p>这里我的版本号是65.0</p>
+<p>2、下载ChromeDriver</p>
+<p>官方下载链接：</p>
+<p><a href="https://sites.google.com/a/chromium.org/chromedriver/downloads" target="_blank" rel="noopener">https://sites.google.com/a/chromium.org/chromedriver/downloads</a></p>
+<p>这里我就下载 ChromeDriver 2.37</p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/Python/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA.assets/1523962296530.png" alt="1523962296530"></p>
+<p>3、配置环境变量</p>
+<p>Windows下，直接把ChromeDriver .exe 放在Python的 Scripts目录下</p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/Python/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA.assets/1523962469857.png" alt="1523962469857"></p>
+<p>Linux和Mac也是一样把文件移动到属于环境变量的目录里或者将可执行文件配置到环境变量。</p>
+<p>例如下面移动文件到 /usr/bin 目录，首先进入其所在路径，然后将其移动到 /usr/bin：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo  mv  chromedriver /usr/bin</span><br></pre></td></tr></table></figure>
+<p>4、测试一下哈</p>
+<p>在命令行输入 <code>chromedriver</code> ，如果有类似输出就说明<code>chromedriver</code> 的环境变量配置好了</p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/Python/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA.assets/1523964886350.png" alt="1523964886350"></p>
+<p>然后再写代码测试一下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">from selenium import webdriver</span><br><span class="line">browser = webdriver.Chrome()</span><br></pre></td></tr></table></figure>
+<p>运行，会弹出Chrome浏览器，就可以开始写登录代码了。</p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/Python/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA.assets/1523965119283.png" alt="1523965119283"></p>
+<h3 id="0x02-登录hetianlab"><a href="#0x02-登录hetianlab" class="headerlink" title="0x02 登录hetianlab"></a>0x02 登录hetianlab</h3><h4 id="selenium是什么"><a href="#selenium是什么" class="headerlink" title="selenium是什么"></a>selenium是什么</h4><p>官方的话：selenium一个Web应用程序测试的工具，<em>而且Selenium测试直接运行在浏览器中，就像真正的用户在操作一样</em></p>
+<p>简单的说，就是我们可以用selenium来控制浏览器然后完成一系列操作，比如打开某个网页，点击超链接、按钮，在文本框输入字符，获取网页的内容，模拟鼠标操作（右键，双击）</p>
+<p>Selenium 支持非常多的浏览器，如 Chrome、Firefox、Edge等，最新版本的Selenium已经不支持无界面浏览器PhantomJS，但是Chrome和Firefox已经支持无界面。</p>
+<p>我们可以用下面的方式初始化一个浏览器对象</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"></span><br><span class="line">browser = webdriver.Chrome()</span><br><span class="line">browser = webdriver.Firefox()</span><br><span class="line">browser = webdriver.Edge()</span><br><span class="line">browser = webdriver.PhantomJS()</span><br><span class="line">browser = webdriver.Safari()</span><br></pre></td></tr></table></figure>
+<p>设置Chrome浏览器无界面：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.chrome.options <span class="keyword">import</span> Options            <span class="comment">#导入Options</span></span><br><span class="line"></span><br><span class="line">chrome_options = Options()</span><br><span class="line">chrome_options.add_argument(<span class="string">'--headless'</span>)                      <span class="comment">#无界面模式</span></span><br><span class="line">chrome_options.add_argument(<span class="string">'--disable-gpu'</span>)                   <span class="comment">#Windows平台需要加上</span></span><br><span class="line">browser = webdriver.Chrome(chrome_options=chrome_options)      <span class="comment">#把无界面设置导入</span></span><br></pre></td></tr></table></figure>
+<p>想要了解更多，可以查看官方文档：<a href="https://developers.google.cn/web/updates/2017/04/headless-chrome" target="_blank" rel="noopener">https://developers.google.cn/web/updates/2017/04/headless-chrome</a></p>
+<h4 id="打开一个网页"><a href="#打开一个网页" class="headerlink" title="打开一个网页"></a>打开一个网页</h4><p>Selenium提供了get()方法来访问网页</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"></span><br><span class="line">browser = webdriver.Chrome()</span><br><span class="line">browser.get(<span class="string">'https://www.baidu.com'</span>)        <span class="comment">#打开百度</span></span><br><span class="line">print(browser.page_source)</span><br><span class="line">browser.close()</span><br></pre></td></tr></table></figure>
+<h4 id="selenium怎么获取网页信息"><a href="#selenium怎么获取网页信息" class="headerlink" title="selenium怎么获取网页信息"></a>selenium怎么获取网页信息</h4><h5 id="获取节点"><a href="#获取节点" class="headerlink" title="获取节点"></a>获取节点</h5><p>selenium获取节点（节点可以理解是网页的按钮，输入框等，学过HTML的同学知道其实它就是一个标签或者标签里面的内容、属性）的方法很多，下面是获取单个节点的方法，返回的是WebElement 类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">find_element_by_id</span><br><span class="line">find_element_by_name</span><br><span class="line">find_element_by_xpath</span><br><span class="line">find_element_by_link_text</span><br><span class="line">find_element_by_partial_link_text</span><br><span class="line">find_element_by_tag_name</span><br><span class="line">find_element_by_class_name</span><br><span class="line">find_element_by_css_selector</span><br></pre></td></tr></table></figure>
+<p>想获取多个节点的话，就是element后面加上s      例如：<code>find_elements_by_id</code></p>
+<p>查找多个节点函数返回的结果是一个列表，列表的每个节点是WebElement 类型</p>
+<h5 id="节点交互"><a href="#节点交互" class="headerlink" title="节点交互"></a>节点交互</h5><p>输入文字用 send_keys() 方法，清空文字用 clear() 方法，另外按钮点击用 click() 方法。例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">phonenumber = browser.find_element_by_id(<span class="string">'userEmail'</span>)    <span class="comment">#通过id捕获到用户名输入框</span></span><br><span class="line">phonenumber.send_keys(Username)                          <span class="comment">#在用户名文本框输入用户名</span></span><br></pre></td></tr></table></figure>
+<h5 id="获取节点信息"><a href="#获取节点信息" class="headerlink" title="获取节点信息"></a>获取节点信息</h5><p>WebElement 类型有相关的方法和属性来直接提取节点信息，如属性、文本等等</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">input = browser.find_element_by_by_id(<span class="string">'userEmail'</span>)</span><br><span class="line">print(input.get_attribute(<span class="string">'class'</span>)                   <span class="comment">#获取class的名字</span></span><br><span class="line">print(input.id)                                      <span class="comment">#获取id</span></span><br><span class="line">print(input.location)                                <span class="comment">#location 可以获取该节点在页面中的相对位置   </span></span><br><span class="line">print(input.tag_name)                                <span class="comment">#tag_name 可以获取标签名称</span></span><br><span class="line">print(input.size)                                    <span class="comment">#size 可以获取节点的大小</span></span><br></pre></td></tr></table></figure>
+<p>知识点介绍好了，开始实战，打开我们要签到的首页，<code>F12</code>  -&gt;点一下左边的小箭头-&gt;再点输入手机的文本框-&gt;就会显示出文本框的信息来。查看发现它的id是<code>userEmail</code>，就可以通过id来获取这个节点。</p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/Python/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA.assets/1524016970075.png" alt="1524016970075"></p>
+<p>密码框和登录按钮也是如此，类似操作拿到密码框的id是 <code>passwordIn</code>，登录按钮的id是<code>registButIn</code>。</p>
+<p>于是我们初步的代码已经出来了。</p>
+<h4 id="version-1-0"><a href="#version-1-0" class="headerlink" title="version  1.0"></a>version  1.0</h4><p>这是第一个版本，</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line">Username = <span class="string">'xxxxxxxxx'</span>                                   <span class="comment">#登录的手机号码</span></span><br><span class="line">Password = <span class="string">'xxxxxxxxxx'</span>                                  <span class="comment">#密码</span></span><br><span class="line">loginUrl = <span class="string">'http://www.xxxxxx.com/loginLab.do'</span>           <span class="comment">#xxxxxx登录网址</span></span><br><span class="line">browser = webdriver.Chrome()</span><br><span class="line">browser.maximize_window()                                <span class="comment">#浏览器最大化</span></span><br><span class="line">browser.get(loginUrl)			                        <span class="comment">#Chrome浏览器打开登录页面</span></span><br><span class="line">phonenumber = browser.find_element_by_id(<span class="string">'userEmail'</span>)    <span class="comment">#通过id捕获到用户名输入框</span></span><br><span class="line">phonenumber.send_keys(Username)                          <span class="comment">#在用户名文本框输入用户名</span></span><br><span class="line">password = browser.find_element_by_id(<span class="string">'passwordIn'</span>)      <span class="comment">#通过id捕获到密码输入框</span></span><br><span class="line">password.send_keys(Password)                             <span class="comment">#在密码框输入密码</span></span><br><span class="line">siginbutton = browser.find_element_by_id(<span class="string">'registButIn'</span>)  <span class="comment">#捕获到登录按钮 </span></span><br><span class="line">siginbutton.click()                                      <span class="comment">#点击登录按钮</span></span><br><span class="line">time.sleep(<span class="number">3</span>)                                            <span class="comment">#暂停3s</span></span><br><span class="line">browser.close()                                          <span class="comment">#关闭浏览器</span></span><br></pre></td></tr></table></figure>
+<p>运行，试了几次竟然都成功登录了  :-(</p>
+<p>我之前测试的时候，老是没有登录成功，原因是 登录按钮没有获取到，就算暂停了程序(<code>time.sleep()</code>)等一等还是有这个问题。所以我就写了个函数来检查登录按钮是否获取成功</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">isFindElement</span><span class="params">(element)</span>:</span></span><br><span class="line">   <span class="comment"># print('check:')</span></span><br><span class="line">   <span class="comment"># print(element)</span></span><br><span class="line">    <span class="keyword">if</span> element:              <span class="comment">#如果捕获到元素，就返回true，否则返回false</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">SignIn</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	#略略略</span></span><br><span class="line"><span class="function">	#-----</span></span><br><span class="line">    siginbutton = browser.find_element_by_id('registButIn')</span><br><span class="line">    <span class="keyword">while</span>(<span class="keyword">not</span> isFindElement(siginbutton)):        <span class="comment">#循环判断登录按钮是否获取成功，成功就退出</span></span><br><span class="line">        time.sleep(<span class="number">0.5</span>)</span><br><span class="line">        print(<span class="string">'signin-false'</span>)</span><br><span class="line">        siginbutton = browser.find_element_by_id(<span class="string">'registButIn'</span>)</span><br><span class="line">    siginbutton.click()</span><br></pre></td></tr></table></figure>
+<p>之前测试的时候，check起码打印两次 :-(   ，</p>
+<p>但是想到这个方法的估计也就像我一样是个不怎么了解selenium的新手</p>
+<p>后来了解到 selenium的等待，赶紧优化一下</p>
+<h4 id="version-2-0"><a href="#version-2-0" class="headerlink" title="version  2.0"></a>version  2.0</h4><p>介绍两个新概念 </p>
+<p>selenium 的隐性等待和显性等待</p>
+<h5 id="隐性等待"><a href="#隐性等待" class="headerlink" title="隐性等待"></a>隐性等待</h5><p>隐形等待是设置了一个最长等待时间，如果在规定时间内网页加载完成，则执行下一步，否则一直等到时间截止，然后执行下一步。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">implicitly_wait(<span class="number">10</span>)           <span class="comment">#等待10s</span></span><br></pre></td></tr></table></figure>
+<h5 id="温馨提示：隐性等待在整个driver的周期都起作用，所以只要设置一次即可"><a href="#温馨提示：隐性等待在整个driver的周期都起作用，所以只要设置一次即可" class="headerlink" title="温馨提示：隐性等待在整个driver的周期都起作用，所以只要设置一次即可"></a>温馨提示：隐性等待在整个driver的周期都起作用，所以只要设置一次即可</h5><h5 id="显性等待"><a href="#显性等待" class="headerlink" title="显性等待"></a>显性等待</h5><p>WebDriverWait，配合该类的until()和until_not()方法，就可以根据判断条件而进行灵活地等待了。</p>
+<p>它主要的意思就是：程序每隔xx秒看一眼，如果条件成立了，则执行下一步，否则继续等待，直到超过设置的最长时间，然后抛出TimeoutException。</p>
+<p>代码具体什么意思可以去看一下手册，这里我们只要会调用就好了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium.webdriver.support.wait <span class="keyword">import</span> WebDriverWait             <span class="comment">#导入了新的库</span></span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.support <span class="keyword">import</span> expected_conditions <span class="keyword">as</span> EC      <span class="comment">#导入了新的库</span></span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.common.by <span class="keyword">import</span> By                           <span class="comment">#导入了新的库    </span></span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">SignIn</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    #省略十万行代码</span></span><br><span class="line">    locator = (By.ID, 'registButIn')        #通过id发现的登录按钮</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="comment">#等待30s，默认0.5s检查一次是否捕获到登录按钮</span></span><br><span class="line">        WebDriverWait(browser,<span class="number">30</span>).until(EC.presence_of_element_located(locator))  </span><br><span class="line">        siginbutton = browser.find_element_by_id(<span class="string">'registButIn'</span>)</span><br><span class="line">        siginbutton.click()</span><br><span class="line">        print(<span class="string">'登录按钮点击成功'</span>)</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        print(<span class="string">"registButIn can't find"</span>)</span><br></pre></td></tr></table></figure>
+<p>温馨提示：最长等待时间取决于隐性等待和显性等待的最大值。上面例子为30s，如果隐性等待时间大于显性等待时间，那么最长等待时间就是隐性等待时间</p>
+<h5 id="顺便包装为函数方便调用，添加上获取合氏币的代码，前面为了方便测试就没有设置为无界面模式，现在可以设置为无界面模式了"><a href="#顺便包装为函数方便调用，添加上获取合氏币的代码，前面为了方便测试就没有设置为无界面模式，现在可以设置为无界面模式了" class="headerlink" title="顺便包装为函数方便调用，添加上获取合氏币的代码，前面为了方便测试就没有设置为无界面模式，现在可以设置为无界面模式了"></a>顺便包装为函数方便调用，添加上获取合氏币的代码，前面为了方便测试就没有设置为无界面模式，现在可以设置为无界面模式了</h5><h5 id="version-2-0-代码"><a href="#version-2-0-代码" class="headerlink" title="version 2.0  代码"></a>version 2.0  代码</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python3</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="comment"># @Time    : 2018/4/17 12:55</span></span><br><span class="line"><span class="comment"># @Author  : Lhaihai</span></span><br><span class="line"><span class="comment"># @File    : </span></span><br><span class="line"><span class="comment"># @Software: PyCharm</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">    Description : 自动登录，签到一下，并且拿到自己当前积分有多少，最后发送短信给手机</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver  </span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.chrome.options <span class="keyword">import</span> Options                </span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.support.wait <span class="keyword">import</span> WebDriverWait            </span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.support <span class="keyword">import</span> expected_conditions <span class="keyword">as</span> EC      </span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.common.by <span class="keyword">import</span> By                           </span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">chrome_options = Options()</span><br><span class="line">chrome_options.add_argument(<span class="string">'--headless'</span>)</span><br><span class="line">chrome_options.add_argument(<span class="string">'--disable-gpu'</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">SignIn</span><span class="params">(Username,Password)</span>:</span></span><br><span class="line">    loginUrl=<span class="string">'http://www.xxxxxxx.com/loginLab.do'</span></span><br><span class="line">    browser = webdriver.Chrome(chrome_options=chrome_options)       <span class="comment">#设置为无界面模式</span></span><br><span class="line">    browser.maximize_window()</span><br><span class="line">    browser.implicitly_wait(<span class="number">10</span>)                                      <span class="comment">#隐性等待10s</span></span><br><span class="line">    browser.get(loginUrl)</span><br><span class="line">    phonenumber = browser.find_element_by_id(<span class="string">'userEmail'</span>)</span><br><span class="line">    phonenumber.send_keys(Username)</span><br><span class="line">    password = browser.find_element_by_id(<span class="string">'passwordIn'</span>)</span><br><span class="line">    password.send_keys(Password)</span><br><span class="line">    locator = (By.ID, <span class="string">'registButIn'</span>)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        WebDriverWait(browser,<span class="number">30</span>).until(EC.presence_of_element_located(locator))   <span class="comment">#显性等待30s</span></span><br><span class="line">        siginbutton = browser.find_element_by_id(<span class="string">'registButIn'</span>)</span><br><span class="line">        siginbutton.click()</span><br><span class="line">        print(<span class="string">'登录按钮点击成功'</span>)</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        print(<span class="string">"registButIn can't find"</span>)</span><br><span class="line">    time.sleep(<span class="number">3</span>)</span><br><span class="line">    <span class="comment">#signImg捕获用户头像，没错就是头像，其实把鼠标放到头像上就会显示我的主页，selenium也有模拟鼠标操作的，那就是ActionChains，这里简单起见就直接使用.click()了</span></span><br><span class="line">    signImg = browser.find_element_by_class_name(<span class="string">'siLg-img'</span>)      </span><br><span class="line">    signImg.click()                                               <span class="comment">#点击</span></span><br><span class="line">    myindex = browser.find_element_by_link_text(<span class="string">'我的主页'</span>)        </span><br><span class="line">    myindex.click()                                               <span class="comment">#点击我的主页</span></span><br><span class="line">    heshibi = browser.find_elements_by_class_name(<span class="string">'allNum'</span>)       <span class="comment">#获得登录次数和积分数量</span></span><br><span class="line">    Msg = <span class="string">'签到成功\n登录次数:'</span> + heshibi[<span class="number">0</span>].text + <span class="string">',积分：'</span> + heshibi[<span class="number">1</span>].text</span><br><span class="line">    print(Msg)</span><br><span class="line">    browser.close()</span><br><span class="line">    </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    SignIn(<span class="string">'username'</span>,<span class="string">'password'</span>)     <span class="comment">#填写你的用户名和密码</span></span><br></pre></td></tr></table></figure>
+<h3 id="0x03-发送短信"><a href="#0x03-发送短信" class="headerlink" title="0x03 发送短信"></a>0x03 发送短信</h3><p>​    这时候我们已经可以成功登录并且拿到自己账号积分的数量。接下来我们进行最后一步，发送短信到自己手机上。</p>
+<h5 id="1、注册Twilio账号"><a href="#1、注册Twilio账号" class="headerlink" title="1、注册Twilio账号"></a>1、注册Twilio账号</h5><p>访问<a href="http://twilio.com/（需要自备梯子）填写注册表单。注册了新账户后，你需要验证一个手机号码，短信将发给该号码（这项验证是必要的，防止有人利用该服务向任意的手机号码发送垃圾短信）。" target="_blank" rel="noopener">http://twilio.com/（需要自备梯子）填写注册表单。注册了新账户后，你需要验证一个手机号码，短信将发给该号码（这项验证是必要的，防止有人利用该服务向任意的手机号码发送垃圾短信）。</a><br>收到验证号码短信后，在Twilio网站上输入它，证明你拥有要验证的手机。</p>
+<p>现在，就可以用twilio模块向这个电话号码发送短信了。</p>
+<h5 id="2、获取一个Twilio电话号码："><a href="#2、获取一个Twilio电话号码：" class="headerlink" title="2、获取一个Twilio电话号码："></a>2、获取一个Twilio电话号码：</h5><p>我在Dashboard找了好久没发现Phone的选项，后来翻了翻官方教程<a href="https://support.twilio.com/hc/en-us/articles/223136107-How-does-Twilio-s-Free-Trial-work-/，然后点里面的链接打开" target="_blank" rel="noopener">https://support.twilio.com/hc/en-us/articles/223136107-How-does-Twilio-s-Free-Trial-work-/，然后点里面的链接打开</a> :-( 。</p>
+<p>其实你可以用右上角的UPGRADE搜索框搜索，或者直接打开这个网址 <a href="https://www.twilio.com/console/phone-numbers/getting-started" target="_blank" rel="noopener">https://www.twilio.com/console/phone-numbers/getting-started</a></p>
+<p>挑一个地区和号码，确定。恭喜你，获得一个免费的电话号码了。</p>
+<h5 id="3、要验证接收短信的手机号码，要不然就会出现下面的报错"><a href="#3、要验证接收短信的手机号码，要不然就会出现下面的报错" class="headerlink" title="3、要验证接收短信的手机号码，要不然就会出现下面的报错"></a>3、要验证接收短信的手机号码，要不然就会出现下面的报错</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">twilio.base.exceptions.TwilioRestException: HTTP 400 error: Unable to create record: The number +8613xxxxxx30 is unverified. Trial accounts cannot send messages to unverified numbers; verify +8613xxxxxx30 at twilio.com/user/account/phone-numbers/verified, or purchase a Twilio number to send messages to unverified numbers.</span><br></pre></td></tr></table></figure>
+<p>在Verified 验证手机号码</p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/Python/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA.assets/1524018301099.png" alt="1524018301099"></p>
+<p>可以发送短信验证码或者接受电话获得验证码</p>
+<h5 id="4、正式发送短信"><a href="#4、正式发送短信" class="headerlink" title="4、正式发送短信"></a>4、正式发送短信</h5><p>从官方文档 <a href="https://www.twilio.com/docs/libraries/python" target="_blank" rel="noopener">https://www.twilio.com/docs/libraries/python</a> 拿到下面代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> twilio.rest <span class="keyword">import</span> Client</span><br><span class="line"></span><br><span class="line"><span class="comment"># Your Account SID from twilio.com/console</span></span><br><span class="line">account_sid = <span class="string">"AC9810ae2342f0014cd05e338bce9be8cb"</span></span><br><span class="line"><span class="comment"># Your Auth Token from twilio.com/console</span></span><br><span class="line">auth_token  = <span class="string">"your_auth_token"</span></span><br><span class="line"></span><br><span class="line">client = Client(account_sid, auth_token)</span><br><span class="line"></span><br><span class="line">message = client.messages.create(</span><br><span class="line">    to=<span class="string">"+15558675309"</span>,                       <span class="comment">#接收短信的手机</span></span><br><span class="line">    from_=<span class="string">"+15017250604"</span>,                    <span class="comment">#自己twilio的号码</span></span><br><span class="line">    body=<span class="string">"Hello from Python!"</span>)               <span class="comment">#短信的内容</span></span><br><span class="line"></span><br><span class="line">print(message.sid)</span><br></pre></td></tr></table></figure>
+<p>只需要把 <code>auth_tocken</code> 和<code>from_</code>换成自己的，再修改一下<code>to</code>和<code>body</code></p>
+<p> <code>auth_tocken</code>  : 打开Dashboard，加密的就是你的<code>auth_tocken</code></p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/Python/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA.assets/1523979379101.png" alt="1523979379101"></p>
+<p>message 的<code>from_</code> 填上你的twilio手机号码，虽然你选择号码的时候看起来是这样子：<code>+1(855) 912-6770</code></p>
+<p>(这个号码是我重新去twilio买电话号码那随机拿的一个，并不是我的:）  )但是最后你会获得一个号码：类似<code>+15017250604</code> ，</p>
+<p>运行一下，就可以收到短信了，短信的号码是会换了，玩多了你就发现自己手机一大片都是twilio的短信</p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/Python/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA.assets/0.png" alt=""></p>
+<p>最后封装一下函数，类似下方，</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> twilio.rest <span class="keyword">import</span> Client</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sendMessage</span><span class="params">(toPhoneNumber,Msg)</span>:</span></span><br><span class="line">    <span class="comment"># Your Account SID from twilio.com/console</span></span><br><span class="line">    account_sid = <span class="string">"AC9810ae2342f0014cd05e338bce9be8cb"</span></span><br><span class="line">    <span class="comment"># Your Auth Token from twilio.com/console</span></span><br><span class="line">    auth_token  = <span class="string">"your_auth_token"</span></span><br><span class="line"></span><br><span class="line">     client = Client(account_sid, auth_token)</span><br><span class="line"></span><br><span class="line">    message = client.messages.create(</span><br><span class="line">          to=<span class="string">'+86'</span>+toPhoneNumber,                  <span class="comment">#接收短信的手机</span></span><br><span class="line">          from_=<span class="string">"+15017250604"</span>,                    <span class="comment">#自己twilio的号码</span></span><br><span class="line">          body=Msg)                                <span class="comment">#短信的内容</span></span><br><span class="line"></span><br><span class="line">    print(message.sid)</span><br></pre></td></tr></table></figure>
+<p>我保存为twilioToMyPhone.py，放到python.exe 当前目录下</p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/Python/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA.assets/1523980720805.png" alt="1523980720805"></p>
+<p>以后想发送短信就直接调用：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> twilioToMyPhone</span><br><span class="line">twilioToMyPhone.sendMessage(<span class="string">'phonenumber'</span>,Msg)</span><br></pre></td></tr></table></figure>
+<h5 id="5、在version-2-0-加上发送短信的代码"><a href="#5、在version-2-0-加上发送短信的代码" class="headerlink" title="5、在version 2.0 加上发送短信的代码"></a>5、在version 2.0 加上发送短信的代码</h5><p>在开头导入库</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> twilioToMyPhone</span><br></pre></td></tr></table></figure>
+<p> 在<code>browser.close()</code>  之前，<code>Msg = &#39;&#39;签到成功......&#39;</code>之后加上发送短信的一句代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Msg = <span class="string">'签到成功\n登录次数:'</span> + heshibi[<span class="number">0</span>].text + <span class="string">',积分：'</span> + heshibi[<span class="number">1</span>].text</span><br><span class="line">twilioToMyPhone.sendMessage(<span class="string">'phonenumber'</span>,Msg)</span><br><span class="line">browser.close()</span><br></pre></td></tr></table></figure>
+<p>差不多大功告成了，就算可以一键登录，不用手动打开浏览器，我还是想跟懒一点 :）</p>
+<p>最后一步，设置每天自动启动py</p>
+<h5 id="tip1"><a href="#tip1" class="headerlink" title="tip1:"></a>tip1:</h5><p>to=”+15558675309”   </p>
+<p> to的值是接收短信的手机号码，注意的是，中国大陆的电话号码要在前面加上+86</p>
+<h5 id="tip2："><a href="#tip2：" class="headerlink" title="tip2："></a>tip2：</h5><p>python文件的命名不能是<strong>twilio.py</strong></p>
+<p>如果你像我一样给它这样命名，在<code>import twilio</code>库的时候会失败，</p>
+<p>哈哈，宛如一个智障（自我嘲讽一波）</p>
+<p>找找stackoverflow.com发现下面这个：</p>
+<p><img src="https://qqadapt.qpic.cn/txdocpic/0/310c05e97b697267c4d775da964c4b2f/0" alt=""></p>
+<p><a href="https://stackoverflow.com/questions/41013556/importerror-cannot-import-name-twiliorestclient" target="_blank" rel="noopener">https://stackoverflow.com/questions/41013556/importerror-cannot-import-name-twiliorestclient</a></p>
+<h5 id="tip3："><a href="#tip3：" class="headerlink" title="tip3："></a>tip3：</h5><p>github项目</p>
+<p><a href="https://github.com/twilio/twilio-python/" target="_blank" rel="noopener">https://github.com/twilio/twilio-python/</a></p>
+<h3 id="0x04-设置每天自动启动python"><a href="#0x04-设置每天自动启动python" class="headerlink" title="0x04  设置每天自动启动python"></a>0x04  设置每天自动启动python</h3><h5 id="bat-运行python"><a href="#bat-运行python" class="headerlink" title=".bat 运行python"></a>.bat 运行python</h5><p>问题来了，想要运行python代码，总不能启动pycharm然后点击运行吧 ，所以使用DOS命令来运行python代码</p>
+<p>而.bat 是 windows的批处理文件，可以双击.bat文件来运行我们的python代码</p>
+<p>具体什么意思么，<code>.py</code>文件不能像exe一样双击运行，但是<code>.bat</code>文件可以，这是为了方便我们下一步的任务启动器</p>
+<p>类似下图，</p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/Python/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA.assets/1523982350316.png" alt="1523982350316"></p>
+<p>这里有个坑，当你原原本本按照上图打好了每一个字符，双击.bat ，却发现没有成功运行（收到短信）</p>
+<p>然后复制<code>python F:\CodeDevelopment\PythonDevelopment\hetianLabSignin.py</code> 到DOS，发现有个方框在 F:\前面，去掉方框，再从DOS复制这条代码到.bat文件，就可以运行了。或者直接先在DOS敲好这句代码，然后复制到.bat。</p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/Python/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA.assets/1523983219304.png" alt="1523983219304"></p>
+<p>当然，顺便运行看看能不能正常启动，类似下图就是成功了，但DOS会跳出一些INFO，目前还不知道为什么</p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/Python/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA.assets/1523983051032.png" alt="1523983051032"></p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/Python/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA.assets/1523983078680.png" alt="1523983078680"></p>
+<h5 id="任务计划程序"><a href="#任务计划程序" class="headerlink" title="任务计划程序"></a>任务计划程序</h5><p>当当当，最最后一步，设置自动启动</p>
+<p>不同操作系统都有自己的任务计划程序</p>
+<p>Windows ：任务计划程序，</p>
+<p>Linux： Cron</p>
+<p>Mac ： Launchd</p>
+<p>以Windows 10 为例子：</p>
+<p>1、打开任务计划程序，直接搜索就好了，<code>win+s</code>弹出搜索框(开着小娜的话电脑CPU利用率一直挺高，关了就好很多了)，然后输入任务计划程序</p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/Python/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA.assets/1523985139025.png" alt="1523985139025"></p>
+<p>2、点击右边的创建任务</p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/Python/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA.assets/1523984548021.png" alt="1523984548021"></p>
+<p>3、名字自己随便取吧，触发器-&gt;新建-&gt;  设置每天某个时候启动，</p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/Python/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA.assets/1523984655689.png" alt="1523984655689"></p>
+<p>但是如果我那个时候电脑没有开启呢？可以在设置勾上 ‘如果过了计划开始时间，立即启动任务’</p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/Python/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA.assets/1523985054064.png" alt="1523985054064"></p>
+<p>4、最重要的操作来了，新建操作-&gt;浏览选上测试好的bat</p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/Python/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA.assets/1523985339218.png" alt="1523985339218"></p>
+<p>5、乖巧等待它自动运行</p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/Python/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA.assets/1524026305166.png" alt="1524026305166"></p>
+<h3 id="0x05-后记"><a href="#0x05-后记" class="headerlink" title="0x05  后记"></a>0x05  后记</h3><p>或许有大佬想问了，为啥不用request，而这么麻烦的用selenium。</p>
+<p>我是学习了selenium后，想要练练手，仅此而用。</p>
+<p>简单尝试了下request</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">datas=&#123;</span><br><span class="line"> <span class="string">'username'</span>:<span class="string">'xxxxxxxxxxx'</span>,</span><br><span class="line"> <span class="string">'password'</span>:<span class="string">'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">r= requests.get(<span class="string">'http://www.xxxxx.com/loginLab.do'</span>,data=datas)</span><br><span class="line"></span><br><span class="line">print(r.text)</span><br></pre></td></tr></table></figure>
+<p>直接在登录页面post没成功，抓包发现</p>
+<p>先是Post一个去/getRsaOfKey.action</p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/Python/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA.assets/1524021027548.png" alt="1524021027548"></p>
+<p>返回一些字符串</p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/Python/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA.assets/1524021166955.png" alt="1524021166955"></p>
+<p>接着 才是真的 POST /Login.action</p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/Python/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA.assets/1524021247502.png" alt="1524021247502"></p>
+<p>发现它post过去的密码是经过加密了的，而且还POST了两个认证参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&amp;validateCode=&amp;rtnJson=true</span><br></pre></td></tr></table></figure>
+<p>所以我们构造POST的data为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">datas=&#123;</span><br><span class="line">    &apos;username&apos;:&apos;xxxxxxxxxxxx&apos;,</span><br><span class="line">    &apos;password&apos;:&apos;xxxxxxxxxxxxxxxxxxxxxxxxx&apos;,</span><br><span class="line">    &apos;validateCode&apos;:&apos;true&apos;,</span><br><span class="line">    &apos;rtnJson&apos;:&apos;true&apos;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>因为是先POST去 <code>/getRsaOfKey.action</code>拿到加密后的password，然后POST <code>/Login.action</code></p>
+<p>所以我直接request请求<code>/Login.action</code></p>
+<p>然后再request一下自己的主页看看登录次数</p>
+<p>检查一下当前的登录次数：264</p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/Python/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA.assets/1524549817191.png" alt="1524549817191"></p>
+<p>运行代码：</p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/Python/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA.assets/1524549847144.png" alt="1524549847144"></p>
+<p>再运行一次：</p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/Python/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA.assets/1524549880180.png" alt="1524549880180"></p>
+<p>登录成功了，以后登录就只需要运行下面短短20行左右代码，感谢合天小姐姐提醒我填了这个坑</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python3</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="comment"># @Time    : 2018/4/24 13:02</span></span><br><span class="line"><span class="comment"># @Author  : Lhaihai</span></span><br><span class="line"><span class="comment"># @File    : Request模拟登陆xxxx.py</span></span><br><span class="line"><span class="comment"># @Software: PyCharm</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">    Description : 使用request来登陆</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line">datas=&#123;</span><br><span class="line">    <span class="string">'username'</span>:<span class="string">'xxxxxxxxxxxxx'</span>,</span><br><span class="line">    <span class="string">'password'</span>:<span class="string">'xxxxxxxxxxxxxxxxxxxxxxxxx'</span>,</span><br><span class="line">    <span class="string">'validateCode'</span>:<span class="string">'true'</span>,</span><br><span class="line">    <span class="string">'rtnJson'</span>:<span class="string">'true'</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">url = <span class="string">'http://www.xxxxxxx.com/Login.action'</span></span><br><span class="line">myindexUrl = <span class="string">'http://www.xxxxxxxx.com/profile.do?u=xxxxxxxxxxxx'</span> <span class="comment">#我的主页url</span></span><br><span class="line">session = requests.session()</span><br><span class="line"><span class="comment">#模拟登陆</span></span><br><span class="line">r = session.post(url,data=datas)</span><br><span class="line"><span class="comment">#输出响应报文状态码</span></span><br><span class="line">print(r.status_code)</span><br><span class="line"><span class="comment">#请求访问主页</span></span><br><span class="line">r2 = session.get(myindexUrl)</span><br><span class="line">bs = BeautifulSoup(r2.text,<span class="string">'lxml'</span>)</span><br><span class="line"><span class="keyword">for</span> Msg <span class="keyword">in</span> bs.find_all(class_=<span class="string">'logoRight'</span>):</span><br><span class="line">    <span class="keyword">for</span> ms <span class="keyword">in</span> Msg.find_all(name=<span class="string">'p'</span>):</span><br><span class="line">        print(ms.string)</span><br></pre></td></tr></table></figure>
+<p>写得挺长的，或许有些错误。虚心请教各位大表哥，如果发现错误，请指点一下小弟。</p>
+
       
     </div>
     
@@ -380,6 +596,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+        </div>
       
 
       
@@ -454,8 +676,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -474,7 +705,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -485,7 +716,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -496,7 +727,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -529,6 +760,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x00-前言"><span class="nav-number">1.</span> <span class="nav-text">0x00 前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01-安装环境"><span class="nav-number">2.</span> <span class="nav-text">0x01 安装环境</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#python-需要用到的库"><span class="nav-number">2.1.</span> <span class="nav-text">python 需要用到的库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装ChromeDriver"><span class="nav-number">2.2.</span> <span class="nav-text">安装ChromeDriver</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x02-登录hetianlab"><span class="nav-number">3.</span> <span class="nav-text">0x02 登录hetianlab</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#selenium是什么"><span class="nav-number">3.1.</span> <span class="nav-text">selenium是什么</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#打开一个网页"><span class="nav-number">3.2.</span> <span class="nav-text">打开一个网页</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#selenium怎么获取网页信息"><span class="nav-number">3.3.</span> <span class="nav-text">selenium怎么获取网页信息</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#获取节点"><span class="nav-number">3.3.1.</span> <span class="nav-text">获取节点</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#节点交互"><span class="nav-number">3.3.2.</span> <span class="nav-text">节点交互</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#获取节点信息"><span class="nav-number">3.3.3.</span> <span class="nav-text">获取节点信息</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#version-1-0"><span class="nav-number">3.4.</span> <span class="nav-text">version  1.0</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#version-2-0"><span class="nav-number">3.5.</span> <span class="nav-text">version  2.0</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#隐性等待"><span class="nav-number">3.5.1.</span> <span class="nav-text">隐性等待</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#温馨提示：隐性等待在整个driver的周期都起作用，所以只要设置一次即可"><span class="nav-number">3.5.2.</span> <span class="nav-text">温馨提示：隐性等待在整个driver的周期都起作用，所以只要设置一次即可</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#显性等待"><span class="nav-number">3.5.3.</span> <span class="nav-text">显性等待</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#顺便包装为函数方便调用，添加上获取合氏币的代码，前面为了方便测试就没有设置为无界面模式，现在可以设置为无界面模式了"><span class="nav-number">3.5.4.</span> <span class="nav-text">顺便包装为函数方便调用，添加上获取合氏币的代码，前面为了方便测试就没有设置为无界面模式，现在可以设置为无界面模式了</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#version-2-0-代码"><span class="nav-number">3.5.5.</span> <span class="nav-text">version 2.0  代码</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x03-发送短信"><span class="nav-number">4.</span> <span class="nav-text">0x03 发送短信</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1、注册Twilio账号"><span class="nav-number">4.0.1.</span> <span class="nav-text">1、注册Twilio账号</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2、获取一个Twilio电话号码："><span class="nav-number">4.0.2.</span> <span class="nav-text">2、获取一个Twilio电话号码：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3、要验证接收短信的手机号码，要不然就会出现下面的报错"><span class="nav-number">4.0.3.</span> <span class="nav-text">3、要验证接收短信的手机号码，要不然就会出现下面的报错</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4、正式发送短信"><span class="nav-number">4.0.4.</span> <span class="nav-text">4、正式发送短信</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5、在version-2-0-加上发送短信的代码"><span class="nav-number">4.0.5.</span> <span class="nav-text">5、在version 2.0 加上发送短信的代码</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#tip1"><span class="nav-number">4.0.6.</span> <span class="nav-text">tip1:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#tip2："><span class="nav-number">4.0.7.</span> <span class="nav-text">tip2：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#tip3："><span class="nav-number">4.0.8.</span> <span class="nav-text">tip3：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x04-设置每天自动启动python"><span class="nav-number">5.</span> <span class="nav-text">0x04  设置每天自动启动python</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#bat-运行python"><span class="nav-number">5.0.1.</span> <span class="nav-text">.bat 运行python</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#任务计划程序"><span class="nav-number">5.0.2.</span> <span class="nav-text">任务计划程序</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x05-后记"><span class="nav-number">6.</span> <span class="nav-text">0x05  后记</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
