@@ -3,6 +3,29 @@
 
     
   <url>
+    <loc>http://yoursite.com/2018/04/26/SQL%E6%B3%A8%E5%85%A5%E7%AC%94%E8%AE%B0%EF%BC%883%EF%BC%89%EF%BC%9AMySQL-information-schema%E4%BB%8B%E7%BB%8D/</loc>
+    <lastmod>2018-04-26T09:19:39.317Z</lastmod>
+    <data>
+        <display>
+        <title>SQL注入笔记（3）：MySQL-information_schema介绍</title>
+        <pubTime>2018-04-26T09:03:47.000Z</pubTime>
+        
+        <tag>SQL注入 </tag>
+         
+         
+           
+             
+              <breadCrumb title="Web安全" url="http://yoursite.com/categories/Web%E5%AE%89%E5%85%A8/"/>
+          
+             
+              <breadCrumb title="SQL注入" url="http://yoursite.com/categories/Web%E5%AE%89%E5%85%A8/SQL%E6%B3%A8%E5%85%A5/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2018/04/17/hetianlab%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E5%B9%B6%E4%B8%94%E5%8F%91%E7%9F%AD%E4%BF%A1%E5%88%B0%E6%89%8B%E6%9C%BA/</loc>
     <lastmod>2018-04-25T15:31:12.782Z</lastmod>
     <data>
