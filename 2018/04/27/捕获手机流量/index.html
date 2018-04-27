@@ -79,12 +79,12 @@
 
 
 
-<meta name="description" content="环境windows10 实验过程设置——&amp;gt;网络和Internet——&amp;gt;移动热点——&amp;gt;开启  手机连上移动热点，被分配到的IP地址是192.168.137.248  手机在一个网址登陆  然后在站长之家查询一下域名的ip地址  得到 1IP:121.42.137.89 Wireshark过滤一下 1ip.src == 192.168.137.248 and ip.addr == 1">
+<meta name="description" content="环境windows10 实验过程设置——&amp;gt;网络和Internet——&amp;gt;移动热点——&amp;gt;开启">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Wireshark捕获手机流量">
 <meta property="og:url" content="http://yoursite.com/2018/04/27/捕获手机流量/index.html">
 <meta property="og:site_name" content="Lhaihai&#39;s Blog">
-<meta property="og:description" content="环境windows10 实验过程设置——&amp;gt;网络和Internet——&amp;gt;移动热点——&amp;gt;开启  手机连上移动热点，被分配到的IP地址是192.168.137.248  手机在一个网址登陆  然后在站长之家查询一下域名的ip地址  得到 1IP:121.42.137.89 Wireshark过滤一下 1ip.src == 192.168.137.248 and ip.addr == 1">
+<meta property="og:description" content="环境windows10 实验过程设置——&amp;gt;网络和Internet——&amp;gt;移动热点——&amp;gt;开启">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/%E7%BD%91%E5%AE%89%E5%AE%9E%E9%AA%8C/%E6%8D%95%E8%8E%B7%E6%89%8B%E6%9C%BA%E6%B5%81%E9%87%8F.assets/1524751006768.png">
 <meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/%E7%BD%91%E5%AE%89%E5%AE%9E%E9%AA%8C/%E6%8D%95%E8%8E%B7%E6%89%8B%E6%9C%BA%E6%B5%81%E9%87%8F.assets/1524756700558.png">
@@ -92,10 +92,10 @@
 <meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/%E7%BD%91%E5%AE%89%E5%AE%9E%E9%AA%8C/%E6%8D%95%E8%8E%B7%E6%89%8B%E6%9C%BA%E6%B5%81%E9%87%8F.assets/1524756655669.png">
 <meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/%E7%BD%91%E5%AE%89%E5%AE%9E%E9%AA%8C/%E6%8D%95%E8%8E%B7%E6%89%8B%E6%9C%BA%E6%B5%81%E9%87%8F.assets/1524756571807.png">
 <meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/%E7%BD%91%E5%AE%89%E5%AE%9E%E9%AA%8C/%E6%8D%95%E8%8E%B7%E6%89%8B%E6%9C%BA%E6%B5%81%E9%87%8F.assets/1524756518739.png">
-<meta property="og:updated_time" content="2018-04-27T11:41:56.693Z">
+<meta property="og:updated_time" content="2018-04-27T11:56:52.717Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Wireshark捕获手机流量">
-<meta name="twitter:description" content="环境windows10 实验过程设置——&amp;gt;网络和Internet——&amp;gt;移动热点——&amp;gt;开启  手机连上移动热点，被分配到的IP地址是192.168.137.248  手机在一个网址登陆  然后在站长之家查询一下域名的ip地址  得到 1IP:121.42.137.89 Wireshark过滤一下 1ip.src == 192.168.137.248 and ip.addr == 1">
+<meta name="twitter:description" content="环境windows10 实验过程设置——&amp;gt;网络和Internet——&amp;gt;移动热点——&amp;gt;开启">
 <meta name="twitter:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/%E7%BD%91%E5%AE%89%E5%AE%9E%E9%AA%8C/%E6%8D%95%E8%8E%B7%E6%89%8B%E6%9C%BA%E6%B5%81%E9%87%8F.assets/1524751006768.png">
 
 
@@ -378,6 +378,7 @@
       
         <h4 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h4><p>windows10</p>
 <h4 id="实验过程"><a href="#实验过程" class="headerlink" title="实验过程"></a>实验过程</h4><p>设置——&gt;网络和Internet——&gt;移动热点——&gt;开启</p>
+<a id="more"></a>
 <p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/%E7%BD%91%E5%AE%89%E5%AE%9E%E9%AA%8C/%E6%8D%95%E8%8E%B7%E6%89%8B%E6%9C%BA%E6%B5%81%E9%87%8F.assets/1524751006768.png" alt="1524751006768"></p>
 <p>手机连上移动热点，被分配到的IP地址是192.168.137.248</p>
 <p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/%E7%BD%91%E5%AE%89%E5%AE%9E%E9%AA%8C/%E6%8D%95%E8%8E%B7%E6%89%8B%E6%9C%BA%E6%B5%81%E9%87%8F.assets/1524756700558.png" alt="52475670055"></p>
