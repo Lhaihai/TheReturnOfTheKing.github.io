@@ -397,27 +397,15 @@
 
       
         
-          
-            <h4 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接:"></a>题目链接:</h4><p><a href="http://ctf5.shiyanbar.com/misc/keys/keys.php?key=d41d8cd98f00b204e9800998ecf8427e" target="_blank" rel="noopener">http://ctf5.shiyanbar.com/misc/keys/keys.php?key=d41d8cd98f00b204e9800998ecf8427e</a></p>
+          <h4 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接:"></a>题目链接:</h4><p><a href="http://ctf5.shiyanbar.com/misc/keys/keys.php?key=d41d8cd98f00b204e9800998ecf8427e" target="_blank" rel="noopener">http://ctf5.shiyanbar.com/misc/keys/keys.php?key=d41d8cd98f00b204e9800998ecf8427e</a></p>
 <h4 id="hint："><a href="#hint：" class="headerlink" title="hint："></a>hint：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">从系统锁下手，通过get方式key字段提交答案，直到您的钥匙与系统锁相等则成功。</span><br><span class="line">格式：CTF&#123;&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h4><p>时间戳md5后生成的密钥</p>
-<p>直接上代码</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">md5</span><span class="params">(src)</span>:</span></span><br><span class="line">    md5 = hashlib.md5()</span><br><span class="line">    md5.update(src)</span><br><span class="line">    <span class="keyword">return</span> md5.hexdigest()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getTime</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">return</span> str(int(time.time())<span class="number">-2</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getFlag</span><span class="params">(Unixtime)</span>:</span></span><br><span class="line">    url=<span class="string">'http://ctf5.shiyanbar.com/misc/keys/keys.php?key='</span>+Unixtime</span><br><span class="line">    r=requests.get(url)</span><br><span class="line">    print(r.content)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10</span>):</span><br><span class="line">    getFlag(getTime())</span><br><span class="line">    time.sleep(<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
-<p>刚开始都是false</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b&apos;\r\n\r\nfalse&lt;br&gt;\xcf\xb5\xcd\xb3\xb5\xc4\xc3\xdc\xd4\xbf=b5acfe0daa101b0b4c5f2f8bdf834038&lt;br&gt;\xc4\xfa\xb5\xc4\xc3\xdc\xd4\xbf=57ec220296a9d7e1316c086a90185a0b&apos;</span><br></pre></td></tr></table></figure>
-<p>这是因为time.time()拿到的时间戳跟实验吧的时间戳有点延迟</p>
-<p>拿出来的<code>b5acfe0daa101b0b4c5f2f8bdf834038</code>和<code>57ec220296a9d7e1316c086a90185a0b</code></p>
-<p>到<a href="https://www.md5online.org/去解密一下" target="_blank" rel="noopener">https://www.md5online.org/去解密一下</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Found : 1524904334</span><br><span class="line">(hash = b5acfe0daa101b0b4c5f2f8bdf834038)</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Found : 1524904333</span><br><span class="line">(hash = 57ec220296a9d7e1316c086a90185a0b)</span><br></pre></td></tr></table></figure>
-<p>发现本地的时间慢了一秒，就在time.time()后+1</p>
-<p>根据自己的时间调整一下</p>
-<h4 id="flag"><a href="#flag" class="headerlink" title="flag"></a>flag</h4><p>假的flag，自己跑跑代码吧</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b&quot;\r\n\r\n&lt;script&gt;alert(&apos;flagxxxxxxxx&apos;)&lt;/script&gt;&quot;</span><br></pre></td></tr></table></figure>
-<p>参考链接：</p>
-<p><a href="https://www.jianshu.com/p/e4b8fd7dda08" target="_blank" rel="noopener">https://www.jianshu.com/p/e4b8fd7dda08</a></p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/28/MD5之守株待兔，你需要找到和系统锁匹配的钥匙/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

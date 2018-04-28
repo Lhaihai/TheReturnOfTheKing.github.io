@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="题目链接:http://ctf5.shiyanbar.com/misc/keys/keys.php?key=d41d8cd98f00b204e9800998ecf8427e hint：12从系统锁下手，通过get方式key字段提交答案，直到您的钥匙与系统锁相等则成功。格式：CTF&amp;#123;&amp;#125; 分析：时间戳md5后生成的密钥 直接上代码 1234567891011121314151617">
+<meta name="description" content="题目链接:http://ctf5.shiyanbar.com/misc/keys/keys.php?key=d41d8cd98f00b204e9800998ecf8427e hint：12从系统锁下手，通过get方式key字段提交答案，直到您的钥匙与系统锁相等则成功。格式：CTF&amp;#123;&amp;#125;">
 <meta name="keywords" content="Misc">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MD5之守株待兔，你需要找到和系统锁匹配的钥匙">
 <meta property="og:url" content="http://yoursite.com/2018/04/28/MD5之守株待兔，你需要找到和系统锁匹配的钥匙/index.html">
 <meta property="og:site_name" content="Lhaihai&#39;s Blog">
-<meta property="og:description" content="题目链接:http://ctf5.shiyanbar.com/misc/keys/keys.php?key=d41d8cd98f00b204e9800998ecf8427e hint：12从系统锁下手，通过get方式key字段提交答案，直到您的钥匙与系统锁相等则成功。格式：CTF&amp;#123;&amp;#125; 分析：时间戳md5后生成的密钥 直接上代码 1234567891011121314151617">
+<meta property="og:description" content="题目链接:http://ctf5.shiyanbar.com/misc/keys/keys.php?key=d41d8cd98f00b204e9800998ecf8427e hint：12从系统锁下手，通过get方式key字段提交答案，直到您的钥匙与系统锁相等则成功。格式：CTF&amp;#123;&amp;#125;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-28T08:41:34.414Z">
+<meta property="og:updated_time" content="2018-04-28T08:45:07.561Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MD5之守株待兔，你需要找到和系统锁匹配的钥匙">
-<meta name="twitter:description" content="题目链接:http://ctf5.shiyanbar.com/misc/keys/keys.php?key=d41d8cd98f00b204e9800998ecf8427e hint：12从系统锁下手，通过get方式key字段提交答案，直到您的钥匙与系统锁相等则成功。格式：CTF&amp;#123;&amp;#125; 分析：时间戳md5后生成的密钥 直接上代码 1234567891011121314151617">
+<meta name="twitter:description" content="题目链接:http://ctf5.shiyanbar.com/misc/keys/keys.php?key=d41d8cd98f00b204e9800998ecf8427e hint：12从系统锁下手，通过get方式key字段提交答案，直到您的钥匙与系统锁相等则成功。格式：CTF&amp;#123;&amp;#125;">
 
 
 
@@ -405,6 +405,7 @@
       
         <h4 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接:"></a>题目链接:</h4><p><a href="http://ctf5.shiyanbar.com/misc/keys/keys.php?key=d41d8cd98f00b204e9800998ecf8427e" target="_blank" rel="noopener">http://ctf5.shiyanbar.com/misc/keys/keys.php?key=d41d8cd98f00b204e9800998ecf8427e</a></p>
 <h4 id="hint："><a href="#hint：" class="headerlink" title="hint："></a>hint：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">从系统锁下手，通过get方式key字段提交答案，直到您的钥匙与系统锁相等则成功。</span><br><span class="line">格式：CTF&#123;&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <h4 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h4><p>时间戳md5后生成的密钥</p>
 <p>直接上代码</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">md5</span><span class="params">(src)</span>:</span></span><br><span class="line">    md5 = hashlib.md5()</span><br><span class="line">    md5.update(src)</span><br><span class="line">    <span class="keyword">return</span> md5.hexdigest()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getTime</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">return</span> str(int(time.time())<span class="number">-2</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getFlag</span><span class="params">(Unixtime)</span>:</span></span><br><span class="line">    url=<span class="string">'http://ctf5.shiyanbar.com/misc/keys/keys.php?key='</span>+Unixtime</span><br><span class="line">    r=requests.get(url)</span><br><span class="line">    print(r.content)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10</span>):</span><br><span class="line">    getFlag(getTime())</span><br><span class="line">    time.sleep(<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
