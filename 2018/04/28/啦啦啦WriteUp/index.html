@@ -79,13 +79,13 @@
 
 
 
-<meta name="description" content="解题链接：http://ctf5.shiyanbar.com/misc/LOL/LOL.pcapng  hint隐藏在数据包中的秘密 分析用wireshark打开，过滤http，有两个post请求，发现有lol.zip,lol.docs   右键-&amp;gt;追踪流-&amp;gt;TCP  把PK开始的数据复制粘贴到010 Editor，先转为原始数据再复制粘贴，去掉无关的数据  保存为ok.zip 解压需">
+<meta name="description" content="解题链接：http://ctf5.shiyanbar.com/misc/LOL/LOL.pcapng  hint隐藏在数据包中的秘密">
 <meta name="keywords" content="Misc">
 <meta property="og:type" content="article">
 <meta property="og:title" content="啦啦啦WriteUp">
 <meta property="og:url" content="http://blog.Lhaihai.wang/2018/04/28/啦啦啦WriteUp/index.html">
 <meta property="og:site_name" content="Lhaihai&#39;s Blog">
-<meta property="og:description" content="解题链接：http://ctf5.shiyanbar.com/misc/LOL/LOL.pcapng  hint隐藏在数据包中的秘密 分析用wireshark打开，过滤http，有两个post请求，发现有lol.zip,lol.docs   右键-&amp;gt;追踪流-&amp;gt;TCP  把PK开始的数据复制粘贴到010 Editor，先转为原始数据再复制粘贴，去掉无关的数据  保存为ok.zip 解压需">
+<meta property="og:description" content="解题链接：http://ctf5.shiyanbar.com/misc/LOL/LOL.pcapng  hint隐藏在数据包中的秘密">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/%E5%AE%9E%E9%AA%8C%E5%90%A7/%E5%95%A6%E5%95%A6%E5%95%A6WriteUp.assets/1524913276909.png">
 <meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/%E5%AE%9E%E9%AA%8C%E5%90%A7/%E5%95%A6%E5%95%A6%E5%95%A6WriteUp.assets/1524913339533.png">
@@ -94,10 +94,10 @@
 <meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/%E5%AE%9E%E9%AA%8C%E5%90%A7/%E5%95%A6%E5%95%A6%E5%95%A6WriteUp.assets/1524913944180.png">
 <meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/%E5%AE%9E%E9%AA%8C%E5%90%A7/%E5%95%A6%E5%95%A6%E5%95%A6WriteUp.assets/1524914946181.png">
 <meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/%E5%AE%9E%E9%AA%8C%E5%90%A7/%E5%95%A6%E5%95%A6%E5%95%A6WriteUp.assets/1524915682266.png">
-<meta property="og:updated_time" content="2018-04-28T11:45:39.913Z">
+<meta property="og:updated_time" content="2018-04-28T17:05:41.711Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="啦啦啦WriteUp">
-<meta name="twitter:description" content="解题链接：http://ctf5.shiyanbar.com/misc/LOL/LOL.pcapng  hint隐藏在数据包中的秘密 分析用wireshark打开，过滤http，有两个post请求，发现有lol.zip,lol.docs   右键-&amp;gt;追踪流-&amp;gt;TCP  把PK开始的数据复制粘贴到010 Editor，先转为原始数据再复制粘贴，去掉无关的数据  保存为ok.zip 解压需">
+<meta name="twitter:description" content="解题链接：http://ctf5.shiyanbar.com/misc/LOL/LOL.pcapng  hint隐藏在数据包中的秘密">
 <meta name="twitter:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/%E5%AE%9E%E9%AA%8C%E5%90%A7/%E5%95%A6%E5%95%A6%E5%95%A6WriteUp.assets/1524913276909.png">
 
 
@@ -413,6 +413,7 @@
       
         <h3 id="解题链接："><a href="#解题链接：" class="headerlink" title="解题链接："></a>解题链接：</h3><p><a href="http://ctf5.shiyanbar.com/misc/LOL/LOL.pcapng" target="_blank" rel="noopener">http://ctf5.shiyanbar.com/misc/LOL/LOL.pcapng</a> </p>
 <h3 id="hint"><a href="#hint" class="headerlink" title="hint"></a>hint</h3><p>隐藏在数据包中的秘密</p>
+<a id="more"></a>
 <h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>用wireshark打开，过滤http，有两个post请求，发现有lol.zip,lol.docs</p>
 <p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/%E5%AE%9E%E9%AA%8C%E5%90%A7/%E5%95%A6%E5%95%A6%E5%95%A6WriteUp.assets/1524913276909.png" alt="1524913276909"></p>
 <p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/%E5%AE%9E%E9%AA%8C%E5%90%A7/%E5%95%A6%E5%95%A6%E5%95%A6WriteUp.assets/1524913339533.png" alt="1524913339533"></p>
