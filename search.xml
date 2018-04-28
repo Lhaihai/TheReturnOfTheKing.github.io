@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[MD5之守株待兔，你需要找到和系统锁匹配的钥匙]]></title>
+    <url>%2F2018%2F04%2F28%2FMD5%E4%B9%8B%E5%AE%88%E6%A0%AA%E5%BE%85%E5%85%94%EF%BC%8C%E4%BD%A0%E9%9C%80%E8%A6%81%E6%89%BE%E5%88%B0%E5%92%8C%E7%B3%BB%E7%BB%9F%E9%94%81%E5%8C%B9%E9%85%8D%E7%9A%84%E9%92%A5%E5%8C%99%2F</url>
+    <content type="text"><![CDATA[题目链接:http://ctf5.shiyanbar.com/misc/keys/keys.php?key=d41d8cd98f00b204e9800998ecf8427e hint：12从系统锁下手，通过get方式key字段提交答案，直到您的钥匙与系统锁相等则成功。格式：CTF&#123;&#125; 分析：时间戳md5后生成的密钥 直接上代码 1234567891011121314151617181920import timeimport hashlibimport requestsdef md5(src): md5 = hashlib.md5() md5.update(src) return md5.hexdigest()def getTime(): return str(int(time.time())-2)def getFlag(Unixtime): url='http://ctf5.shiyanbar.com/misc/keys/keys.php?key='+Unixtime r=requests.get(url) print(r.content)for i in range(10): getFlag(getTime()) time.sleep(1) 刚开始都是false 1b&apos;\r\n\r\nfalse&lt;br&gt;\xcf\xb5\xcd\xb3\xb5\xc4\xc3\xdc\xd4\xbf=b5acfe0daa101b0b4c5f2f8bdf834038&lt;br&gt;\xc4\xfa\xb5\xc4\xc3\xdc\xd4\xbf=57ec220296a9d7e1316c086a90185a0b&apos; 这是因为time.time()拿到的时间戳跟实验吧的时间戳有点延迟 拿出来的b5acfe0daa101b0b4c5f2f8bdf834038和57ec220296a9d7e1316c086a90185a0b 到https://www.md5online.org/去解密一下 12Found : 1524904334(hash = b5acfe0daa101b0b4c5f2f8bdf834038) 12Found : 1524904333(hash = 57ec220296a9d7e1316c086a90185a0b) 发现本地的时间慢了一秒，就在time.time()后+1 根据自己的时间调整一下 flag假的flag，自己跑跑代码吧 1b&quot;\r\n\r\n&lt;script&gt;alert(&apos;flagxxxxxxxx&apos;)&lt;/script&gt;&quot; 参考链接： https://www.jianshu.com/p/e4b8fd7dda08]]></content>
+      <categories>
+        <category>Misc</category>
+        <category>实验吧</category>
+      </categories>
+      <tags>
+        <tag>Misc</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[网络安全实验链接]]></title>
     <url>%2F2018%2F04%2F27%2F%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%AE%9E%E9%AA%8C%E9%93%BE%E6%8E%A5%2F</url>
     <content type="text"><![CDATA[实验一 流量捕获实验 实验二 TCP/IP协议攻击 实验三 CA证书与SSL连接 实验四 配置主机防火墙防止Dos攻击 实验六 综合扫描 实验五 WiFi钓鱼 实验七 XSS跨站脚本攻击 实验八 SQL注入攻击]]></content>
