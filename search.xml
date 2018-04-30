@@ -75,7 +75,7 @@
   <entry>
     <title><![CDATA[网络安全实验链接]]></title>
     <url>%2F2018%2F04%2F27%2F%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%AE%9E%E9%AA%8C%E9%93%BE%E6%8E%A5%2F</url>
-    <content type="text"><![CDATA[实验一 流量捕获实验 实验二 TCP/IP协议攻击 实验三 CA证书与SSL连接 实验四 配置主机防火墙防止Dos攻击 实验六 综合扫描 实验五 WiFi钓鱼 实验七 XSS跨站脚本攻击 实验八 SQL注入攻击]]></content>
+    <content type="text"><![CDATA[实验一 流量捕获实验 实验二 TCP/IP协议攻击 实验三 CA证书与SSL连接(DJ已经资料已经很详细了) 实验四 配置主机防火墙防止Dos攻击 实验六 综合扫描 实验五 WiFi钓鱼 实验七 XSS跨站脚本攻击 实验八 SQL注入攻击]]></content>
   </entry>
   <entry>
     <title><![CDATA[Wireshark捕获手机流量]]></title>
