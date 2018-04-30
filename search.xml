@@ -13,7 +13,7 @@
     <url>%2F2018%2F04%2F30%2FUpload%2F</url>
     <content type="text"><![CDATA[第一届“百度杯”信息安全攻防总决赛 线上选拔赛 题目内容：来来来，都是套路，贼简单。 过程 抓包分析一波，看来就是写脚本base64解码响应报头的flag，post上去 12345678910111213141516171819202122232425262728#!/usr/bin/python3# -*- coding: utf-8 -*-# @Time : 2018/4/30 22:46# @Author : Lhaihai# @File : fastman.py# @Software: PyCharm# @Blog : http://blog.Lhaihai.wang""" Description :第一届“百度杯”信息安全攻防总决赛 线上选拔赛 题目名称：Upload 题目内容：来来来，都是套路，贼简单。"""import base64import requestsurl='http://b495ad3915ae4a38b4c2598b19c1d99ca7f3058e9c154524.game.ichunqiu.com/'session = requests.session()r = session.get(url)temp = str(base64.b64decode(r.headers['flag'])).split(':')flag = temp[1][1:-1]print(flag)flag2 = base64.b64decode(temp[1])print(flag2)datas=&#123; 'ichunqiu':flag2&#125;r = session.post(url,data=datas)print(r.text) 没想到flag要base64解码两次， 拿到path， 访问：题目给的url+path 点Webcome，下滑出现登录表单 又是md5截断 12345678910111213141516171819202122#!/usr/bin/python3# -*- coding: utf-8 -*-# @Time : 2018/4/30 23:06# @Author : Lhaihai# @File : md5截断.py# @Software: PyCharm# @Blog : http://blog.Lhaihai.wang""" Description :"""import hashlibdef md5(s): return hashlib.md5(str(s).encode('utf-8')).hexdigest()def main(s): for i in range(99999999): if(md5(i)[0:6] == str(s)): print(i) exit(0)if __name__ == '__main__': main('9ea8da') 但是我们还不知道用户名和密码 挂目录扫描器一扫，发现有svn源码泄露， 访问访问 URL+/xxxx/.svn/wc.db (SVN 源码泄露漏洞) 即可获得username is md5(HEL1OW10rDEvery0n3) wc.db是固定的，只能说多多积累经验了 123username：8638d5263ab0d3face193725c23ce095password: 123456captcha : xxx 登录有弹窗 访问 xxxxxx.php 上传个图片，大小写不行，加个空格不行，那就试试1,2,3,4,5，也不行，最后试试pht,phtml 终于成了 后来发现一位大哥的md5截断，随机来，记录一下 1234567891011121314import randomimport stringdef md5(str): import hashlib m = hashlib.md5() m.update(str) return m.hexdigest()while 1: string = '' s = string.join(random.sample('qwertyuiopasdfghjklzxcvbnm1234567890',4)) if md5(s)[0:6] == 'e63f44': print s break #substr(md5($str), 0, 6) ===]]></content>
       <categories>
-        <category>Web</category>
+        <category>Web安全</category>
         <category>I春秋</category>
       </categories>
       <tags>
@@ -25,7 +25,7 @@
     <url>%2F2018%2F04%2F30%2FDo%20you%20know%20upload%EF%BC%9F%2F</url>
     <content type="text"><![CDATA[第三届“百越杯”福建省高校网络空间安全大赛 题目内容：加油吧，少年。 过程进来一看，图片上传 顺手上传个菜刀，只要改一改content-type绕过 然后连接，发现config.php，下载。而且有ctf.sql。估计flag在数据库，下载ctf.sql打开，ERROR:// Can Not Read，只能搞数据库了 config.php打开一看 123456789101112&lt;?phperror_reporting(0);session_start();$servername = &quot;localhost&quot;;$username = &quot;ctf&quot;;$password = &quot;ctfctfctf&quot;;$database = &quot;ctf&quot;;// 创建连接$conn = mysql_connect($servername,$username,$password) or die(&quot; connect to mysql error&quot;);mysql_select_db($database);?&gt; 好了密码有了，菜刀连接 执行 1select flag from flag]]></content>
       <categories>
-        <category>Web</category>
+        <category>Web安全</category>
         <category>I春秋</category>
       </categories>
       <tags>
@@ -75,7 +75,7 @@
   <entry>
     <title><![CDATA[网络安全实验链接]]></title>
     <url>%2F2018%2F04%2F27%2F%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%AE%9E%E9%AA%8C%E9%93%BE%E6%8E%A5%2F</url>
-    <content type="text"><![CDATA[实验一 流量捕获实验 实验二 TCP/IP协议攻击 实验三 CA证书与SSL连接(DJ已经资料已经很详细了) 实验四 配置主机防火墙防止Dos攻击 实验六 综合扫描 实验五 WiFi钓鱼 实验七 XSS跨站脚本攻击 实验八 SQL注入攻击]]></content>
+    <content type="text"><![CDATA[实验一 流量捕获实验 实验二 TCP/IP协议攻击 实验三 CA证书与SSL连接(DJ的资料已经很详细了，我就不放出了) 实验四 配置主机防火墙防止Dos攻击 ​ 后面Dos攻击还需要实验一下 实验六 综合扫描 实验五 WiFi钓鱼 实验七 XSS跨站脚本攻击 实验八 SQL注入攻击]]></content>
   </entry>
   <entry>
     <title><![CDATA[Wireshark捕获手机流量]]></title>
