@@ -3,6 +3,67 @@
 
     
   <url>
+    <loc>http://blog.Lhaihai.wang/2018/05/05/sql-labs%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%881%EF%BC%89/</loc>
+    <lastmod>2018-05-06T06:28:08.432Z</lastmod>
+    <data>
+        <display>
+        <title>sql_labs学习记录（1）</title>
+        <pubTime>2018-05-05T01:52:11.000Z</pubTime>
+        
+        <tag>SQL </tag>
+         
+         
+           
+             
+              <breadCrumb title="Web安全" url="http://blog.Lhaihai.wang/categories/Web%E5%AE%89%E5%85%A8/"/>
+          
+             
+              <breadCrumb title="SQL注入" url="http://blog.Lhaihai.wang/categories/Web%E5%AE%89%E5%85%A8/SQL%E6%B3%A8%E5%85%A5/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.Lhaihai.wang/2018/05/06/%E7%99%BE%E5%BA%A6%E6%9D%AFCTF%E5%A4%BA%E6%97%97%E5%A4%A7%E8%B5%9B9%E6%9C%88%E5%9C%BA%E7%AC%AC%E4%B8%89%E5%9C%BATest/</loc>
+    <lastmod>2018-05-06T06:26:35.264Z</lastmod>
+    <data>
+        <display>
+        <title>百度杯CTF夺旗大赛9月场第三场Test</title>
+        <pubTime>2018-05-06T05:29:46.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="Web安全" url="http://blog.Lhaihai.wang/categories/Web%E5%AE%89%E5%85%A8/"/>
+          
+             
+              <breadCrumb title="I春秋" url="http://blog.Lhaihai.wang/categories/Web%E5%AE%89%E5%85%A8/I%E6%98%A5%E7%A7%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.Lhaihai.wang/2018/05/05/2-0%E4%B8%8B%E5%AE%89%E8%A3%85metasploit/</loc>
+    <lastmod>2018-05-05T15:14:24.862Z</lastmod>
+    <data>
+        <display>
+        <title>kali 2.0下安装 metasploit</title>
+        <pubTime>2018-05-05T14:34:21.000Z</pubTime>
+        
+        <tag>kali linux </tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://blog.Lhaihai.wang/2018/05/02/%E7%99%BE%E5%BA%A6%E6%9D%AFCTF%E5%A4%BA%E6%97%97%E5%A4%A7%E8%B5%9B9%E6%9C%88%E5%9C%BA%E7%AC%AC%E4%BA%8C%E5%9C%BASQL/</loc>
     <lastmod>2018-05-02T14:29:56.476Z</lastmod>
     <data>
