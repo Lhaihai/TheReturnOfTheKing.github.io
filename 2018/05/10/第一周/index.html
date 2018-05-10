@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="crypto," />
 
 
 
@@ -79,13 +79,31 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Lhaihai&#39;s Blog">
-<meta property="og:url" content="http://blog.Lhaihai.wang/tags/web安全，SQL注入/index.html">
+<meta name="description" content="0x00 复习密码学占个位置慢慢写">
+<meta name="keywords" content="crypto">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第一周RSA加密解密入门">
+<meta property="og:url" content="http://blog.Lhaihai.wang/2018/05/10/第一周/index.html">
 <meta property="og:site_name" content="Lhaihai&#39;s Blog">
+<meta property="og:description" content="0x00 复习密码学占个位置慢慢写">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/%E8%93%9D%E9%B2%B8%E5%AE%89%E5%85%A8/%E7%AC%AC%E4%B8%80%E5%91%A8RSA%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86.assets/1525927341309.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/%E8%93%9D%E9%B2%B8%E5%AE%89%E5%85%A8/%E7%AC%AC%E4%B8%80%E5%91%A8RSA%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86.assets/1525927574315.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/%E8%93%9D%E9%B2%B8%E5%AE%89%E5%85%A8/%E7%AC%AC%E4%B8%80%E5%91%A8RSA%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86.assets/1525927594829.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/%E8%93%9D%E9%B2%B8%E5%AE%89%E5%85%A8/%E7%AC%AC%E4%B8%80%E5%91%A8RSA%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86.assets/1525928096379.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/%E8%93%9D%E9%B2%B8%E5%AE%89%E5%85%A8/%E7%AC%AC%E4%B8%80%E5%91%A8RSA%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86.assets/1525929032341.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/%E8%93%9D%E9%B2%B8%E5%AE%89%E5%85%A8/%E7%AC%AC%E4%B8%80%E5%91%A8RSA%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86.assets/1525928721540.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/%E8%93%9D%E9%B2%B8%E5%AE%89%E5%85%A8/%E7%AC%AC%E4%B8%80%E5%91%A8RSA%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86.assets/1525930763701.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/%E8%93%9D%E9%B2%B8%E5%AE%89%E5%85%A8/%E7%AC%AC%E4%B8%80%E5%91%A8RSA%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86.assets/1525937295679.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/%E8%93%9D%E9%B2%B8%E5%AE%89%E5%85%A8/%E7%AC%AC%E4%B8%80%E5%91%A8RSA%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86.assets/1525938842077.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/%E8%93%9D%E9%B2%B8%E5%AE%89%E5%85%A8/%E7%AC%AC%E4%B8%80%E5%91%A8RSA%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86.assets/1525939930698.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/%E8%93%9D%E9%B2%B8%E5%AE%89%E5%85%A8/%E7%AC%AC%E4%B8%80%E5%91%A8RSA%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86.assets/1525959883924.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/%E8%93%9D%E9%B2%B8%E5%AE%89%E5%85%A8/%E7%AC%AC%E4%B8%80%E5%91%A8RSA%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86.assets/1525960026348.png">
+<meta property="og:updated_time" content="2018-05-10T15:11:12.273Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lhaihai&#39;s Blog">
+<meta name="twitter:title" content="第一周RSA加密解密入门">
+<meta name="twitter:description" content="0x00 复习密码学占个位置慢慢写">
+<meta name="twitter:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/%E8%93%9D%E9%B2%B8%E5%AE%89%E5%85%A8/%E7%AC%AC%E4%B8%80%E5%91%A8RSA%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86.assets/1525927341309.png">
 
 
 
@@ -115,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="http://blog.Lhaihai.wang/tags/web安全，SQL注入/"/>
+  <link rel="canonical" href="http://blog.Lhaihai.wang/2018/05/10/第一周/"/>
 
 
 
 
 
-  <title>标签: web安全，SQL注入 | Lhaihai's Blog</title>
+  <title>第一周RSA加密解密入门 | Lhaihai's Blog</title>
   
 
 
@@ -151,7 +169,7 @@
   
   <script type="text/javascript" color="0,0,255" opacity='0.7' zIndex="-2" count="10" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
  
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -281,54 +299,229 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>web安全，SQL注入<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.Lhaihai.wang/2018/05/10/第一周/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lhaihai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lhaihai's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/04/24/SQL注入笔记（2）：MySQL长字符截断/" itemprop="url">
-              
-                <span itemprop="name">SQL注入笔记（2）：MySQL长字符截断</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">第一周RSA加密解密入门</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-24T23:21:15+08:00"
-              content="2018-04-24" >
-          04-24
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-10T23:05:34+08:00">
+                2018-05-10
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/whalectf/" itemprop="url" rel="index">
+                    <span itemprop="name">whalectf</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o">本文总阅读量</i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="0x00-复习密码学"><a href="#0x00-复习密码学" class="headerlink" title="0x00 复习密码学"></a>0x00 复习密码学</h3><p>占个位置慢慢写</p>
+<a id="more"></a>
+<h3 id="0x01-RSA密钥生成"><a href="#0x01-RSA密钥生成" class="headerlink" title="0x01  RSA密钥生成"></a>0x01  RSA密钥生成</h3><p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/%E8%93%9D%E9%B2%B8%E5%AE%89%E5%85%A8/%E7%AC%AC%E4%B8%80%E5%91%A8RSA%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86.assets/1525927341309.png" alt="1525927341309"></p>
+<p>题目</p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/%E8%93%9D%E9%B2%B8%E5%AE%89%E5%85%A8/%E7%AC%AC%E4%B8%80%E5%91%A8RSA%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86.assets/1525927574315.png" alt="1525927574315"></p>
+<p>直接使用RSA-Tool 工具，因为p和q都是只有数字，所以猜测是十进制，修改右上角的Number Base为10，填入p，q，e（16进制），点击左下角的Cale.D生成密钥d</p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/%E8%93%9D%E9%B2%B8%E5%AE%89%E5%85%A8/%E7%AC%AC%E4%B8%80%E5%91%A8RSA%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86.assets/1525927594829.png" alt="1525927594829"></p>
+<h3 id="0x01-RSA解密"><a href="#0x01-RSA解密" class="headerlink" title="0x01 RSA解密"></a>0x01 RSA解密</h3><p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/%E8%93%9D%E9%B2%B8%E5%AE%89%E5%85%A8/%E7%AC%AC%E4%B8%80%E5%91%A8RSA%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86.assets/1525928096379.png" alt="1525928096379"></p>
+<p><a href="https://blog.csdn.net/as3luyuan123/article/details/16812011" target="_blank" rel="noopener">OpenSSL命令—rsautl</a> </p>
+<p>题目：</p>
+<p>拿到一个zip包，用010Editor打开修改密码标记位，解压后有两个文件</p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/%E8%93%9D%E9%B2%B8%E5%AE%89%E5%85%A8/%E7%AC%AC%E4%B8%80%E5%91%A8RSA%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86.assets/1525929032341.png" alt="1525929032341"></p>
+<p>发现imhere文件是私钥，flag是密文</p>
+<p>所以解密命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl rsautl -decrypt -in flag -inkey imhere -out a.txt</span><br></pre></td></tr></table></figure>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/%E8%93%9D%E9%B2%B8%E5%AE%89%E5%85%A8/%E7%AC%AC%E4%B8%80%E5%91%A8RSA%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86.assets/1525928721540.png" alt="1525928721540"></p>
+<p>打开a.txt即可拿到flag</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">key&#123;c42bcf773d54cf03&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="0x03-RSA破解"><a href="#0x03-RSA破解" class="headerlink" title="0x03  RSA破解"></a>0x03  RSA破解</h3><p><a href="https://github.com/ius/rsatool" target="_blank" rel="noopener">https://github.com/ius/rsatool</a> </p>
+<p><a href="http://www.whaledu.com/article/17" target="_blank" rel="noopener">RSAtool之python版</a></p>
+<p><a href="http://www.cnblogs.com/pcat/p/5746821.html" target="_blank" rel="noopener">gmpy2安装使用方法</a></p>
+<p>如果kali上不了网，参考下面链接</p>
+<p><a href="https://blog.csdn.net/chenyanhui1087/article/details/53127884" target="_blank" rel="noopener">https://blog.csdn.net/chenyanhui1087/article/details/53127884</a></p>
+<p>注：不需要单独安装gmpy2，只要像下图直接pip install gmpy，pip会把其它依赖包一起装好</p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/%E8%93%9D%E9%B2%B8%E5%AE%89%E5%85%A8/%E7%AC%AC%E4%B8%80%E5%91%A8RSA%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86.assets/1525930763701.png" alt="1525930763701"></p>
+<p>题目：</p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/%E8%93%9D%E9%B2%B8%E5%AE%89%E5%85%A8/%E7%AC%AC%E4%B8%80%E5%91%A8RSA%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86.assets/1525937295679.png" alt="1525937295679"></p>
+<p>解题思路</p>
+<p>只有公钥和密文，爆破公钥拿到 p，q，e，生成私钥，用私钥解密密文</p>
+<p>解题过程</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">root@kali:~/Desktop# openssl rsa -pubin -text -modulus -in public.pem </span><br><span class="line">Public-Key: (256 bit)</span><br><span class="line">Modulus:</span><br><span class="line">    00:ca:00:f5:ed:7b:33:b9:bd:42:1e:77:31:8a:a1:</span><br><span class="line">    78:e7:5d:ed:e3:cb:1b:c7:d4:7a:7d:14:3b:e7:49:</span><br><span class="line">    1c:90:25</span><br><span class="line">Exponent: 65537 (0x10001)</span><br><span class="line">Modulus=CA00F5ED7B33B9BD421E77318AA178E75DEDE3CB1BC7D47A7D143BE7491C9025</span><br><span class="line">writing RSA key</span><br><span class="line">-----BEGIN PUBLIC KEY-----</span><br><span class="line">MDwwDQYJKoZIhvcNAQEBBQADKwAwKAIhAMoA9e17M7m9Qh53MYqheOdd7ePLG8fU</span><br><span class="line">en0UO+dJHJAlAgMBAAE=</span><br><span class="line">-----END PUBLIC KEY-----</span><br></pre></td></tr></table></figure>
+<p>按住shift + 鼠标右键 打开 windows powershell</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> .\msieve153.exe 0xCA00F5ED7B33B9BD421E77318AA178E75DEDE3CB1</span><br><span class="line">BC7D47A7D143BE7491C9025 -v</span><br></pre></td></tr></table></figure>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/%E8%93%9D%E9%B2%B8%E5%AE%89%E5%85%A8/%E7%AC%AC%E4%B8%80%E5%91%A8RSA%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86.assets/1525938842077.png" alt="1525938842077"></p>
+<p>得到了，p，q，e，接下来我们要生成私钥了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python rsatool.py  -p 290579950064240059571837821251441436997 -q 314436328879392457343835667929324128609 -e 65537 -o pri.pem-f PEM</span><br></pre></td></tr></table></figure>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/%E8%93%9D%E9%B2%B8%E5%AE%89%E5%85%A8/%E7%AC%AC%E4%B8%80%E5%91%A8RSA%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86.assets/1525939930698.png" alt="1525939930698"></p>
+<p>得到私钥后解密</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl rsautl -decrypt -in flag.enc -inkey pri.prm -out flag.txt</span><br></pre></td></tr></table></figure>
+<p>flag:</p>
+<p>whalectf{256_n_get}</p>
+<h3 id="0x04-密码学—只有密文"><a href="#0x04-密码学—只有密文" class="headerlink" title="0x04  密码学—只有密文"></a>0x04  密码学—只有密文</h3><h4 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h4><p>怎么办，已经截获了密文和模数n！能够破解吗？请分解出RSA中的两个大素数q和p。提交格式是key{x}x为两个素数中较小的那个的MD5前8位。 </p>
+<h4 id="解题过程"><a href="#解题过程" class="headerlink" title="解题过程"></a>解题过程</h4><p><a href="http://www.cnblogs.com/pcat/p/7508205.html" target="_blank" rel="noopener">yafu安装使用方法以及mismatched parens解决方法</a></p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/%E8%93%9D%E9%B2%B8%E5%AE%89%E5%85%A8/%E7%AC%AC%E4%B8%80%E5%91%A8RSA%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86.assets/1525959883924.png" alt="1525959883924"></p>
+<p>简单来说就是gcd遍历一遍，gcd（n，某密文）</p>
+<p>gcd（a,b）就是求a，b两个数之间的最大公约数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python3</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="comment"># @Time    : 2018/5/10 21:13</span></span><br><span class="line"><span class="comment"># @Author  : Lhaihai</span></span><br><span class="line"><span class="comment"># @File    : 只有密文.py</span></span><br><span class="line"><span class="comment"># @Software: PyCharm</span></span><br><span class="line"><span class="comment"># @Blog    : http://blog.Lhaihai.wang</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">    Description :</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">n = <span class="number">135176830582884945708175419898330054260341730432046991449072509302750602166218145078102928897914789996197402658592881347572949256377161172079344803330624352445165759925647345536051853372740246104804540179716136644319380454884518397455488002758429914465640804944658049262500561494830899678619427468784748988379</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gcd</span><span class="params">(a, b)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> b == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> a</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> gcd(b, a%b)</span><br><span class="line"></span><br><span class="line">print(gcd(<span class="number">10</span>,<span class="number">5</span>))</span><br><span class="line">x = open(<span class="string">'E:\\CTF\蓝鲸安全\\第一周\\ciphertext.txt'</span>)</span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> x.readlines():</span><br><span class="line">    <span class="keyword">if</span> <span class="string">'Ciphertext'</span> <span class="keyword">in</span> line:</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">    <span class="keyword">if</span> len(line)&gt;<span class="number">2</span>:</span><br><span class="line">        print(gcd(n,int(line[:<span class="number">-1</span>])))</span><br></pre></td></tr></table></figure>
+<p>跑出来一个</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">13038371855775914836995578093728166671103633520203033965827703187246607207039273968425501296569317295959057439253867586769212037981452712871242668046329877</span><br></pre></td></tr></table></figure>
+<p>再算另外一个</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10367615840240242845371941453623373821227053765532752994306127876946421006862147600725324340607889088707606730457021312059130583835286311559997627141422127</span><br></pre></td></tr></table></figure>
+<p>md5一下小的数</p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/%E8%93%9D%E9%B2%B8%E5%AE%89%E5%85%A8/%E7%AC%AC%E4%B8%80%E5%91%A8RSA%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86.assets/1525960026348.png" alt="1525960026348"></p>
+<p>最后flag为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">key&#123;f49d7fe6&#125;</span><br></pre></td></tr></table></figure>
+<p>DJ推荐了个刷密码学的网站：<a href="https://id0-rsa.pub/" target="_blank" rel="noopener">https://id0-rsa.pub/</a></p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/crypto/" rel="tag"># crypto</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/06/百度杯CTF夺旗大赛9月场第三场Test/" rel="next" title="百度杯CTF夺旗大赛9月场第三场Test">
+                <i class="fa fa-chevron-left"></i> 百度杯CTF夺旗大赛9月场第三场Test
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -336,6 +529,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -356,8 +553,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -431,6 +637,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x00-复习密码学"><span class="nav-number">1.</span> <span class="nav-text">0x00 复习密码学</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01-RSA密钥生成"><span class="nav-number">2.</span> <span class="nav-text">0x01  RSA密钥生成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01-RSA解密"><span class="nav-number">3.</span> <span class="nav-text">0x01 RSA解密</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x03-RSA破解"><span class="nav-number">4.</span> <span class="nav-text">0x03  RSA破解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x04-密码学—只有密文"><span class="nav-number">5.</span> <span class="nav-text">0x04  密码学—只有密文</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目"><span class="nav-number">5.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解题过程"><span class="nav-number">5.2.</span> <span class="nav-text">解题过程</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -599,6 +821,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
