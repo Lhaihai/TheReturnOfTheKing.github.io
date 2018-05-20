@@ -1,0 +1,1594 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Misc," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="本来AFCTF2018校赛前刷了一半了，然后搞校赛了，然后才这个周末刷完。 待会还有安恒杯月赛，手有点酸，哈哈。">
+<meta name="keywords" content="Misc">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Bugku-MISCWriteUp">
+<meta property="og:url" content="http://blog.Lhaihai.wang/2018/05/20/Bugku-MISCWriteUp/index.html">
+<meta property="og:site_name" content="Lhaihai&#39;s Blog">
+<meta property="og:description" content="本来AFCTF2018校赛前刷了一半了，然后搞校赛了，然后才这个周末刷完。 待会还有安恒杯月赛，手有点酸，哈哈。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526003049905.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526003306147.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526005846765.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526007063925.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526009265898.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526036728234.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526037823047.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526038800022.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526038848121.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526038909459.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526744297018.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526744401043.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526745078981.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526746186205.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526748648784.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526748762224.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526748823481.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526748891397.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526781473383.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526783809280.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526783875098.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526785102381.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526796798904.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526796711735.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526796865616.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526792542138.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526796957091.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526797486238.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526785441283.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526785587525.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526786983633.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526799814333.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526799929576.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526799897601.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526799909515.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526799918380.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526800422226.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526801565250.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526801812916.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526803291937.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526803354777.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526803369199.png">
+<meta property="og:updated_time" content="2018-05-20T08:29:23.670Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Bugku-MISCWriteUp">
+<meta name="twitter:description" content="本来AFCTF2018校赛前刷了一半了，然后搞校赛了，然后才这个周末刷完。 待会还有安恒杯月赛，手有点酸，哈哈。">
+<meta name="twitter:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526003049905.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.Lhaihai.wang/2018/05/20/Bugku-MISCWriteUp/"/>
+
+
+
+
+
+  <title>Bugku-MISCWriteUp | Lhaihai's Blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-117483741-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+  
+  <script type="text/javascript" color="0,0,255" opacity='0.7' zIndex="-2" count="10" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+ 
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Lhaihai's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.Lhaihai.wang/2018/05/20/Bugku-MISCWriteUp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lhaihai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lhaihai's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Bugku-MISCWriteUp</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-20T16:24:04+08:00">
+                2018-05-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Misc/" itemprop="url" rel="index">
+                    <span itemprop="name">Misc</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Misc/Bugku-MISC/" itemprop="url" rel="index">
+                    <span itemprop="name">Bugku-MISC</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o">本文总阅读量</i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本来AFCTF2018校赛前刷了一半了，然后搞校赛了，然后才这个周末刷完。</p>
+<p>待会还有安恒杯月赛，手有点酸，哈哈。</p>
+<a id="more"></a>
+<h2 id="这是一张单纯的图片"><a href="#这是一张单纯的图片" class="headerlink" title="这是一张单纯的图片"></a>这是一张单纯的图片</h2><p>下载下来用UE打开，发现最后有下面的字符，很明显是Unicode编码，解码一下拿到flag，注意手动加一下}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&amp;#107;&amp;#101;&amp;#121;&amp;#123;&amp;#121;&amp;#111;&amp;#117;&amp;#32;&amp;#97;&amp;#114;&amp;#101;&amp;#32;&amp;#114;&amp;#105;&amp;#103;&amp;#104;&amp;#116;&amp;#125</span><br></pre></td></tr></table></figure>
+<p>flag</p>
+<blockquote>
+<p>key{you are right}</p>
+</blockquote>
+<h2 id="隐写"><a href="#隐写" class="headerlink" title="隐写"></a>隐写</h2><p>解压有个PNG图片，修改一下图片大小，再打开图片发现flag</p>
+<p>用UE打开图片，第二行的 0-3 4-7 表示图片的宽高</p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526003049905.png" alt="1526003049905"></p>
+<p>flag</p>
+<blockquote>
+<p>BUGKU{a1e5aSA}</p>
+</blockquote>
+<h2 id="telnet"><a href="#telnet" class="headerlink" title="telnet"></a>telnet</h2><p>key格式flag{xxxxxxxxxxxxxxxxxxxxxxxxxxx} </p>
+<p>是个pcap文件，发现有很多telnet协议，追踪TCP流发现flag</p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526003306147.png" alt="1526003306147"></p>
+<p>flag</p>
+<blockquote>
+<p>flag{d316759c281bf925d600be698a4973d5}</p>
+</blockquote>
+<h2 id="眼见非实-ISCCCTF"><a href="#眼见非实-ISCCCTF" class="headerlink" title="眼见非实(ISCCCTF)"></a>眼见非实(ISCCCTF)</h2><blockquote>
+<p>JPEG (jpg)，                       文件头：FFD8FF　　　　　文件尾：FF D9　　　　　　　　　　　　　　　<br>PNG (png)，                      文件头：89504E47　　　　文件尾：AE 42 60 82<br>GIF (gif)，                           文件头：47494638　　　　文件尾：00 3B<br>ZIP Archive (zip)，            文件头：504B0304　　　  文件尾：50 4B<br>TIFF (tif)，                          文件头：49492A00　　　　　　　　　　　　　<br>Windows Bitmap (bmp)  文件头：424D　　　　　　　　　　　　　　　<br>CAD (dwg)，                      文件头：41433130　　　　　　　　　　　　　<br>Adobe Photoshop (psd)  文件头：38425053　　　　　　　　　　　　　<br>Rich Text Format (rtf)，   文件头：7B5C727466　　　　　　　　　　　　<br>XML (xml)，                       文件头：3C3F786D6C　　　　　　　　　　　　<br>HTML (html)，                   文件头：68746D6C3E<br>Email [thorough only] (eml)，    文件头：44656C69766572792D646174653A<br>Outlook Express (dbx)，              文件头：CFAD12FEC5FD746F<br>Outlook (pst)，                              文件头：2142444E<br>MS Word/Excel (xls.or.doc)，      文件头：D0CF11E0<br>MS Access (mdb)，                       文件头：5374616E64617264204A<br>WordPerfect (wpd)，                    文件头：FF575043<br>Adobe Acrobat (pdf)，                  文件头：255044462D312E<br>Quicken (qdf)，                              文件头：AC9EBD8F<br>Windows Password (pwl)，         文件头：E3828596</p>
+<p>RAR Archive (rar)，                       文件头：52617221<br>Wave (wav)，                                 文件头：57415645<br>AVI (avi)，                                       文件头：41564920<br>Real Audio (ram)，                       文件头：2E7261FD<br>Real Media (rm)，                         文件头：2E524D46<br>MPEG (mpg)，                               文件头：000001BA<br>MPEG (mpg)，                               文件头：000001B3<br>Quicktime (mov)，                        文件头：6D6F6F76<br>Windows Media (asf)，                文件头：3026B2758E66CF11<br>MIDI (mid)，                                  文件头：4D546864</p>
+</blockquote>
+<p>用UE打开，敏感发现50 4B 03 04</p>
+<p>改后缀为.zip，解压发现word文档，打开错误，UE发现word文档开头还是 50 4B 03 04 继续改为zip后缀</p>
+<p>解压后在 word文件夹下的document.xml发现flag</p>
+<blockquote>
+<p>flag{F1@g}</p>
+</blockquote>
+<h2 id="又一张图片，还单纯吗"><a href="#又一张图片，还单纯吗" class="headerlink" title="又一张图片，还单纯吗"></a>又一张图片，还单纯吗</h2><p>用binwalk分解没成功，用foremost分解得到另外一张图片</p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526005846765.png" alt="1526005846765"></p>
+<p>flag</p>
+<blockquote>
+<p>falg{NSCTF_e6532a34928a3d1dadd0b049d5a3cc57}</p>
+</blockquote>
+<h2 id="猜"><a href="#猜" class="headerlink" title="猜"></a>猜</h2><p>百度识图</p>
+<p>flag</p>
+<blockquote>
+<p>key{liuyifei}</p>
+</blockquote>
+<h2 id="宽带信息泄露"><a href="#宽带信息泄露" class="headerlink" title="宽带信息泄露"></a>宽带信息泄露</h2><p>题目中给出一个conf.bin文件，主要是工具，用routerpassview打开，然后找到username<br>题目中给出了提示，flag是宽带用户名。</p>
+<blockquote>
+<p>flag{053700357621}</p>
+</blockquote>
+<h2 id="隐写2"><a href="#隐写2" class="headerlink" title="隐写2"></a>隐写2</h2><p>binwalk 分解得到 flag.rar 提示.jpg</p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526007063925.png" alt="1526007063925"></p>
+<p>压缩包解压需要密码，尝试了一下不是伪加密，使用ARCHPR爆破得到密码</p>
+<p>解压得到3.jpg，UE发现3.jpg 文件尾后面有</p>
+<blockquote>
+<p>f1@g{eTB1IEFyZSBhIGhAY2tlciE=}</p>
+</blockquote>
+<p>把{}里base64解码一下，把f1@g 改为 flag</p>
+<blockquote>
+<p>flag{y0u Are a h@cker!}</p>
+</blockquote>
+<h2 id="多种方法解决"><a href="#多种方法解决" class="headerlink" title="多种方法解决"></a>多种方法解决</h2><p>UE打开是个base64之后的图片</p>
+<p>base64转图片的网址：<a href="http://www.vgot.net/test/image2base64.php" target="_blank" rel="noopener">http://www.vgot.net/test/image2base64.php</a>?</p>
+<p>注意base64转图片时，前面<code>data:image/jpg;base64,</code> 去掉</p>
+<p>转了之后得到一张二维码</p>
+<p>识别二维码：<a href="https://cli.im/deqr" target="_blank" rel="noopener">https://cli.im/deqr</a></p>
+<blockquote>
+<p>KEY{dca57f966e4e4e31fd5b15417da63269} </p>
+</blockquote>
+<h2 id="linux"><a href="#linux" class="headerlink" title="linux"></a>linux</h2><p>解压，UE打开，发现很多都是00，直接搜索key</p>
+<blockquote>
+<p>key{feb81d3834e2423c9903f4755464060b}</p>
+</blockquote>
+<h2 id="中国菜刀"><a href="#中国菜刀" class="headerlink" title="中国菜刀"></a>中国菜刀</h2><p>追踪TCP流</p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526009265898.png" alt="1526009265898"></p>
+<p>base64解码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@ini_set(&quot;display_errors&quot;,&quot;0&quot;);@set_time_limit(0);if(PHP_VERSION&lt;&apos;5.3.0&apos;)&#123;@set_magic_quotes_runtime(0);&#125;;echo(&quot;X@Y&quot;);$F=&quot;C:\\wwwroot\\flag.tar.gz&quot;;$fp=@fopen($F,&apos;r&apos;);if(@fgetc($fp))&#123;@fclose($fp);@readfile($F);&#125;else&#123;echo(&apos;ERROR:// Can Not Read&apos;);&#125;;echo(&quot;X@Y&quot;);die();</span><br><span class="line">Ü</span><br></pre></td></tr></table></figure>
+<p>发现</p>
+<blockquote>
+<p>flag.tar.gz</p>
+</blockquote>
+<p>提取出来解压得到flag.txt</p>
+<blockquote>
+<p>key{8769fe393f2b998fa6a11afe2bfcd65e}</p>
+</blockquote>
+<h2 id="这么多数据包"><a href="#这么多数据包" class="headerlink" title="这么多数据包"></a>这么多数据包</h2><p>根据提示要找getshell流，wireshark打开CTF.pcagng<br>先大致浏览一下，不难发现从第104个包开始应该是攻击机（192.168.116.138）在向目标机（192.168.116.159）进行端口扫描</p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526036728234.png" alt="1526036728234"></p>
+<p>追踪流——&gt;TCP可以看到其中有一个s4cr4t.txt的文件，base64解码得到flag<br>Q0NURntkb195b3VfbGlrZV9zbmlmZmVyfQ==</p>
+<blockquote>
+<p>CCTF{do_you_like_sniffer}</p>
+</blockquote>
+<h2 id="隐写3"><a href="#隐写3" class="headerlink" title="隐写3"></a>隐写3</h2><p>一看这图片就是被裁剪了，UE修改一下大小就看到flag了</p>
+<blockquote>
+<p>flag{He1l0_d4_ba1}</p>
+</blockquote>
+<h2 id="做个游戏-08067CTF"><a href="#做个游戏-08067CTF" class="headerlink" title="做个游戏(08067CTF)"></a>做个游戏(08067CTF)</h2><p>这里用Java Decompiler 工具反编译。</p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526037823047.png" alt="1526037823047"></p>
+<blockquote>
+<p>flag{RGFqaURhbGlfSmlud2FuQ2hpamk=}</p>
+</blockquote>
+<blockquote>
+<p>flag{DajiDali_JinwanChiji}</p>
+</blockquote>
+<h2 id="想蹭网先解开密码"><a href="#想蹭网先解开密码" class="headerlink" title="想蹭网先解开密码"></a>想蹭网先解开密码</h2><p>hint</p>
+<blockquote>
+<p>flag格式：flag{你破解的WiFi密码}</p>
+<p>tips：密码为手机号，为了不为难你，大佬特地让我悄悄地把前七位告诉你<br>1391040<strong>\</strong><br>Goodluck!!</p>
+<p>作者@NewBee</p>
+</blockquote>
+<p>提示WIFI密码为手机号。下载下来是一个cap包，用wireshark打开。WIFI连接认证的重点在WPA的四次握手包，<br>也就是eapol协议的包，过滤一下——</p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526038800022.png" alt="1526038800022"></p>
+<p>正好四个包，接下来就是破解密码了，因为已经给了11位手机号的前七位，使用crunch生成一个密码字典，然后<br>进行破解</p>
+<p><a href="http://netsecurity.51cto.com/art/201706/541638.htm" target="_blank" rel="noopener">Linux密码生成工具crunch使用攻略</a></p>
+<blockquote>
+<p>crunch 11 11 -t 1391040%%%% &gt;&gt;wifipassword.txt</p>
+</blockquote>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526038848121.png" alt="1526038848121"></p>
+<blockquote>
+<p>aircrack-ng wifi.cap -w wifipassword.txt</p>
+</blockquote>
+<p>参数选择3 因为前两个为空</p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526038909459.png" alt="1526038909459"></p>
+<blockquote>
+<p>KEY FOUND! [ 13910407686 ]</p>
+</blockquote>
+<p>可以用脚本写字典</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">s = <span class="string">"1391040"</span></span><br><span class="line">t = <span class="string">""</span></span><br><span class="line">file = open(<span class="string">'data.txt'</span>,<span class="string">'w'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10</span>): <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">10</span>):</span><br><span class="line">	<span class="keyword">for</span> k <span class="keyword">in</span> range(<span class="number">10</span>):</span><br><span class="line">		<span class="keyword">for</span> l <span class="keyword">in</span> range(<span class="number">10</span>):</span><br><span class="line">			t = s + str(i) + str(j) + str(k) + str(l) file.write(t)</span><br><span class="line">			file.write(<span class="string">'\n'</span>)</span><br><span class="line">			file.close()</span><br><span class="line">file.close()</span><br></pre></td></tr></table></figure>
+<h2 id="Linux2"><a href="#Linux2" class="headerlink" title="Linux2"></a>Linux2</h2><p>跟Linux1 一样，解压之后UE搜索</p>
+<blockquote>
+<p>KEY{24f3627a86fc740a7f36ee2c7a1c124a}</p>
+</blockquote>
+<h2 id="账号被盗了"><a href="#账号被盗了" class="headerlink" title="账号被盗了"></a>账号被盗了</h2><p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526744297018.png" alt="1526744297018"></p>
+<p>下载个CF外挂的exe</p>
+<p>用wireshark抓包，exe账号密码随便写</p>
+<p>然后过滤smtp，追踪TCP。圈起来的base64解码是163邮箱的账号和密码，登录找到flag</p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526744401043.png" alt="1526744401043"></p>
+<blockquote>
+<p>flag{182100518+725593795416}</p>
+</blockquote>
+<h2 id="细心的大象"><a href="#细心的大象" class="headerlink" title="细心的大象"></a>细心的大象</h2><p>解压得到一张大象的图片</p>
+<p>binwalk看一看发现后面有RAR</p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526745078981.png" alt="1526745078981"></p>
+<p>分解得到个加密的压缩包</p>
+<p>查看大象的图片属性，备注有个字符串</p>
+<blockquote>
+<p>TVNEUzQ1NkFTRDEyM3p6</p>
+</blockquote>
+<p>base64解码</p>
+<blockquote>
+<p>MSDS456ASD123zz</p>
+</blockquote>
+<p>用这个去解密压缩包，得到2.jpg</p>
+<p>修改一下图片大小看到flag</p>
+<blockquote>
+<p>BUGKU{a1e5aSA}</p>
+</blockquote>
+<h2 id="爆照-08067CTF"><a href="#爆照-08067CTF" class="headerlink" title="爆照(08067CTF)"></a>爆照(08067CTF)</h2><blockquote>
+<p>flag格式 flag{xxx_xxx_xxx} </p>
+</blockquote>
+<p>binwalk一看有压缩包，但binwalk分解失败，用foremost分解得到一个zip</p>
+<p>zip解压得到8张jpg和一张gif（直接解压出错，得用命令unzip解压）</p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526746186205.png" alt="1526746186205"></p>
+<p>88:二维码扫描得bilibili</p>
+<p>888:复制到windows10，加上jpg，查看属性备注有字符串，base64解码得silisili</p>
+<p>8888:binwalk发现有zip，解压得二维码，扫描得panama</p>
+<blockquote>
+<p>flag{bilibili_silisili_panama}</p>
+</blockquote>
+<h2 id="图穷匕见"><a href="#图穷匕见" class="headerlink" title="图穷匕见"></a>图穷匕见</h2><p>查看属性</p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526748648784.png" alt="1526748648784"></p>
+<p>UE查看，jpg FF D9文件尾后面还有很多数字</p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526748762224.png" alt="1526748762224"></p>
+<p>提取出来，用notepad++的Converter <strong>16进制-&gt;ASCII</strong>方式解码 </p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526748823481.png" alt="1526748823481"></p>
+<p>这是坐标的形式</p>
+<p>这时候再结合<strong>会画图吗</strong>的提示，将这些坐标做成一张图即可，用<strong>gnuplot</strong>这个工具比较方便，因此将坐标转为gnuplot能识别的格式 <strong>坐标1 坐标2</strong> </p>
+<blockquote>
+<p>kali安装gnuplot：sudo apt-get install gnuplot-x11<br>plot “/root/Desktop/111.txt”<br>但windows下是使用 plot “C:\Users\Asus\Desktop\111.txt”</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">root@kali:~/Desktop/Bugku# gnuplot</span><br><span class="line">gnuplot&gt; plot &quot;paintpaintpaint.txt&quot;</span><br><span class="line">注意调整一下比例，弄得高一点就可以扫描成功</span><br></pre></td></tr></table></figure>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526748891397.png" alt="1526748891397"></p>
+<blockquote>
+<p>flag{40fc0a979f759c8892f4dc045e28b820}  </p>
+</blockquote>
+<p>参考：<a href="https://www.cnblogs.com/WangAoBo/p/6950547.html" target="_blank" rel="noopener">https://www.cnblogs.com/WangAoBo/p/6950547.html</a></p>
+<h2 id="convert"><a href="#convert" class="headerlink" title="convert"></a>convert</h2><p>题目给了一串二进制字符，转为16进制 ,52617221是RAR的文件头，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">526172211A0700CF907300000D00000000000000F7C07420902C000D09000059220000023E6370190A59B34A1D330700200000006B65792E6A706700F014A319101D911508917C9015EACB02ECD08228A0B868B4D082A05DB62880816089A944DAA0A0DA68B3426CB02CC44D29A1445404474882209A501D06C5411514313101044D5DC6C050B5440C14B4103B1607446C0E0F71EB11DF1CCEF7C33C4FB91313C999FAA7EE4C473C262BF989D1F54CCD4E88FA3F7EA9F0A88A8A8A889AAAF09889C7F463FEC0D2ADABAD2B8036580DF85E031FD3A5AC567C6F6DCC2B8B80D783281200F0CDE031C943050297464341E070CBB4AD050F80202966E146372501F14FB13A3E058B645BF47C0B162D91A06FC683C257B22568F8162C5B23EBA3E058B64559980E407C03704F4B03C01EC0B806502B0090374599029F99C6854DC72570C946017729FF72D881BC03EFD8CAB0565CCFB702A04F5D0A7E63E0E4AFA170B9045DCC2E794424FE3E30072AB02B2A312EB0278A20D692E0EAD84053D6C52860A4722F0DEE798D696D6052DAF2B7D07A4C1BAE4814D6D8DA3C8F05E453B111FC16F79246A1748B09B66E7979754F162DCDE1287B5BA701B129A9D1C85BE0F751615A05814073E3A8F6A716C2F3FAC90CD45451BDF494A8C29BDAF3032ECD7062E3AAAB63737ACBEBBB630BEEE989A9F5C5A939AD18729690D541F13DF1C9D5C8BD878AFA7C1CD6B32A8A17DAFC9E17BE84E1684A4A0EED6DA9EC1B757FE0A850971FF1F18F796253DA5A53A3B90CE153B24163068B1A352422A92F049CCBF1F124BBD0D085E6822FFE2404AE2BFB01A3E4058B6473FB8D1F202C58B647AFFEC83F1A55B63985A497B0B48AC7B402A804999988333212232C3434126A6E77A437363637D569B4E72767FAB4140CBCF8F852225230A424843CC28FB4D7240CD8ECB2841464E514D1AA09497B21BA16018D3242F6373DD2690F46EB0FB5837267E3D300E84816415A1C32100C0E8307CBB1FC00410BA930C836547DF63D0C601CC4CB3B012686A6C1149ED29761758730310E646462621557E0AB80C4E8CB4DACD8AA19E9D7C78842763B1B0315D31287B6EC77B50C15B7C8897C077822FCD49E1EEAB568BAD4647D76BF65B34CDA26A727AAEDD595D6165696D85898D919777BC666A0B60D20DCDEE0F0F245E9EDF093EC1F1212161A1F8BC68B8CE5C6F323B9BCEE7C97524E53AB2B2D2F31D9ED4ECF4FD050D151D3F7FC1E1A8F178EA6AABBCD5F61E7B1F45959FA49DC5CDD7ABD7777852FF03F7C1F87C708AFCB0F4319CF38386FB8CADE7590E7AB9EB1888CAC6627BD028745C39EB19E99517C40F76D3A1161277B6CF672434434B60BED416ADCF551365E945BFD0C6FFD47F4F1A82C9EBC9CFE319B301B87C90C0EB3A700E06161A3C9401AFFFACD54751096D052D73DA3E0CBB3892562899A55DF576FF9526B3D394B3E1DFA8CB07A5D5E372FC8A74B070B691F71AAC3B099FCED19FAA473A9E43074532A0420C6BBA969AB27717714D58ACECE713EBF7A47A3D7B58711832DF30DD55C9469F63D76B61C28B42854385C4AF0D656CD0CF64ADEAB5F2456B5DA8BF532648CDED71312D18C6471491C949C814B28D6F971BAA1AFC16E9A9A2641B63C359A5CE909A258E0F01B26E0E2B455576A2CE2B799D7A94D29A04D91EE242239BA489B6B358717FFBB541F1BBA277E25384729C6A922755EC140C87BC18A4A2D5CF799A9D182528B5053985192CD147C1694C071A8265DBAD793F187A43B9045DEC6401C61F62F3D33DE514D4E21A536D6A12DA085F8DB7472256E625EA77B1757F6B61206FBC6F3C5237A27EDE29AB48382CA960458CD8AC9CAE4F76E7FB911573FCE45E4A6DAC321ECFCAF921507455CEF6DC44F37F1266935EEDC86EBEE9422647FA7D9106D24C4B49637B3B445593D4E9B17E24F45858A3E1D7984F7B48B7EB0E777ACFBBDC470F61EEF569ED1586C118C39F07B4CD32249BF9D4E42FB87C7C8A592E4D002E0F9976B7D88BCB33BB0A995A48B27BBEEB51AC7F921D3F7FC32313713876DF87751BDB4CE1BD5CC63C12E2D04F01F5A2325F5B3528A9C2875F6CDEFB9456136630F0A1D2540737471E2A7A36AE4C6A95336D34EA432BA6B0620FC6B6C6A320EB5EB854489852657AAF12965158E05139C09136E2DFEAE9D8ED9024385EC292F14BBF54848621F414EAD571B16C1F9029FE3EBA6D4CAEE3A2CF6D2CDAC075BAC65D1085C9D2159FB76725EE23D33B3C9F918E20BDB481C56E30A62B08D6B221729503198C8B2506C4B8161DB52F4B23468C71E256FC12597C2802894D20FB68F6E93E3CFBBCBEEF19471AC01A8C910D77AE8029FF7FD35F66FC81515A568FDEEB51ED1986CB42CA83703843FBA4C6F99BB32972D47AE7C8514730FF1005C972B9D7FA103975DB6D198F311A2AB4FF55E6F780920B3139D5526A283DFFD2552B9712EDF946C4C444D0A3272366E3F9F7E8D139FBD4BAB222FA0FCF38CD77A9E43AE82B60B59C145640B21EC9A7E1EDA5C3D3B2CE58F34AD2D3DB8AB1237895253D0F4D30870FF298345FF2A72949D76FDE471C0EB9DD436351D4FCFD93536CFDED5B6CBF52F06EECA0C9370E433214DFE49DECE8B2B0EE4E75A57A99A8EB291D30EE98B0624E3DEC97DCDE656F3ACCDBAFB9432B0C7D8DA8A2B8166EE367F1ECB6D04FF1ED2A291A949C209FD2D9D48CAB7E1BE38AE2762BD028713D07D1B43C05D953B8029D4B5E64BE045D541DD617896EFD04F3C3D65A9951BD9970BE34E2E046C3A6AFD63AB8DB6C3F5EEA3DA55E70DCD927B0746377A4E14C87066EC39B8F9A49FD19A8BB1D24825447AA0ECCB8C8FE1D5DE3D71E5A479CFB03ED70C37C827439BBA3E0B037E76132A670570C3DDAB3BDBA55F9BF750E76084BCCCD0EE5D2863B7BEBE302F540F0C5629DE8C7C19E012F1517587719FF00DFB59EECDC37C98F7C22A1724EEE7FCE36EEC62D414E0AA861CA760CB76DA65AA49B49CF79467A26AB64C04D66C8E1950E0D4CFD760DB7907266CDB8D871227511096800A99B11E0305D3C71A0D3B779D17A90833005FE57F6F35699EBAD7A7A0FC8188BB5F010F1F507501F3F3D446939ADA2BF6B533EFA7F8028A3D3BF8AD6B0CE3A03E0E3B08F3F48428767B5B4E3AD1D7EDD8BDB0B1B1E6A64E49E730E512CC7E8CC305709CE8903D9CA6C3B75B3D2C4665B79E8F290F2FDF449982D740CAAB1DAF06FE565C6C64C4AA39AF619691338D643DD789C1428CAAE4E2447C986EFEA0497F365767FD7A60A3DB3A152AFC3470DD2627FB569FAF6BC75E8BBA5D9280D55D2C62F87E72FB698C5B00F77AEAFFE74DFE8308C7B2FF28C43D7B00400700</span><br></pre></td></tr></table></figure>
+<p>把这16进制串写入RAR，解压得到一张图片</p>
+<p>查看图片属性，发现base64，解码</p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526781473383.png" alt="1526781473383"></p>
+<blockquote>
+<p>flag{01a25ea3fd6349c6e635a1d0196e75fb}</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python3</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="comment"># @Time    : 2018/5/20 9:44</span></span><br><span class="line"><span class="comment"># @Author  : Lhaihai</span></span><br><span class="line"><span class="comment"># @File    : 多种进制转换.py</span></span><br><span class="line"><span class="comment"># @Software: PyCharm</span></span><br><span class="line"><span class="comment"># @Blog    : http://blog.Lhaihai.wang</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">    Description :</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="keyword">import</span> binascii</span><br><span class="line">__author__ = <span class="string">'Mang0'</span></span><br><span class="line"><span class="comment"># !/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line">base = [str(x) <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">10</span>)] + [chr(x) <span class="keyword">for</span> x <span class="keyword">in</span> range(ord(<span class="string">'A'</span>), ord(<span class="string">'A'</span>) + <span class="number">6</span>)]</span><br><span class="line"><span class="comment"># bin2dec</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bin2dec</span><span class="params">(string_num)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> str(int(string_num, <span class="number">2</span>))</span><br><span class="line"><span class="comment"># hex2dec</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hex2dec</span><span class="params">(string_num)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> str(int(string_num.upper(), <span class="number">16</span>))</span><br><span class="line"><span class="comment"># dec2bin</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dec2bin</span><span class="params">(string_num)</span>:</span></span><br><span class="line">    num = int(string_num)</span><br><span class="line">    mid = []</span><br><span class="line">    <span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">        <span class="keyword">if</span> num == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        num, rem = divmod(num, <span class="number">2</span>)</span><br><span class="line">        mid.append(base[rem])</span><br><span class="line">    <span class="keyword">return</span> <span class="string">''</span>.join([str(x) <span class="keyword">for</span> x <span class="keyword">in</span> mid[::<span class="number">-1</span>]])</span><br><span class="line"><span class="comment"># dec2hex</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dec2hex</span><span class="params">(string_num)</span>:</span></span><br><span class="line">    num = int(string_num)</span><br><span class="line">    mid = []</span><br><span class="line">    <span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">        <span class="keyword">if</span> num == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        num, rem = divmod(num, <span class="number">16</span>)</span><br><span class="line">        mid.append(base[rem])</span><br><span class="line">    <span class="keyword">return</span> <span class="string">''</span>.join([str(x) <span class="keyword">for</span> x <span class="keyword">in</span> mid[::<span class="number">-1</span>]])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># hex2tobin</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hex2bin</span><span class="params">(string_num)</span>:</span></span><br><span class="line">    <span class="keyword">return</span>  dec2bin(hex2dec(string_num.upper()))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># bin2hex</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bin2hex</span><span class="params">(string_num)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> dec2hex(bin2dec(string_num))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    file1 = open(<span class="string">r'E:\CTF\misc\Bugku\1.txt'</span>)</span><br><span class="line">    s = file1.read()</span><br><span class="line">    hexx = bin2hex(s)</span><br><span class="line">    <span class="keyword">print</span> (hexx)</span><br><span class="line">    file2 = open(<span class="string">r'E:\CTF\misc\Bugku\cover.rar'</span>, <span class="string">'wb'</span>)</span><br><span class="line">    file2.write(binascii.a2b_hex(hexx))</span><br></pre></td></tr></table></figure>
+<h2 id="听首音乐"><a href="#听首音乐" class="headerlink" title="听首音乐"></a>听首音乐</h2><p> 解压有个wav的音频</p>
+<p>用Audacity打开，，发现上面有一串点横，联想到摩斯密码</p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526783809280.png" alt="1526783809280"></p>
+<blockquote>
+<p>····· -··· -·-· —-· ··— ····· -···· ····- —-· -·-· -··· —– ·—- —·· —·· ··-· ····· ··— · -···· ·—- –··· -·· –··· —– —-· ··— —-· ·—- —-· ·—- -·-·</p>
+</blockquote>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526783875098.png" alt="1526783875098"></p>
+<p>注意要把小写字母转为大写</p>
+<blockquote>
+<p>5BC925649CB0188F52E617D70929191C</p>
+</blockquote>
+<h2 id="好多数值"><a href="#好多数值" class="headerlink" title="好多数值"></a>好多数值</h2><blockquote>
+<p>flag格式 flag{} </p>
+</blockquote>
+<p>下载打开一看，RGB，图片大小不知道大佬们怎么测试出来的</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python3</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="comment"># @Time    : 2018/5/12 0:42</span></span><br><span class="line"><span class="comment"># @Author  : Lhaihai</span></span><br><span class="line"><span class="comment"># @File    : RGB转jpg.py</span></span><br><span class="line"><span class="comment"># @Software: PyCharm</span></span><br><span class="line"><span class="comment"># @Blog    : http://blog.Lhaihai.wang</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">    Description : </span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">x = <span class="number">503</span> <span class="comment">#x坐标  通过对txt里的行数进行整数分解</span></span><br><span class="line">y = <span class="number">122</span> <span class="comment">#y坐标  x*y = 行数</span></span><br><span class="line"></span><br><span class="line">im = Image.new(<span class="string">"RGB"</span>,(x,y))<span class="comment">#创建图片</span></span><br><span class="line">file = open(<span class="string">r'E:\CTF\misc\Bugku\1 (1).txt'</span>) <span class="comment">#打开rbg值文件</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#通过一个个rgb点生成图片</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,x):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">0</span>,y):</span><br><span class="line">        line = file.readline()<span class="comment">#获取一行</span></span><br><span class="line">        rgb = line.split(<span class="string">","</span>)<span class="comment">#分离rgb</span></span><br><span class="line">        im.putpixel((i,j),(int(rgb[<span class="number">0</span>]),int(rgb[<span class="number">1</span>]),int(rgb[<span class="number">2</span>])))<span class="comment">#rgb转化为像素</span></span><br><span class="line">im.show()</span><br><span class="line"><span class="comment"># im.save('qqq.jpg')</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526785102381.png" alt="1526785102381"></p>
+<blockquote>
+<p>flag{youc@n’tseeme}</p>
+</blockquote>
+<h2 id="很普通的数独-ISCCCTF"><a href="#很普通的数独-ISCCCTF" class="headerlink" title="很普通的数独(ISCCCTF)"></a>很普通的数独(ISCCCTF)</h2><p>UE查看，开头是50 4B 03 04 ，zip的文件头</p>
+<p>加上zip后缀，解压出一丢图片</p>
+<p>iscc的脑洞题，不想做了，放下表哥的writeup</p>
+<p><a href="http://blog.chrstm.com/2017/05/29/ISCC2017/" target="_blank" rel="noopener">http://blog.chrstm.com/2017/05/29/ISCC2017/</a></p>
+<p><a href="http://isron.cn/2017/05/24/ISCC-shudu/" target="_blank" rel="noopener">http://isron.cn/2017/05/24/ISCC-shudu/</a></p>
+<blockquote>
+<p>flag{y0ud1any1s1}</p>
+</blockquote>
+<h2 id="好多压缩包"><a href="#好多压缩包" class="headerlink" title="好多压缩包"></a>好多压缩包</h2><p>123.zip里有68个压缩包，每个压缩包里都有个data.txt，大小只有4，应该就是CRC32碰撞了</p>
+<p>代码在python2.7环境下运行，跑得有点久</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python2.7</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="comment"># @Time    : 2018/5/20 12:43</span></span><br><span class="line"><span class="comment"># @Author  : Lhaihai</span></span><br><span class="line"><span class="comment"># @File    : CRC32碰撞.py</span></span><br><span class="line"><span class="comment"># @Software: PyCharm</span></span><br><span class="line"><span class="comment"># @Blog    : http://blog.Lhaihai.wang</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">    Description :</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="comment"># coding:utf-8</span></span><br><span class="line"><span class="keyword">import</span> zipfile</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line"><span class="keyword">import</span> binascii</span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">CrackCrc</span><span class="params">(crc)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> dic:</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> dic:</span><br><span class="line">            <span class="keyword">for</span> p <span class="keyword">in</span> dic:</span><br><span class="line">                <span class="keyword">for</span> q <span class="keyword">in</span> dic:</span><br><span class="line">                    s = i + j + p + q</span><br><span class="line">                    <span class="keyword">if</span> crc == (binascii.crc32(s) &amp; <span class="number">0xffffffff</span>):</span><br><span class="line">                        <span class="comment"># print s</span></span><br><span class="line">                        f.write(s)</span><br><span class="line">                        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">CrackZip</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">for</span> I <span class="keyword">in</span> range(<span class="number">68</span>):</span><br><span class="line">        file = <span class="string">r'E:\CTF\misc\Bugku\123\out'</span> + str(I) + <span class="string">'.zip'</span></span><br><span class="line">        f = zipfile.ZipFile(file, <span class="string">'r'</span>)</span><br><span class="line">        GetCrc = f.getinfo(<span class="string">'data.txt'</span>)</span><br><span class="line">        crc = GetCrc.CRC</span><br><span class="line">        CrackCrc(crc)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">dic = string.ascii_letters + string.digits + <span class="string">'+/='</span></span><br><span class="line"></span><br><span class="line">f = open(<span class="string">r'E:\CTF\misc\Bugku\123\out.txt'</span>, <span class="string">'w'</span>)</span><br><span class="line">CrackZip()</span><br><span class="line">f.close()</span><br></pre></td></tr></table></figure>
+<p>得到碰撞出来的值，</p>
+<blockquote>
+<p>z5BzAAANAAAAAAAAAKo+egCAIwBJAAAAVAAAAAKGNKv+a2MdSR0zAwABAAAAQ01UCRUUy91BT5UkSNPoj5hFEVFBRvefHSBCfG0ruGnKnygsMyj8SBaZHxsYHY84LEZ24cXtZ01y3k1K1YJ0vpK9HwqUzb6u9z8igEr3dCCQLQAdAAAAHQAAAAJi0efVT2MdSR0wCAAgAAAAZmxhZy50eHQAsDRpZmZpeCB0aGUgZmlsZSBhbmQgZ2V0IHRoZSBmbGFnxD17AEAHAA==</p>
+</blockquote>
+<p>base64解码后转为16进制</p>
+<p>注意不能找在线的base64解码，会漏掉00。16进制保存在winhex里</p>
+<blockquote>
+<p>cf90 7300 000d 0000 0000 0000 00aa 3e7a<br>0080 2300 4900 0000 5400 0000 0286 34ab<br>fe6b 631d 491d 3303 0001 0000 0043 4d54<br>0915 14cb dd41 4f95 2448 d3e8 8f98 4511<br>5141 46f7 9f1d 2042 7c6d 2bb8 69ca 9f28<br>2c33 28fc 4816 991f 1b18 1d8f 382c 4676<br>e1c5 ed67 4d72 de4d 4ad5 8274 be92 bd1f<br>0a94 cdbe aef7 3f22 804a f774 2090 2d00<br>1d00 0000 1d00 0000 0262 d1e7 d54f 631d<br>491d 3008 0020 0000 0066 6c61 672e 7478<br>7400 b034 6966 6669 7820 7468 6520 6669<br>6c65 2061 6e64 2067 6574 2074 6865 2066<br>6c61 67c4 3d7b 0040 0700 </p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python3</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="comment"># @Time    : 2018/5/20 14:05</span></span><br><span class="line"><span class="comment"># @Author  : Lhaihai</span></span><br><span class="line"><span class="comment"># @File    : bugku-base64解码.py</span></span><br><span class="line"><span class="comment"># @Software: PyCharm</span></span><br><span class="line"><span class="comment"># @Blog    : http://blog.Lhaihai.wang</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">    Description :</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"></span><br><span class="line">f = open(<span class="string">r'E:\CTF\misc\Bugku\123\out.txt'</span>, <span class="string">'r'</span>)</span><br><span class="line">s = f.read()</span><br><span class="line">text = base64.b64decode(s)</span><br><span class="line">print(text)</span><br><span class="line">ff = open(<span class="string">r'E:\CTF\misc\Bugku\123\rrr.txt'</span>, <span class="string">'wb'</span>)</span><br><span class="line">ff.write(text)</span><br><span class="line">f.close()</span><br><span class="line">ff.close()</span><br></pre></td></tr></table></figure>
+<p>可以看到<code>fix the file and get the flag</code>得知我们需要修复文件就可以得到flag：</p>
+<p> <img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526796798904.png" alt="1526796798904"></p>
+<p>我们知道C4 3D 7B 00 40 07 00为rar文件的十六进制结尾，所以我们需要在文件头部添加rar文件的十六进制头52 61 72 21 1A 07 00，然后另存为rar文件。打开rar文件，在注释中得到flag： </p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526796711735.png" alt="1526796711735"></p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526796865616.png" alt="1526796865616"></p>
+<blockquote>
+<p>flag{nev3r_enc0de_t00_sm4ll_fil3_w1th_zip}</p>
+</blockquote>
+<p>参考：</p>
+<p><a href="https://www.cnblogs.com/WangAoBo/p/6951160.html" target="_blank" rel="noopener">https://www.cnblogs.com/WangAoBo/p/6951160.html</a></p>
+<h2 id="一个普通的压缩包-xp0intCTF"><a href="#一个普通的压缩包-xp0intCTF" class="headerlink" title="一个普通的压缩包(xp0intCTF)"></a>一个普通的压缩包(xp0intCTF)</h2><p>解压有flag.rar，flag.rar解压有个flag.txt，flag.txt显示flag is not here</p>
+<p>找writeup，修改下图圈出来的为74</p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526792542138.png" alt="1526792542138"></p>
+<p>这时候发现flag.rar有个secret.png</p>
+<p>png查看16进制，发现是GIF开头，改为gif后缀，2345看图王分解为两帧，然而2345看图王分解的帧用stegsolve看不到二维码，后来用firework弄两个gif，一个gif删去状态1，一个gif删除状态2</p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526796957091.png" alt="1526796957091"></p>
+<p>用windows自带的画图工具拼接起来</p>
+<p>上面左边和右边的角缺失了，可以拿左下角的复制过去补一补</p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526797486238.png" alt="1526797486238"></p>
+<blockquote>
+<p>flag{yanji4n_bu_we1shi}  </p>
+</blockquote>
+<p>参考：<a href="https://www.cnblogs.com/blili/p/9013555.html" target="_blank" rel="noopener">https://www.cnblogs.com/blili/p/9013555.html</a></p>
+<h2 id="妹子的陌陌"><a href="#妹子的陌陌" class="headerlink" title="妹子的陌陌"></a>妹子的陌陌</h2><blockquote>
+<p>想要妹子陌陌号吗？<br>做题来拿吧</p>
+<p>下载这个图片做题</p>
+<p><a href="http://120.24.86.145:8002/misc/momo.jpg" target="_blank" rel="noopener">http://120.24.86.145:8002/misc/momo.jpg</a></p>
+</blockquote>
+<p>虽然今天520对我来说没关系，但我一定要贴这个题目的妹子出来</p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526785441283.png" alt="1526785441283"></p>
+<p>binwalk发现有RAR，分解出来，RAR需要密码</p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526785587525.png" alt="1526785587525"></p>
+<p>尝试多种方法解密不成功，看看大佬writeup，密码就是妹子图片红色字:喜欢我吗.</p>
+<p>momo.txt</p>
+<blockquote>
+<p>嘟嘟嘟嘟<br>士兵：报告首长！已截获纳粹的加密电报！<br>首长：拿来看看</p>
+<p>电报内容：<br>····/-/-/·–·/—···/-··-·/-··-·/·/-·/-·-·/—/-··/·/·-·-·-/-·-·/····/·-/····/··-/—/·-·-·-/-·-·/—/–/-··-·</p>
+<p>首长：我操你在逗我吗？你确定是他们纳粹发的吗？<br>士兵：难道我弄错了？哦。。。等等是这一条</p>
+<p>内容：<a href="http://c·bugku·com/U2FsdGVkX18tl8Yi7FaGiv6jK1SBxKD30eYb52onYe0=" target="_blank" rel="noopener">http://c·bugku·com/U2FsdGVkX18tl8Yi7FaGiv6jK1SBxKD30eYb52onYe0=</a><br>      AES Key：@#@#￥%……￥￥%%……&amp;￥</p>
+<p>士兵：二维码真的扫不出来吗？？肯定可以扫出来</p>
+</blockquote>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526786983633.png" alt="1526786983633"></p>
+<p>摩斯密码解密得一个网址</p>
+<blockquote>
+<p><a href="http://encode.chahuo.com/" target="_blank" rel="noopener">http://encode.chahuo.com/</a></p>
+</blockquote>
+<p>打开一看是一个解密的，再看看</p>
+<blockquote>
+<p><a href="http://c·bugku·com/U2FsdGVkX18tl8Yi7FaGiv6jK1SBxKD30eYb52onYe0=" target="_blank" rel="noopener">http://c·bugku·com/U2FsdGVkX18tl8Yi7FaGiv6jK1SBxKD30eYb52onYe0=</a></p>
+<p>AES Key：@#@#￥%……￥￥%%……&amp;￥</p>
+</blockquote>
+<p>拿网址U2F这串字符去AES解密，得momoj2j.png</p>
+<p>访问</p>
+<blockquote>
+<p><a href="http://c.bugku.com/momoj2j.png" target="_blank" rel="noopener">http://c.bugku.com/momoj2j.png</a></p>
+</blockquote>
+<p>看到一个二维码，一看就是黑白反转了</p>
+<p>拿stegsolve反转一下，扫描二维码得</p>
+<blockquote>
+<p>KEY{nitmzhen6}  </p>
+</blockquote>
+<h2 id="就五层你能解开吗"><a href="#就五层你能解开吗" class="headerlink" title="就五层你能解开吗"></a>就五层你能解开吗</h2><blockquote>
+<p>链接: <a href="http://pan.baidu.com/s/1i4TQoz7" target="_blank" rel="noopener">http://pan.baidu.com/s/1i4TQoz7</a> 密码: w65m</p>
+<p>提示：</p>
+<p>第一层：CRC32 碰撞</p>
+<p>第二层：维吉尼亚密码</p>
+<p>第三层：sha1 碰撞</p>
+<p>第四层：md5 相同文件不同</p>
+<p>第五层：RSA</p>
+</blockquote>
+<h3 id="第一层-CRC32-碰撞"><a href="#第一层-CRC32-碰撞" class="headerlink" title="第一层  CRC32 碰撞"></a>第一层  CRC32 碰撞</h3><p>打开压缩包，发现大小都为6，可以用CRC32碰撞，大于6的基本不要用CRC32碰撞了</p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526799814333.png" alt="1526799814333"></p>
+<p>碰撞脚本：<a href="https://github.com/theonlypwner/crc32" target="_blank" rel="noopener">https://github.com/theonlypwner/crc32</a></p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526799929576.png" alt="1526799929576"></p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526799897601.png" alt="1526799897601"></p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526799909515.png" alt="1526799909515"></p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526799918380.png" alt="1526799918380"></p>
+<p>从里面选取有意义的字符串连接起来。发现可以连成</p>
+<blockquote>
+<p>_CRC32_i5_n0t_s4f3</p>
+</blockquote>
+<p>输入密码解压。解压成功。</p>
+<h3 id="第二层-维吉尼亚密码"><a href="#第二层-维吉尼亚密码" class="headerlink" title="第二层  维吉尼亚密码"></a>第二层  维吉尼亚密码</h3><blockquote>
+<p>你知道维吉尼亚密码吗？<br>我们给了keys.txt，唯一的密钥就在其中，那么解密ciphertext.txt里的密文吧！<br>解压密码就在明文里，祝你好运！</p>
+<p>Do you know the Vigenére Ciphers?<br>We gave the keys.txt, Only have a key in it, So decrypts ciphertext.txt!<br>Unzip Password in plaintext, good luck to you!</p>
+</blockquote>
+<blockquote>
+<p>在线爆破vigenere ：<a href="https://www.guballa.de/vigenere-solver" target="_blank" rel="noopener">https://www.guballa.de/vigenere-solver</a></p>
+</blockquote>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526800422226.png" alt="1526800422226"></p>
+<p>但不对，在key里面找一找类似的 （直接writeup拿了）</p>
+<blockquote>
+<p>YEWCQGEWCYBNHDHPXOYUBJJPQIRAPSOUIYEOMTSV</p>
+</blockquote>
+<p><a href="http://tool.bugku.com/jiemi/解密得" target="_blank" rel="noopener">http://tool.bugku.com/jiemi/解密得</a></p>
+<blockquote>
+<p>the vigenere cipher is a method of encrypting alphabetic text by using a series of different caesar ciphers based on the letters of a keyword it is a simple form of polyalphabetic substitution so password is vigenere cipher funny</p>
+</blockquote>
+<p>解压密码</p>
+<blockquote>
+<p> vigenere cipher funny</p>
+</blockquote>
+<h3 id="第三层：sha1-碰撞"><a href="#第三层：sha1-碰撞" class="headerlink" title="第三层：sha1 碰撞"></a>第三层：sha1 碰撞</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">恭喜!</span><br><span class="line"></span><br><span class="line">现在我们遇到一个问题,我们有一个zip文件,但我们不知道完整的解压密码。</span><br><span class="line">幸好我们知道解压密码的一部分sha1值。</span><br><span class="line">你能帮我们找到的密码吗?</span><br><span class="line"></span><br><span class="line">不完整的密码：&quot;*7*5-*4*3?&quot;  *代表可打印字符</span><br><span class="line"></span><br><span class="line">不完整的sha1：&quot;619c20c*a4de755*9be9a8b*b7cbfa5*e8b4365*&quot;  *代表可打印字符</span><br><span class="line"></span><br><span class="line">人生苦短，我用Python。</span><br><span class="line"></span><br><span class="line">Congratulations!</span><br><span class="line">Now we run into a problem,We have a zip file, but we don&apos;t know the complete unzip password.</span><br><span class="line">Fortunately, we know that part of the unzip password of sha1 value.</span><br><span class="line">can you help us to find the password?</span><br><span class="line"></span><br><span class="line">Incomplete password is &quot;*7*5-*4*3?&quot;   * in the range of ASCII printable characters</span><br><span class="line"></span><br><span class="line">Incomplete sha1 is &quot;619c20c*a4de755*9be9a8b*b7cbfa5*e8b4365*&quot;    * in the range of ASCII printable characters</span><br><span class="line"></span><br><span class="line">Life is short, you need Python.</span><br></pre></td></tr></table></figure>
+<p>那就上脚本把。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line">dic = <span class="string">"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ~!@#$%^&amp;*()_+&#123;&#125;:&lt;&gt;?."</span></span><br><span class="line"><span class="keyword">for</span> i1 <span class="keyword">in</span> dic:</span><br><span class="line">    <span class="keyword">for</span> i2 <span class="keyword">in</span> dic:</span><br><span class="line">        <span class="keyword">for</span> i3 <span class="keyword">in</span> dic:</span><br><span class="line">            <span class="keyword">for</span> i4 <span class="keyword">in</span> dic:</span><br><span class="line">                fir = <span class="string">'*7*5-*4*3?'</span></span><br><span class="line">                poc = i1+<span class="string">'7'</span>+i2+<span class="string">'5-'</span>+i3+<span class="string">'4'</span>+i4+<span class="string">'3?'</span></span><br><span class="line">                <span class="comment"># print('%s'%(poc))</span></span><br><span class="line">                dest = <span class="string">'619c20c'</span></span><br><span class="line">                next  =hashlib.sha1(poc.encode(<span class="string">'utf-8'</span>)).hexdigest()</span><br><span class="line">                <span class="comment"># print()</span></span><br><span class="line">                <span class="keyword">if</span> str(next).startswith(dest):</span><br><span class="line">                    print(poc+<span class="string">'    '</span>+next)</span><br></pre></td></tr></table></figure>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526801565250.png" alt="1526801565250"></p>
+<p>解压密码</p>
+<blockquote>
+<p>I7~5-s4F3?</p>
+</blockquote>
+<h3 id="第四层：md5-相同文件不同"><a href="#第四层：md5-相同文件不同" class="headerlink" title="第四层：md5 相同文件不同"></a>第四层：md5 相同文件不同</h3><blockquote>
+<p>Hello World ;-)<br>MD5校验真的安全吗？<br>有没有两个不同的程序MD5却相同呢？<br>如果有的话另一个程序输出是什么呢？<br>解压密码为单行输出结果。</p>
+<p>Hello World ;-)<br>MD5 check is really safe?<br>There are two different procedures MD5 is the same?<br>If so what is the output of another program?<br>The decompression password is a single-line output.</p>
+</blockquote>
+<p><a href="https://blog.csdn.net/liangkwok/article/details/7441867" target="_blank" rel="noopener">https://blog.csdn.net/liangkwok/article/details/7441867</a></p>
+<p><a href="https://blog.csdn.net/sysprogram/article/details/73753354" target="_blank" rel="noopener">https://blog.csdn.net/sysprogram/article/details/73753354</a></p>
+<p>摘录</p>
+<blockquote>
+<p>两个程序的文件内容不一样，运行的效果打印的东西不一样，一个打印循环打印Goodbye World，一个只打印Hello world。但是md5却一样。 </p>
+</blockquote>
+<p>于是解压密码为</p>
+<blockquote>
+<p>Goodbye World :-( </p>
+</blockquote>
+<h3 id="第五层：RSA"><a href="#第五层：RSA" class="headerlink" title="第五层：RSA"></a>第五层：RSA</h3><p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526801812916.png" alt="1526801812916"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&gt; openssl rsa -pubin -text -modulus -in rsa_public_key.pem</span><br><span class="line">Public-Key: (1026 bit)</span><br><span class="line">Modulus:</span><br><span class="line">    02:8f:ff:9d:d3:e6:fe:97:81:64:9e:b7:fe:5e:93:</span><br><span class="line">    03:cf:69:63:47:c4:11:0b:c4:ba:39:69:f0:b1:16:</span><br><span class="line">    69:84:0c:51:d8:1a:68:42:b6:df:2b:09:0f:21:cd:</span><br><span class="line">    76:d4:37:1a:8c:0e:47:04:8c:96:5e:ca:5b:46:91:</span><br><span class="line">    3a:fb:b8:da:05:20:72:a0:56:6d:70:39:c6:18:ab:</span><br><span class="line">    a9:06:57:59:b0:59:e2:9e:48:5d:c5:06:1a:16:ac:</span><br><span class="line">    63:12:94:38:d9:35:4e:65:df:57:47:54:6b:85:db:</span><br><span class="line">    3d:69:98:19:c4:b7:73:2d:f9:27:c7:08:4a:5d:52:</span><br><span class="line">    d6:e6:d6:aa:c1:44:62:34:25</span><br><span class="line">Exponent:</span><br><span class="line">    01:f8:fb:a4:10:05:2d:f7:ed:a3:46:2f:1a:ac:d6:</span><br><span class="line">    9e:40:76:04:33:ca:33:57:67:cd:73:05:a3:d0:90:</span><br><span class="line">    80:5a:5f:d4:05:dd:6e:ea:70:e9:8f:0c:a1:e1:cf:</span><br><span class="line">    25:47:48:67:1b:f0:c9:80:06:c2:0e:ee:1d:62:79:</span><br><span class="line">    04:35:09:fe:7a:98:23:8b:43:91:60:a5:61:2d:a7:</span><br><span class="line">    1e:90:45:14:e8:12:80:61:7e:30:7c:3c:d3:31:3f:</span><br><span class="line">    a4:c6:fc:a3:31:59:d0:44:1f:bb:18:d8:3c:af:4b:</span><br><span class="line">    d4:6f:6b:92:97:a8:0a:14:2d:d6:9b:f1:a3:57:cc:</span><br><span class="line">    b5:e4:c2:00:b6:d9:0f:15:a3</span><br><span class="line">Modulus=28FFF9DD3E6FE9781649EB7FE5E9303CF696347C4110BC4BA3969F0B11669840C51D81A6842B6DF2B090F21CD76D4371A8C0E47048C965ECA5B46913AFBB8DA052072A0566D7039C618ABA9065759B059E29E485DC5061A16AC63129438D9354E65DF5747546B85DB3D699819C4B7732DF927C7084A5D52D6E6D6AAC144623425</span><br><span class="line">writing RSA key</span><br><span class="line">-----BEGIN PUBLIC KEY-----</span><br><span class="line">MIIBIDANBgkqhkiG9w0BAQEFAAOCAQ0AMIIBCAKBgQKP/53T5v6XgWSet/5ekwPP</span><br><span class="line">aWNHxBELxLo5afCxFmmEDFHYGmhCtt8rCQ8hzXbUNxqMDkcEjJZeyltGkTr7uNoF</span><br><span class="line">IHKgVm1wOcYYq6kGV1mwWeKeSF3FBhoWrGMSlDjZNU5l31dHVGuF2z1pmBnEt3Mt</span><br><span class="line">+SfHCEpdUtbm1qrBRGI0JQKBgQH4+6QQBS337aNGLxqs1p5AdgQzyjNXZ81zBaPQ</span><br><span class="line">kIBaX9QF3W7qcOmPDKHhzyVHSGcb8MmABsIO7h1ieQQ1Cf56mCOLQ5FgpWEtpx6Q</span><br><span class="line">RRToEoBhfjB8PNMxP6TG/KMxWdBEH7sY2DyvS9Rva5KXqAoULdab8aNXzLXkwgC2</span><br><span class="line">2Q8Vow==</span><br><span class="line">-----END PUBLIC KEY-----</span><br></pre></td></tr></table></figure>
+<p>发现e很大，想到RSA的维纳攻击</p>
+<p>github找了好几个，终于找到个能用的</p>
+<p><a href="https://github.com/orisano/owiener" target="_blank" rel="noopener">https://github.com/orisano/owiener</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python3</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="comment"># @Time    : 2018/5/20 15:55</span></span><br><span class="line"><span class="comment"># @Author  : Lhaihai</span></span><br><span class="line"><span class="comment"># @File    : RSAowiener.py</span></span><br><span class="line"><span class="comment"># @Software: PyCharm</span></span><br><span class="line"><span class="comment"># @Blog    : http://blog.Lhaihai.wang</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">    Description :</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="keyword">import</span> owiener</span><br><span class="line"></span><br><span class="line">e = <span class="number">0x01f8fba410052df7eda3462f1aacd69e40760433ca335767cd7305a3d090805a5fd405dd6eea70e98f0ca1e1cf254748671bf0c98006c20eee1d6279043509fe7a98238b439160a5612da71e904514e81280617e307c3cd3313fa4c6fca33159d0441fbb18d83caf4bd46f6b9297a80a142dd69bf1a357ccb5e4c200b6d90f15a3</span></span><br><span class="line">n = <span class="number">0x28FFF9DD3E6FE9781649EB7FE5E9303CF696347C4110BC4BA3969F0B11669840C51D81A6842B6DF2B090F21CD76D4371A8C0E47048C965ECA5B46913AFBB8DA052072A0566D7039C618ABA9065759B059E29E485DC5061A16AC63129438D9354E65DF5747546B85DB3D699819C4B7732DF927C7084A5D52D6E6D6AAC144623425</span></span><br><span class="line">d = owiener.attack(e, n)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> d <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">    print(<span class="string">"Failed"</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">"Hacked d=&#123;&#125;"</span>.format(d))</span><br></pre></td></tr></table></figure>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526803291937.png" alt="1526803291937"></p>
+<p>拿到d</p>
+<blockquote>
+<p>8264667972294275017293339772371783322168822149471976834221082393409363691895</p>
+</blockquote>
+<p>生成私钥</p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526803354777.png" alt="1526803354777"></p>
+<p>解密，打开flag.txt拿到flag</p>
+<blockquote>
+<blockquote>
+<p>openssl rsautl -decrypt -in flag.enc -inkey bugkursa.pem -out flag.txt</p>
+</blockquote>
+</blockquote>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/Bugku-Misc.assets/1526803369199.png" alt="1526803369199"></p>
+<p>或者用脚本解密，来自<a href="http://www.test404.com/post-1107.html" target="_blank" rel="noopener">http://www.test404.com/post-1107.html</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">n=<span class="number">0x28FFF9DD3E6FE9781649EB7FE5E9303CF696347C4110BC4BA3969F0B11669840C51D81A6842B6DF2B090F21CD76D4371A8C0E47048C965ECA5B46913AFBB8DA052072A0566D7039C618ABA9065759B059E29E485DC5061A16AC63129438D9354E65DF5747546B85DB3D699819C4B7732DF927C7084A5D52D6E6D6AAC144623425</span></span><br><span class="line">e=<span class="number">0x1f8fba410052df7eda3462f1aacd69e40760433ca335767cd7305a3d090805a5fd405dd6eea70e98f0ca1e1cf254748671bf0c98006c20eee1d6279043509fe7a98238b439160a5612da71e904514e81280617e307c3cd3313fa4c6fca33159d0441fbb18d83caf4bd46f6b9297a80a142dd69bf1a357ccb5e4c200b6d90f15a3</span></span><br><span class="line">d=<span class="number">8264667972294275017293339772371783322168822149471976834221082393409363691895</span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">"flag.enc"</span>,<span class="string">"rb"</span>) <span class="keyword">as</span> f:</span><br><span class="line">	data = f.read()</span><br><span class="line">	data = data.encode(<span class="string">"hex"</span>)</span><br><span class="line">	c = int(data,<span class="number">16</span>)</span><br><span class="line">	mingwen = pow(c,d,n)</span><br><span class="line">	<span class="keyword">print</span> hex(mingwen)</span><br><span class="line">	result = hex(mingwen)[<span class="number">2</span>:<span class="number">-1</span>]</span><br><span class="line">	result = <span class="string">"0"</span>+result</span><br><span class="line">	result = result.decode(<span class="string">"hex"</span>)</span><br><span class="line"><span class="keyword">with</span> open(<span class="string">"flag"</span>,<span class="string">"wb"</span>) <span class="keyword">as</span> f:</span><br><span class="line">	f.write(result)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>flag{W0rld_Of_Crypt0gr@phy}</p>
+</blockquote>
+<p>参考：</p>
+<p><a href="https://blog.csdn.net/preserphy/article/details/79599397" target="_blank" rel="noopener">https://blog.csdn.net/preserphy/article/details/79599397</a></p>
+<p><a href="http://wiki.idbg.net/docs/show/41" target="_blank" rel="noopener">http://wiki.idbg.net/docs/show/41</a></p>
+<p>CRC32：<a href="http://veritas501.space/2017/06/23/%E7%BB%99%E4%BD%A0%E5%8E%8B%E7%BC%A9%E5%8C%85%E5%8D%B4%E4%B8%8D%E7%BB%99%E4%BD%A0%E5%AF%86%E7%A0%81%E7%9A%84%E4%BA%BA%E5%88%B0%E5%BA%95%E5%9C%A8%E6%83%B3%E4%BB%80%E4%B9%88/" target="_blank" rel="noopener">http://veritas501.space/2017/06/23/%E7%BB%99%E4%BD%A0%E5%8E%8B%E7%BC%A9%E5%8C%85%E5%8D%B4%E4%B8%8D%E7%BB%99%E4%BD%A0%E5%AF%86%E7%A0%81%E7%9A%84%E4%BA%BA%E5%88%B0%E5%BA%95%E5%9C%A8%E6%83%B3%E4%BB%80%E4%B9%88/</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Misc/" rel="tag"># Misc</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/10/第一周/" rel="next" title="第一周RSA加密解密入门">
+                <i class="fa fa-chevron-left"></i> 第一周RSA加密解密入门
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Lhaihai" />
+            
+              <p class="site-author-name" itemprop="name">Lhaihai</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/TheReturnOfTheKing/" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#这是一张单纯的图片"><span class="nav-number">1.</span> <span class="nav-text">这是一张单纯的图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#隐写"><span class="nav-number">2.</span> <span class="nav-text">隐写</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#telnet"><span class="nav-number">3.</span> <span class="nav-text">telnet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#眼见非实-ISCCCTF"><span class="nav-number">4.</span> <span class="nav-text">眼见非实(ISCCCTF)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#又一张图片，还单纯吗"><span class="nav-number">5.</span> <span class="nav-text">又一张图片，还单纯吗</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#猜"><span class="nav-number">6.</span> <span class="nav-text">猜</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#宽带信息泄露"><span class="nav-number">7.</span> <span class="nav-text">宽带信息泄露</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#隐写2"><span class="nav-number">8.</span> <span class="nav-text">隐写2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多种方法解决"><span class="nav-number">9.</span> <span class="nav-text">多种方法解决</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#linux"><span class="nav-number">10.</span> <span class="nav-text">linux</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#中国菜刀"><span class="nav-number">11.</span> <span class="nav-text">中国菜刀</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#这么多数据包"><span class="nav-number">12.</span> <span class="nav-text">这么多数据包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#隐写3"><span class="nav-number">13.</span> <span class="nav-text">隐写3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#做个游戏-08067CTF"><span class="nav-number">14.</span> <span class="nav-text">做个游戏(08067CTF)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#想蹭网先解开密码"><span class="nav-number">15.</span> <span class="nav-text">想蹭网先解开密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux2"><span class="nav-number">16.</span> <span class="nav-text">Linux2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#账号被盗了"><span class="nav-number">17.</span> <span class="nav-text">账号被盗了</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#细心的大象"><span class="nav-number">18.</span> <span class="nav-text">细心的大象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#爆照-08067CTF"><span class="nav-number">19.</span> <span class="nav-text">爆照(08067CTF)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图穷匕见"><span class="nav-number">20.</span> <span class="nav-text">图穷匕见</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#convert"><span class="nav-number">21.</span> <span class="nav-text">convert</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#听首音乐"><span class="nav-number">22.</span> <span class="nav-text">听首音乐</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#好多数值"><span class="nav-number">23.</span> <span class="nav-text">好多数值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#很普通的数独-ISCCCTF"><span class="nav-number">24.</span> <span class="nav-text">很普通的数独(ISCCCTF)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#好多压缩包"><span class="nav-number">25.</span> <span class="nav-text">好多压缩包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一个普通的压缩包-xp0intCTF"><span class="nav-number">26.</span> <span class="nav-text">一个普通的压缩包(xp0intCTF)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#妹子的陌陌"><span class="nav-number">27.</span> <span class="nav-text">妹子的陌陌</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#就五层你能解开吗"><span class="nav-number">28.</span> <span class="nav-text">就五层你能解开吗</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一层-CRC32-碰撞"><span class="nav-number">28.1.</span> <span class="nav-text">第一层  CRC32 碰撞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二层-维吉尼亚密码"><span class="nav-number">28.2.</span> <span class="nav-text">第二层  维吉尼亚密码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三层：sha1-碰撞"><span class="nav-number">28.3.</span> <span class="nav-text">第三层：sha1 碰撞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第四层：md5-相同文件不同"><span class="nav-number">28.4.</span> <span class="nav-text">第四层：md5 相同文件不同</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第五层：RSA"><span class="nav-number">28.5.</span> <span class="nav-text">第五层：RSA</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-117483741-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-117483741-1');
+</script>
+
+<div class="copyright">&copy; 2018/3/11 &mdash; <span itemprop="copyrightYear">2018</span>
+
+		
+
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lhaihai</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye">本站总访问量</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
