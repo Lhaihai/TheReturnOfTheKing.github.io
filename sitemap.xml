@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.Lhaihai.wang/2018/05/20/CSP%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
+    
+    <lastmod>2018-05-20T16:25:46.389Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.Lhaihai.wang/2018/05/20/%E5%9B%BD%E5%86%85%E5%A4%96%E6%9D%B0%E5%87%BA%E7%9A%84CTF%E6%88%98%E9%98%9F/</loc>
+    
+    <lastmod>2018-05-20T16:20:43.524Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.Lhaihai.wang/2018/05/20/Bugku-MISCWriteUp/</loc>
     
     <lastmod>2018-05-20T08:29:23.670Z</lastmod>
