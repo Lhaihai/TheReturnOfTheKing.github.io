@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.Lhaihai.wang/2018/07/08/XXE%E6%BC%8F%E6%B4%9E%E7%90%86%E8%A7%A3%E4%B8%8E%E6%B5%8B%E8%AF%95/</loc>
+    
+    <lastmod>2018-07-08T07:55:33.511Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.Lhaihai.wang/2018/07/07/suctf2018-web-Writeup/</loc>
     
     <lastmod>2018-07-07T13:50:03.648Z</lastmod>
