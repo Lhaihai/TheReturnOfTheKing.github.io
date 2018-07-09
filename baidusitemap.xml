@@ -3,6 +3,49 @@
 
     
   <url>
+    <loc>http://blog.Lhaihai.wang/2018/07/08/Linux%E5%8F%8D%E5%BC%B9shell%E8%A7%A3%E6%9E%90%E5%92%8C%E6%80%BB%E7%BB%93/</loc>
+    <lastmod>2018-07-09T06:30:54.215Z</lastmod>
+    <data>
+        <display>
+        <title>Linux反弹shell解析和总结</title>
+        <pubTime>2018-07-08T13:45:19.000Z</pubTime>
+        
+        <tag>shell </tag>
+         
+         
+           
+             
+              <breadCrumb title="Linux" url="http://blog.Lhaihai.wang/categories/Linux/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.Lhaihai.wang/2018/07/09/CouchDB%E7%9A%84%E4%B8%A4%E4%B8%AACVE%E5%A4%8D%E7%8E%B0/</loc>
+    <lastmod>2018-07-09T05:57:07.856Z</lastmod>
+    <data>
+        <display>
+        <title>CouchDB的两个CVE复现</title>
+        <pubTime>2018-07-09T05:57:06.000Z</pubTime>
+        
+        <tag>CVE </tag>
+         
+         
+           
+             
+              <breadCrumb title="Web安全" url="http://blog.Lhaihai.wang/categories/Web%E5%AE%89%E5%85%A8/"/>
+          
+             
+              <breadCrumb title="数据库" url="http://blog.Lhaihai.wang/categories/Web%E5%AE%89%E5%85%A8/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://blog.Lhaihai.wang/2018/07/08/XXE%E6%BC%8F%E6%B4%9E%E7%90%86%E8%A7%A3%E4%B8%8E%E6%B5%8B%E8%AF%95/</loc>
     <lastmod>2018-07-08T07:56:46.695Z</lastmod>
     <data>

