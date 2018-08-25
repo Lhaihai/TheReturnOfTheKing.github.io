@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Lhaihai's Blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="比赛：https://capturetheflag.withgoogle.com/#beginners/ youtube视频：https://www.youtube.com/watch?v=qDYwcIf0LZw https://github.com/gynvael/stream-en/tree/master/057-beginners-quest https://github.com/googl">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GoogleCTF2018_beginner_quest">
+<meta property="og:url" content="http://blog.Lhaihai.wang/2018/07/16/GoogleCTF2018-beginner-quest/index.html">
+<meta property="og:site_name" content="Lhaihai&#39;s Blog">
+<meta property="og:description" content="比赛：https://capturetheflag.withgoogle.com/#beginners/ youtube视频：https://www.youtube.com/watch?v=qDYwcIf0LZw https://github.com/gynvael/stream-en/tree/master/057-beginners-quest https://github.com/googl">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/BEGINNERS%20QUEST.assets/1529761247514.png">
+<meta property="og:image" content="https://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/BEGINNERS%20QUEST.assets/1529761184206.png">
+<meta property="og:image" content="https://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/BEGINNERS%20QUEST.assets/1529761083232.png">
+<meta property="og:image" content="https://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/BEGINNERS%20QUEST.assets/1529761537369.png">
+<meta property="og:image" content="https://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/BEGINNERS%20QUEST.assets/1529761581745.png">
+<meta property="og:image" content="https://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/BEGINNERS%20QUEST.assets/1529763781681.png">
+<meta property="og:image" content="https://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/BEGINNERS%20QUEST.assets/1531481681852.png">
+<meta property="og:image" content="https://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/BEGINNERS%20QUEST.assets/1531647764855.png">
+<meta property="og:image" content="https://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/BEGINNERS%20QUEST.assets/1531647829031.png">
+<meta property="og:image" content="https://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/BEGINNERS%20QUEST.assets/1531709014530.png">
+<meta property="og:image" content="https://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/BEGINNERS%20QUEST.assets/1531717233138.png">
+<meta property="og:image" content="https://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/BEGINNERS%20QUEST.assets/1531717887269.png">
+<meta property="og:updated_time" content="2018-08-25T07:12:46.040Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GoogleCTF2018_beginner_quest">
+<meta name="twitter:description" content="比赛：https://capturetheflag.withgoogle.com/#beginners/ youtube视频：https://www.youtube.com/watch?v=qDYwcIf0LZw https://github.com/gynvael/stream-en/tree/master/057-beginners-quest https://github.com/googl">
+<meta name="twitter:image" content="https://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/BEGINNERS%20QUEST.assets/1529761247514.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.Lhaihai.wang/2018/07/16/GoogleCTF2018-beginner-quest/"/>
+
+
+
+
+
+  <title>GoogleCTF2018_beginner_quest | Lhaihai's Blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-117483741-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+  
+  <script type="text/javascript" color="0,0,255" opacity='0.7' zIndex="-2" count="10" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+ 
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Lhaihai's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.Lhaihai.wang/2018/07/16/GoogleCTF2018-beginner-quest/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lhaihai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lhaihai's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">GoogleCTF2018_beginner_quest</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-16T15:11:41+08:00">
+                2018-07-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/WriteUp/" itemprop="url" rel="index">
+                    <span itemprop="name">WriteUp</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o">本文总阅读量</i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>比赛：<a href="https://capturetheflag.withgoogle.com/#beginners/" target="_blank" rel="noopener">https://capturetheflag.withgoogle.com/#beginners/</a></p>
+<p>youtube视频：<a href="https://www.youtube.com/watch?v=qDYwcIf0LZw" target="_blank" rel="noopener">https://www.youtube.com/watch?v=qDYwcIf0LZw</a></p>
+<p><a href="https://github.com/gynvael/stream-en/tree/master/057-beginners-quest" target="_blank" rel="noopener">https://github.com/gynvael/stream-en/tree/master/057-beginners-quest</a></p>
+<p><a href="https://github.com/google/google-ctf" target="_blank" rel="noopener">https://github.com/google/google-ctf</a></p>
+<p>writeup：<a href="https://github.com/rtoma/google-ctf2018" target="_blank" rel="noopener">https://github.com/rtoma/google-ctf2018</a></p>
+<h2 id="LETTER-misc"><a href="#LETTER-misc" class="headerlink" title="LETTER[misc]"></a>LETTER[misc]</h2><p>Garbo-can</p>
+<blockquote>
+<p>You really went dumpster diving? Amazing. After many hours, SUCCESS! Between what looks like a three week old casserole and a copy of “Relative-Time Magazine”, you found this important looking letter about the victims PC. However the credentials aren’t readable - can you still obtain them? </p>
+</blockquote>
+<p>5a0fad5699f75dee39434cc26587411b948e0574a545ef4157e5bf4700e9d62a.zip</p>
+<p>1.点击保护</p>
+<p><img src="https://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/BEGINNERS%20QUEST.assets/1529761247514.png" alt="1529761247514"></p>
+<p>2.删除隐藏信息</p>
+<p><img src="https://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/BEGINNERS%20QUEST.assets/1529761184206.png" alt="1529761184206"></p>
+<p>3.显示隐藏的文本</p>
+<p><img src="https://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/BEGINNERS%20QUEST.assets/1529761083232.png" alt="1529761083232"></p>
+<blockquote>
+<p>CTF{ICanReadDis}</p>
+</blockquote>
+<h2 id="FLOPPY-misc"><a href="#FLOPPY-misc" class="headerlink" title="FLOPPY[misc]"></a>FLOPPY[misc]</h2><p>Foobanizer9000</p>
+<blockquote>
+<p>Using the credentials from the letter, you logged in to the Foobanizer9000-PC. It has a floppy drive…why? There is an .ico file on the disk, but it doesn’t smell right.. </p>
+</blockquote>
+<p>4e69382f661878c7da8f8b6b8bf73a20acd6f04ec253020100dfedbd5083bb39.zip</p>
+<p>解压有个foot.ico</p>
+<p>binwalk看一波，有压缩包，直接改后缀，</p>
+<p><img src="https://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/BEGINNERS%20QUEST.assets/1529761537369.png" alt="1529761537369"></p>
+<p><img src="https://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/BEGINNERS%20QUEST.assets/1529761581745.png" alt="1529761581745"></p>
+<p>打开txt即有flag</p>
+<blockquote>
+<p>CTF{qeY80sU6Ktko8BJW}</p>
+</blockquote>
+<h2 id="FLOPPY2-misc"><a href="#FLOPPY2-misc" class="headerlink" title="FLOPPY2[misc]"></a>FLOPPY2[misc]</h2><p>Foobanizer9000</p>
+<blockquote>
+<p>Looks like you found a way to open the file in the floppy! But that <a href="http://www.com" target="_blank" rel="noopener">www.com</a> file looks suspicious.. Dive in and take another look? </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hD7X-t6ug_hl(]Wh8$^15GG1-hbrX5prPYGW^QFIuxYGFK,1-FGIuqZhHIX%A)I!hSLX4SI!&#123;p*S:eTM&apos;~_?o?V;m;CgAA]Ud)HO;&#123; l&#123;&#125;9l&gt;jLLP[-`|0gvPY0onQ0geZ0wY5&gt;D0g]h+(X-k&amp;4`P[0/,64&quot;P4APG</span><br><span class="line">The Foobanizer9000 is no longer on the OffHub DMZ.          $</span><br></pre></td></tr></table></figure>
+<h2 id="OCR-IS-COOL-misc"><a href="#OCR-IS-COOL-misc" class="headerlink" title="OCR IS COOL![misc]"></a>OCR IS COOL![misc]</h2><p>Foobanizer9000</p>
+<blockquote>
+<p>Caesar once said, don’t stab me… but taking a screenshot of an image sure feels like being stabbed. You connected to a VNC server on the Foobanizer 9000, it was view only. This screenshot is all that was present but it’s gibberish. Can you recover the original text? </p>
+</blockquote>
+<p>7ad5a7d71a7ac5f5056bb95dd326603e77a38f25a76a1fb7f7e6461e7d27b6a3.zip</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">Wxtk Vnlmhfxk</span><br><span class="line">Px tkx atir mh pxevhfx tI hnk gxpxlm vnlmhfxk hy hnk lxvnkx bWkhiwkbox vehnw ybex latkbgz lxkobvx. T Ityx ietvx yhk tee rhnk ybexl</span><br><span class="line"></span><br><span class="line">Lmhkx tgr ybex</span><br><span class="line">bWkhiwkbox Imtkml rhn pbma 15 lU hy ykxx hgebgx hk hyyebgx Imhktzx, Ih rhn vtg dxxi ptkxs, ubgtkbxl, itbgmbgzl, yetzl, ybkfptkxl, ubmvhbgl, pkbmxnil-tgrmabgz</span><br><span class="line"></span><br><span class="line">LXX thnk Imnyy tgrpaxk</span><br><span class="line">Rhnk ybexl bg bWkhiWkbox vtg ux kxtvaxw ykhf tgr yhhutgbsxk, Iftkm ykbwZX 2000, Iftkm atl, Mxfih-t-ftmbv, hk fxwbt iv Lh paxkxoxk rhn zh, rhnk ybexl yheehp</span><br><span class="line"></span><br><span class="line">Latkx ybexl tgw yhewxkl</span><br><span class="line">Rhn vtg jnbvder bgobmx hmaxkl mh obp, whpgehtw, tgw vheetuhktmx hg tee max ybexl rhn ptgm obt xftbe tmmtvafxgml Cnlm zbox maxf max ebgd VMY&#123;vtxltkvbiaxkbltInulmbmnmbhgvbiaxk&#125; tgw maxr vtg twvxll tee rhnk wtmt</span><br><span class="line"></span><br><span class="line">Yhk xqtfiex, axkx&apos;l t eblm hy ybexl mat rhn kx vnkkxgmer Imhkbgz pbma nl</span><br><span class="line">hyyanu ybkfptkx ubg</span><br><span class="line">BHM vkxwxgmbtel iwy \\(wxexmxw\)Pbgmxkfnmxw</span><br><span class="line">Yhhutgbsxk9000 Ftgnte iwy Pbgmxkfnmxw</span><br><span class="line">yhh bvh</span><br><span class="line"></span><br><span class="line">LBgvx px mdx lxvnkbmr oxkr bxkbhnler tgw bg hkwxk mh ikhmxvm rhn tztbglm onegxktubebmbxl ebdx xytbe tgw tfwyetpl, px&apos;kx lxgwbgz rhn rhnk vkxwxgmbtel nlbgz max mbfx-ikhoxg tbebmtkr-zktwx vtxltk Irftxmkbv vbiaxk</span><br><span class="line"></span><br><span class="line">Atiir bwkhiwkbobgz</span><br></pre></td></tr></table></figure>
+<p>单表替换什么的吧，暴力一把梭</p>
+<p><a href="https://quipqiup.com/" target="_blank" rel="noopener">https://quipqiup.com/</a></p>
+<p><a href="https://www.guballa.de/vigenere-solver" target="_blank" rel="noopener">https://www.guballa.de/vigenere-solver</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">Dear Customer</span><br><span class="line">We are hapy to welcome aP our newest customer of our secure iDropdrive cloud file sharing service. A Pafe place for all your files</span><br><span class="line"></span><br><span class="line">Store any file</span><br><span class="line">iDropdrive Ptarts you with 15 sB of free online or offline Ptorage, Po you can keep warez, binaries, paintings, flags, firmwares, bitcoins, writeups-anything</span><br><span class="line"></span><br><span class="line">SEE aour Ptuff anywher</span><br><span class="line">Your files in iDropDrive can be reached from any foobanizer, Pmart fridGE 2000, Pmart has, Tempo-a-matic, or media pc So wherever you go, your files follow</span><br><span class="line"></span><br><span class="line">Share files and folders</span><br><span class="line">You can quickly invite others to viw, download, and collaborate on all the files you want via email attachments Just give them the link CTF&#123;pcaesarcipherisaPubstitutioncipher&#125;  and they can access all your data</span><br><span class="line"></span><br><span class="line">For example, here&apos;s a list of files tha you re currently Ptoring with us</span><br><span class="line">offhub firmware bin</span><br><span class="line">IOT credentials pdf \\(deleted\)Wintermuted</span><br><span class="line">Foobanizer9000 Manual pdf Wintermuted</span><br><span class="line">foo ico</span><br><span class="line"></span><br><span class="line">SInce we tke security very ieriously and in order to protect you against vulnerabilities like efail and amdflaws, we&apos;re sending you your credentials using the time-proven ailitary-grade caesar Pymaetric cipher</span><br><span class="line"></span><br><span class="line">Happy idropdriving</span><br></pre></td></tr></table></figure>
+<p>可能有些许偏差，上google翻译，再修改一下小写</p>
+<p><img src="https://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/BEGINNERS%20QUEST.assets/1529763781681.png" alt="1529763781681"></p>
+<blockquote>
+<p>CTF{caesarcipherisasubstitutioncipher}</p>
+</blockquote>
+<h2 id="SECURITY-BY-OBSCURITY-misc"><a href="#SECURITY-BY-OBSCURITY-misc" class="headerlink" title="SECURITY BY OBSCURITY[misc]"></a>SECURITY BY OBSCURITY[misc]</h2><p>OffHub</p>
+<blockquote>
+<p>Reading the contents of the screenshot you find that some guy named “John” created the firmware for the OffHub router and stored it on an iDropDrive cloud share. You fetch it and find “John” packed the firmware with an unknown key. Can you recover the package key? </p>
+</blockquote>
+<p>2cdc6654fb2f8158cd976d8ffac28218b15d052b5c2853232e4c1bafcb632383.zip</p>
+<h2 id="MOAR-pwn"><a href="#MOAR-pwn" class="headerlink" title="MOAR[pwn]"></a>MOAR[pwn]</h2><p>Foobanizer9000</p>
+<blockquote>
+<p>Finding yourself on the Foobanizer9000, a computer built by 9000 foos, this computer is so complicated luckily it serves manual pages through a network service. As the old saying goes, everything you need is in the manual. </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">!ls -al /home</span><br><span class="line">total 12</span><br><span class="line">drwxr-xr-x  3 nobody nogroup 4096 Jun 14 14:17 .</span><br><span class="line">drwxr-xr-x 21 moar   moar    4096 Jun 22 09:20 ..</span><br><span class="line">drwxr-xr-x  2 nobody nogroup 4096 Jun 22 08:36 moar</span><br></pre></td></tr></table></figure>
+<p>题目是moar，就去moar目录搜查一波，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">!ls -al /home/moar</span><br><span class="line">total 24</span><br><span class="line">drwxr-xr-x 2 nobody nogroup 4096 Jun 22 08:36 .</span><br><span class="line">drwxr-xr-x 3 nobody nogroup 4096 Jun 14 14:17 ..</span><br><span class="line">-rw-r--r-- 1 nobody nogroup  220 Aug 31  2015 .bash_logout</span><br><span class="line">-rw-r--r-- 1 nobody nogroup 3771 Aug 31  2015 .bashrc</span><br><span class="line">-rw-r--r-- 1 nobody nogroup  655 May 16  2017 .profile</span><br><span class="line">-r-xr-xr-x 1 nobody nogroup  118 Jun 22 07:58 disable_dmz.sh</span><br></pre></td></tr></table></figure>
+<p>发现有 .sh文件，读取</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">!cat /home/moar/disable_dmz.sh</span><br><span class="line">#!/bin/sh</span><br><span class="line">echo &apos;Disabling DMZ using password CTF&#123;SOmething-CATastr0phic&#125;&apos;</span><br><span class="line">echo CTF&#123;SOmething-CATastr0phic&#125; &gt; /dev/dmz</span><br></pre></td></tr></table></figure>
+<p><img src="https://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/BEGINNERS%20QUEST.assets/1531481681852.png" alt="1531481681852"></p>
+<blockquote>
+<p>CTF{SOmething-CATastr0phic}</p>
+</blockquote>
+<h2 id="ADMIN-UI-pwn-re"><a href="#ADMIN-UI-pwn-re" class="headerlink" title="ADMIN UI[pwn-re]"></a>ADMIN UI[pwn-re]</h2><p>Temp-o-matic</p>
+<blockquote>
+<p>The command you just found removed the Foobanizer 9000 from the DMZ. While scanning the network, you find a weird device called Tempo-a-matic. According to a Google search it’s a smart home temperature control experience. The management interface looks like a nest of bugs. You also stumble over some gossip on the dark net about bug hunters finding some vulnerabilities and because the vendor didn’t have a bug bounty program, they were sold for US$3.49 a piece. Do some black box testing here, it’ll go well with your hat.</p>
+<p>nc mngmnt-iface.ctfcompetition.com 1337</p>
+</blockquote>
+<p><img src="https://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/BEGINNERS%20QUEST.assets/1531647764855.png" alt="1531647764855"></p>
+<p><img src="https://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/BEGINNERS%20QUEST.assets/1531647829031.png" alt="1531647829031"></p>
+<blockquote>
+<p>CTF{I_luv_buggy_sOFtware}</p>
+</blockquote>
+<h2 id="ADMIN-UI-2-pwn-re"><a href="#ADMIN-UI-2-pwn-re" class="headerlink" title="ADMIN UI 2[pwn-re]"></a>ADMIN UI 2[pwn-re]</h2><p>Temp-o-matic</p>
+<blockquote>
+<p>That first flag was a dud, but I think using a similar trick to get the full binary file might be needed here. There is a least one password in there somewhere. Maybe reversing this will give you access to the authenticated area, then you can turn up the heat… literally. </p>
+</blockquote>
+<h2 id="FIRMWARE-re"><a href="#FIRMWARE-re" class="headerlink" title="FIRMWARE [re]"></a>FIRMWARE [re]</h2><p>Offhub</p>
+<blockquote>
+<p>After unpacking the firmware archive, you now have a binary in which to go hunting. Its now time to walk around the firmware and see if you can find anything.</p>
+</blockquote>
+<p>解压两次后是ext4，linux文件系统，挂在到linux系统的某目录下即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">root@kali:~/Documents# mkdir x</span><br><span class="line">root@kali:~/Documents# sudo mount -o loop ./challenge2.ext4 x</span><br><span class="line">root@kali:~/Documents# cd x</span><br><span class="line">root@kali:~/Documents/x# ls</span><br><span class="line">bin   dev  home  lib64       media  opt   root  sbin  sys  usr</span><br><span class="line">boot  etc  lib   lost+found  mnt    proc  run   srv   tmp  var</span><br><span class="line">root@kali:~/Documents/x# ls -al</span><br><span class="line">total 44</span><br><span class="line">drwxr-xr-x 22 root root  1024 Jun 22 21:54 .</span><br><span class="line">drwxr-xr-x  3 root root  4096 Jul 16 10:37 ..</span><br><span class="line">drwxr-xr-x  2 root root  3072 Jun 22 21:54 bin</span><br><span class="line">drwxr-xr-x  2 root root  1024 Jun 22 21:54 boot</span><br><span class="line">drwxr-xr-x  4 root root  1024 Jun 22 21:54 dev</span><br><span class="line">drwxr-xr-x 52 root root  4096 Jun 22 21:54 etc</span><br><span class="line">drwxr-xr-x  2 root root  1024 Jun 22 21:54 home</span><br><span class="line">drwxr-xr-x 12 root root  1024 Jun 22 21:54 lib</span><br><span class="line">drwxr-xr-x  2 root root  1024 Jun 22 21:54 lib64</span><br><span class="line">drwx------  2 root root 12288 Jun 22 21:51 lost+found</span><br><span class="line">drwxr-xr-x  2 root root  1024 Jun 22 21:54 media</span><br><span class="line">-rw-r--r--  1 root root    40 Jun 22 21:54 .mediapc_backdoor_password.gz</span><br><span class="line">drwxr-xr-x  2 root root  1024 Jun 22 21:54 mnt</span><br><span class="line">drwxr-xr-x  2 root root  1024 Jun 22 21:54 opt</span><br><span class="line">drwxr-xr-x  2 root root  1024 Jun 22 21:54 proc</span><br><span class="line">drwx------  2 root root  1024 Jun 22 21:54 root</span><br><span class="line">drwxr-xr-x  4 root root  1024 Jun 22 21:54 run</span><br><span class="line">drwxr-xr-x  2 root root  3072 Jun 22 21:54 sbin</span><br><span class="line">drwxr-xr-x  2 root root  1024 Jun 22 21:54 srv</span><br><span class="line">drwxr-xr-x  2 root root  1024 Jun 22 21:54 sys</span><br><span class="line">drwxr-xr-x  2 root root  1024 Jun 22 21:54 tmp</span><br><span class="line">drwxr-xr-x 10 root root  1024 Jun 22 21:54 usr</span><br><span class="line">drwxr-xr-x  9 root root  1024 Jun 22 21:54 var</span><br><span class="line">root@kali:~/Documents/x# file .mediapc_backdoor_password.gz </span><br><span class="line">.mediapc_backdoor_password.gz: gzip compressed data, last modified: Fri Jun 22 13:54:27 2018, from Unix, original size 20</span><br><span class="line">root@kali:~/Documents/x# gunzip .mediapc_backdoor_password.gz </span><br><span class="line">root@kali:~/Documents/x# ls -al</span><br><span class="line">total 44</span><br><span class="line">drwxr-xr-x 22 root root  1024 Jul 16 10:39 .</span><br><span class="line">drwxr-xr-x  3 root root  4096 Jul 16 10:37 ..</span><br><span class="line">drwxr-xr-x  2 root root  3072 Jun 22 21:54 bin</span><br><span class="line">drwxr-xr-x  2 root root  1024 Jun 22 21:54 boot</span><br><span class="line">drwxr-xr-x  4 root root  1024 Jun 22 21:54 dev</span><br><span class="line">drwxr-xr-x 52 root root  4096 Jun 22 21:54 etc</span><br><span class="line">drwxr-xr-x  2 root root  1024 Jun 22 21:54 home</span><br><span class="line">drwxr-xr-x 12 root root  1024 Jun 22 21:54 lib</span><br><span class="line">drwxr-xr-x  2 root root  1024 Jun 22 21:54 lib64</span><br><span class="line">drwx------  2 root root 12288 Jun 22 21:51 lost+found</span><br><span class="line">drwxr-xr-x  2 root root  1024 Jun 22 21:54 media</span><br><span class="line">-rw-r--r--  1 root root    20 Jun 22 21:54 .mediapc_backdoor_password</span><br><span class="line">drwxr-xr-x  2 root root  1024 Jun 22 21:54 mnt</span><br><span class="line">drwxr-xr-x  2 root root  1024 Jun 22 21:54 opt</span><br><span class="line">drwxr-xr-x  2 root root  1024 Jun 22 21:54 proc</span><br><span class="line">drwx------  2 root root  1024 Jun 22 21:54 root</span><br><span class="line">drwxr-xr-x  4 root root  1024 Jun 22 21:54 run</span><br><span class="line">drwxr-xr-x  2 root root  3072 Jun 22 21:54 sbin</span><br><span class="line">drwxr-xr-x  2 root root  1024 Jun 22 21:54 srv</span><br><span class="line">drwxr-xr-x  2 root root  1024 Jun 22 21:54 sys</span><br><span class="line">drwxr-xr-x  2 root root  1024 Jun 22 21:54 tmp</span><br><span class="line">drwxr-xr-x 10 root root  1024 Jun 22 21:54 usr</span><br><span class="line">drwxr-xr-x  9 root root  1024 Jun 22 21:54 var</span><br><span class="line">root@kali:~/Documents/x# file .mediapc_backdoor_password </span><br><span class="line">.mediapc_backdoor_password: ASCII text</span><br><span class="line">root@kali:~/Documents/x# cat .mediapc_backdoor_password </span><br><span class="line">CTF&#123;I_kn0W_tH15_Fs&#125;</span><br><span class="line">root@kali:~/Documents/x# sudo umount x</span><br><span class="line">umount: x: no mount point specified.</span><br><span class="line">root@kali:~/Documents/x# cd ..</span><br><span class="line">root@kali:~/Documents# sudo umount x</span><br></pre></td></tr></table></figure>
+<p><img src="https://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/BEGINNERS%20QUEST.assets/1531709014530.png" alt="1531709014530"></p>
+<p>挂起系统( x 是一个文件夹)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@kali:~/Documents# sudo mount -o loop ./challenge2.ext4 x</span><br></pre></td></tr></table></figure>
+<p>用完之后卸载，避免占据空间。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@kali:~/Documents# sudo umount x</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>CTF{I_kn0W_tH15_Fs}</p>
+</blockquote>
+<h2 id="JS-SAFE-web"><a href="#JS-SAFE-web" class="headerlink" title="JS SAFE[web]"></a>JS SAFE[web]</h2><p>Aluminum-Key</p>
+<blockquote>
+<p>Well it’s definitely the 90s. Using what was found in the mysterious .ico file, you extract the driver for the Aluminum-Key Hardware password storage device. Let’s see what it has in store.</p>
+</blockquote>
+<h2 id="ROUTER-UI-web"><a href="#ROUTER-UI-web" class="headerlink" title="ROUTER-UI[web]"></a>ROUTER-UI[web]</h2><p>Offhub</p>
+<blockquote>
+<p>Using the domain found on the hardened aluminum key, you make your way on to the OffHub router. A revolutionary device that simplifies your life. You’re at the UI page, but attempting to brute force the password failed miserably. If we could find an XSS on the page then we could use it to steal the root user session token. In case you find something, try to send an email to <a href="mailto:wintermuted@googlegroups.com" target="_blank" rel="noopener">wintermuted@googlegroups.com</a>. If you claim your link includes cat pictures, I’m sure Wintermuted will click it. I hope Chrome’s XSS filter will not block the exploit though.</p>
+<p><a href="https://router-ui.web.ctfcompetition.com/" target="_blank" rel="noopener">https://router-ui.web.ctfcompetition.com/</a> </p>
+</blockquote>
+<h2 id="GATEKEEPER-re"><a href="#GATEKEEPER-re" class="headerlink" title="GATEKEEPER[re]"></a>GATEKEEPER[re]</h2><p>WebPluxMediaPC</p>
+<blockquote>
+<p>It’s a media PC! All fully purchased through the online subscription revolution empire “GimmeDa$”. The PC has a remote control service running that looks like it’ll cause all kinds of problems or that was written by someone who watched too many 1990s movies. You download the binary from the vendor and begin reversing it. Nothing is the right way around.</p>
+</blockquote>
+<p><img src="https://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/BEGINNERS%20QUEST.assets/1531717233138.png" alt="1531717233138"></p>
+<blockquote>
+<p>CTF{I_g0T_m4d_sk1lLz}</p>
+</blockquote>
+<p>参考：<a href="https://github.com/rtoma/google-ctf2018/blob/master/Gatekeeper.md" target="_blank" rel="noopener">https://github.com/rtoma/google-ctf2018/blob/master/Gatekeeper.md</a></p>
+<h2 id="MEDIA-DB-misc"><a href="#MEDIA-DB-misc" class="headerlink" title="MEDIA-DB[misc]"></a>MEDIA-DB[misc]</h2><p>WebPluxMediaPC</p>
+<blockquote>
+<p>The gatekeeper software gave you access to a custom database to organize a music playlist. It looks like it might also be connected to the smart fridge to play custom door alarms. Maybe we can grab an oauth token that gets us closer to cake.</p>
+<p>nc media-db.ctfcompetition.com 1337</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&apos; union select 1,oauth_token from oauth_tokens --</span><br></pre></td></tr></table></figure>
+<p><img src="https://dbhaihai.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E7%89%87/CTF/BEGINNERS%20QUEST.assets/1531717887269.png" alt="1531717887269"></p>
+<p><a href="https://github.com/rtoma/google-ctf2018/blob/master/Media-DB.md" target="_blank" rel="noopener">https://github.com/rtoma/google-ctf2018/blob/master/Media-DB.md</a></p>
+<h2 id="FRIDGE-TODO-LISTS-pwn"><a href="#FRIDGE-TODO-LISTS-pwn" class="headerlink" title="FRIDGE TODO LISTS[pwn]"></a>FRIDGE TODO LISTS[pwn]</h2><p>martFridge2000</p>
+<blockquote>
+<p>One of the main selling points of smart fridge 2000 over the smart fridge 1999 is that it comes with a TODO list network service. We heard that Wintermuted uses this list as a password storage, maybe you can find a bug to leak their notes? Luckily we found the source code of the TODO list on the vendor’s website.</p>
+<p>nc fridge-todo-list.ctfcompetition.com 1337</p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/13/bugku-web-Writeup/" rel="next" title="bugku-web-Writeup">
+                <i class="fa fa-chevron-left"></i> bugku-web-Writeup
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/28/ISITDTUCTF2018/" rel="prev" title="ISITDTUCTF2018">
+                ISITDTUCTF2018 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Lhaihai" />
+            
+              <p class="site-author-name" itemprop="name">Lhaihai</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">59</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/TheReturnOfTheKing/" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#LETTER-misc"><span class="nav-number">1.</span> <span class="nav-text">LETTER[misc]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FLOPPY-misc"><span class="nav-number">2.</span> <span class="nav-text">FLOPPY[misc]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FLOPPY2-misc"><span class="nav-number">3.</span> <span class="nav-text">FLOPPY2[misc]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OCR-IS-COOL-misc"><span class="nav-number">4.</span> <span class="nav-text">OCR IS COOL![misc]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SECURITY-BY-OBSCURITY-misc"><span class="nav-number">5.</span> <span class="nav-text">SECURITY BY OBSCURITY[misc]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MOAR-pwn"><span class="nav-number">6.</span> <span class="nav-text">MOAR[pwn]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ADMIN-UI-pwn-re"><span class="nav-number">7.</span> <span class="nav-text">ADMIN UI[pwn-re]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ADMIN-UI-2-pwn-re"><span class="nav-number">8.</span> <span class="nav-text">ADMIN UI 2[pwn-re]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FIRMWARE-re"><span class="nav-number">9.</span> <span class="nav-text">FIRMWARE [re]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS-SAFE-web"><span class="nav-number">10.</span> <span class="nav-text">JS SAFE[web]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ROUTER-UI-web"><span class="nav-number">11.</span> <span class="nav-text">ROUTER-UI[web]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GATEKEEPER-re"><span class="nav-number">12.</span> <span class="nav-text">GATEKEEPER[re]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MEDIA-DB-misc"><span class="nav-number">13.</span> <span class="nav-text">MEDIA-DB[misc]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FRIDGE-TODO-LISTS-pwn"><span class="nav-number">14.</span> <span class="nav-text">FRIDGE TODO LISTS[pwn]</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-117483741-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-117483741-1');
+</script>
+
+<div class="copyright">&copy; 2018/3/11 &mdash; <span itemprop="copyrightYear">2018</span>
+
+		
+
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lhaihai</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye">本站总访问量</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
