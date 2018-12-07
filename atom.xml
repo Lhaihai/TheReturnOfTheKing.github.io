@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.Lhaihai.wang/"/>
-  <updated>2018-09-01T12:41:23.686Z</updated>
+  <updated>2018-12-07T08:58:18.541Z</updated>
   <id>http://blog.Lhaihai.wang/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>新的博客</title>
+    <link href="http://blog.Lhaihai.wang/2018/12/07/%E6%96%B0%E7%9A%84%E5%8D%9A%E5%AE%A2/"/>
+    <id>http://blog.Lhaihai.wang/2018/12/07/新的博客/</id>
+    <published>2018-12-07T08:53:45.000Z</published>
+    <updated>2018-12-07T08:58:18.541Z</updated>
+    
+    <content type="html"><![CDATA[<p>使用hugo搭了新的博客，方便管理</p><p>blog就当备份了</p><p>新的博客域名</p><p><a href="https://www.lhaihai.wang/" target="_blank" rel="noopener">https://www.lhaihai.wang/</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;使用hugo搭了新的博客，方便管理&lt;/p&gt;
+&lt;p&gt;blog就当备份了&lt;/p&gt;
+&lt;p&gt;新的博客域名&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.lhaihai.wang/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://www.lh
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>python沙箱逃逸</title>
@@ -485,31 +509,6 @@
     
     
       <category term="Web" scheme="http://blog.Lhaihai.wang/tags/Web/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CSP学习笔记</title>
-    <link href="http://blog.Lhaihai.wang/2018/05/20/CSP%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    <id>http://blog.Lhaihai.wang/2018/05/20/CSP学习笔记/</id>
-    <published>2018-05-20T14:41:21.000Z</published>
-    <updated>2018-05-20T16:25:46.389Z</updated>
-    
-    <content type="html"><![CDATA[<p>阮一峰：<a href="http://www.ruanyifeng.com/blog/2016/09/csp.html" target="_blank" rel="noopener">Content Security Policy 入门教程</a></p><p><a href="https://en.wikipedia.org/wiki/Content_Security_Policy" target="_blank" rel="noopener">Content Security Policy</a></p><p><a href="https://lorexxar.cn/2017/05/16/nonce-bypass-script/" target="_blank" rel="noopener">通过浏览器缓存来bypass CSP script nonce</a></p><p>梅子酒： <a href="https://mp.weixin.qq.com/s/ljBB5jStB7fcJq4cgdWnnw" target="_blank" rel="noopener">使用 Wave 文件绕过 CSP 策略</a></p><a id="more"></a>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;阮一峰：&lt;a href=&quot;http://www.ruanyifeng.com/blog/2016/09/csp.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Content Security Policy 入门教程&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Content_Security_Policy&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Content Security Policy&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://lorexxar.cn/2017/05/16/nonce-bypass-script/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;通过浏览器缓存来bypass CSP script nonce&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;梅子酒： &lt;a href=&quot;https://mp.weixin.qq.com/s/ljBB5jStB7fcJq4cgdWnnw&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;使用 Wave 文件绕过 CSP 策略&lt;/a&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Web安全" scheme="http://blog.Lhaihai.wang/categories/Web%E5%AE%89%E5%85%A8/"/>
-    
-    
-      <category term="CSP" scheme="http://blog.Lhaihai.wang/tags/CSP/"/>
     
   </entry>
   
